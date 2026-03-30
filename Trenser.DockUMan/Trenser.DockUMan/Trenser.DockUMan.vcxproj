@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{2b1b99a1-8332-42df-96ca-08d01f34ab1d}</ProjectGuid>
+    <RootNamespace>TrenserDockUMan</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)Views;$(ProjectDir)Services;$(ProjectDir)Data;$(ProjectDir)Controller;$(ProjectDir)Factory;$(ProjectDir)Models;$(ProjectDir)Utility;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Controller\DockUManController.cpp" />
+    <ClCompile Include="Data\DataStore.cpp" />
+    <ClCompile Include="Factory\UserFactory.cpp" />
+    <ClCompile Include="Models\BillAndPayment.cpp" />
+    <ClCompile Include="Models\Booking.cpp" />
+    <ClCompile Include="Models\Container.cpp" />
+    <ClCompile Include="Models\Crane.cpp" />
+    <ClCompile Include="Models\CustomsOfficer.cpp" />
+    <ClCompile Include="Models\CustomsPenalty.cpp" />
+    <ClCompile Include="Models\Dock.cpp" />
+    <ClCompile Include="Models\Log.cpp" />
+    <ClCompile Include="Models\Notification.cpp" />
+    <ClCompile Include="Models\PickupAgent.cpp" />
+    <ClCompile Include="Models\Port.cpp" />
+    <ClCompile Include="Models\PortAuthorityAdmin.cpp" />
+    <ClCompile Include="Models\Ship.cpp" />
+    <ClCompile Include="Models\ShipManager.cpp" />
+    <ClCompile Include="Models\ShippingAgent.cpp" />
+    <ClCompile Include="Models\TerminalOperator.cpp" />
+    <ClCompile Include="Models\Threshold.cpp" />
+    <ClCompile Include="Models\Truck.cpp" />
+    <ClCompile Include="Models\User.cpp" />
+    <ClCompile Include="Models\Yard.cpp" />
+    <ClCompile Include="Models\YardBlock.cpp" />
+    <ClCompile Include="Services\BillAndPaymentService.cpp" />
+    <ClCompile Include="Services\BookingService.cpp" />
+    <ClCompile Include="Services\ContainerService.cpp" />
+    <ClCompile Include="Services\CraneService.cpp" />
+    <ClCompile Include="Services\CustomsService.cpp" />
+    <ClCompile Include="Services\DockService.cpp" />
+    <ClCompile Include="Services\LogService.cpp" />
+    <ClCompile Include="Services\NotificationService.cpp" />
+    <ClCompile Include="Services\PortService.cpp" />
+    <ClCompile Include="Services\ShipService.cpp" />
+    <ClCompile Include="Services\ThresholdService.cpp" />
+    <ClCompile Include="Services\TruckService.cpp" />
+    <ClCompile Include="Services\UserService.cpp" />
+    <ClCompile Include="Services\YardService.cpp" />
+    <ClCompile Include="Trenser.DockUMan.cpp" />
+    <ClCompile Include="Utility\Enums.cpp" />
+    <ClCompile Include="Utility\InputHelper.cpp" />
+    <ClCompile Include="Utility\OutputHelper.cpp" />
+    <ClCompile Include="Utility\Timestamp.cpp" />
+    <ClCompile Include="Utility\Validator.cpp" />
+    <ClCompile Include="Views\Menu.cpp" />
+    <ClCompile Include="Views\UserInterface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Controller\DockUManController.h" />
+    <ClInclude Include="Data\DataStore.h" />
+    <ClInclude Include="Factory\UserFactory.h" />
+    <ClInclude Include="Models\BillAndPayment.h" />
+    <ClInclude Include="Models\Booking.h" />
+    <ClInclude Include="Models\Container.h" />
+    <ClInclude Include="Models\Crane.h" />
+    <ClInclude Include="Models\CustomsOfficer.h" />
+    <ClInclude Include="Models\CustomsPenalty.h" />
+    <ClInclude Include="Models\Dock.h" />
+    <ClInclude Include="Models\Log.h" />
+    <ClInclude Include="Models\Notification.h" />
+    <ClInclude Include="Models\PickupAgent.h" />
+    <ClInclude Include="Models\Port.h" />
+    <ClInclude Include="Models\PortAuthorityAdmin.h" />
+    <ClInclude Include="Models\Ship.h" />
+    <ClInclude Include="Models\ShipManager.h" />
+    <ClInclude Include="Models\ShippingAgent.h" />
+    <ClInclude Include="Models\TerminalOperator.h" />
+    <ClInclude Include="Models\Threshold.h" />
+    <ClInclude Include="Models\Truck.h" />
+    <ClInclude Include="Models\User.h" />
+    <ClInclude Include="Models\Yard.h" />
+    <ClInclude Include="Models\YardBlock.h" />
+    <ClInclude Include="Services\BillAndPaymentService.h" />
+    <ClInclude Include="Services\BookingService.h" />
+    <ClInclude Include="Services\ContainerService.h" />
+    <ClInclude Include="Services\CraneService.h" />
+    <ClInclude Include="Services\CustomsService.h" />
+    <ClInclude Include="Services\DockService.h" />
+    <ClInclude Include="Services\LogService.h" />
+    <ClInclude Include="Services\NotificationService.h" />
+    <ClInclude Include="Services\PortService.h" />
+    <ClInclude Include="Services\ShipService.h" />
+    <ClInclude Include="Services\ThresholdService.h" />
+    <ClInclude Include="Services\TruckService.h" />
+    <ClInclude Include="Services\YardService.h" />
+    <ClInclude Include="Utility\Enums.h" />
+    <ClInclude Include="Utility\InputHelper.h" />
+    <ClInclude Include="Utility\OutputHelper.h" />
+    <ClInclude Include="Utility\Timestamp.h" />
+    <ClInclude Include="Utility\Validator.h" />
+    <ClInclude Include="Views\Menu.h" />
+    <ClInclude Include="Views\UserInterface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Services\UserService.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

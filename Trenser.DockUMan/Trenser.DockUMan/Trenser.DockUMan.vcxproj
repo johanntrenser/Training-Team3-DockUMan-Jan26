@@ -123,7 +123,57 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Controller\DockUManController.cpp" />
+    <ClCompile Include="Models\BillAndPayment.cpp" />
+    <ClCompile Include="Models\Booking.cpp" />
+    <ClCompile Include="Models\Container.cpp" />
+    <ClCompile Include="Models\Crane.cpp" />
+    <ClCompile Include="Models\CustomsOfficer.cpp" />
+    <ClCompile Include="Models\CustomsPenalty.cpp" />
+    <ClCompile Include="Models\Dock.cpp" />
+    <ClCompile Include="Models\Log.cpp" />
+    <ClCompile Include="Models\Notification.cpp" />
+    <ClCompile Include="Models\PickupAgent.cpp" />
+    <ClCompile Include="Models\Port.cpp" />
+    <ClCompile Include="Models\PortAuthorityAdmin.cpp" />
+    <ClCompile Include="Models\Ship.cpp" />
+    <ClCompile Include="Models\ShipManager.cpp" />
+    <ClCompile Include="Models\ShippingAgent.cpp" />
+    <ClCompile Include="Models\TerminalOperator.cpp" />
+    <ClCompile Include="Models\Threshold.cpp" />
+    <ClCompile Include="Models\Truck.cpp" />
+    <ClCompile Include="Models\User.cpp" />
+    <ClCompile Include="Models\Yard.cpp" />
+    <ClCompile Include="Models\YardBlock.cpp" />
     <ClCompile Include="Trenser.DockUMan.cpp" />
+    <ClCompile Include="Views\Menu.cpp" />
+    <ClCompile Include="Views\UserInterface.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Controller\DockUManController.h" />
+    <ClInclude Include="Models\BillAndPayment.h" />
+    <ClInclude Include="Models\Booking.h" />
+    <ClInclude Include="Models\Container.h" />
+    <ClInclude Include="Models\Crane.h" />
+    <ClInclude Include="Models\CustomsOfficer.h" />
+    <ClInclude Include="Models\CustomsPenalty.h" />
+    <ClInclude Include="Models\Dock.h" />
+    <ClInclude Include="Models\Log.h" />
+    <ClInclude Include="Models\Notification.h" />
+    <ClInclude Include="Models\PickupAgent.h" />
+    <ClInclude Include="Models\Port.h" />
+    <ClInclude Include="Models\PortAuthorityAdmin.h" />
+    <ClInclude Include="Models\Ship.h" />
+    <ClInclude Include="Models\ShipManager.h" />
+    <ClInclude Include="Models\ShippingAgent.h" />
+    <ClInclude Include="Models\TerminalOperator.h" />
+    <ClInclude Include="Models\Threshold.h" />
+    <ClInclude Include="Models\Truck.h" />
+    <ClInclude Include="Models\User.h" />
+    <ClInclude Include="Models\Yard.h" />
+    <ClInclude Include="Models\YardBlock.h" />
+    <ClInclude Include="Views\Menu.h" />
+    <ClInclude Include="Views\UserInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,10 +13,165 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Models">
+      <UniqueIdentifier>{9a523776-b654-4871-a707-47311ae2bcdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Views">
+      <UniqueIdentifier>{35abfc3a-15f2-4e6b-87f3-3d76a6fd1782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{1f44c49d-1893-4f2d-aab6-d726a4268857}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Trenser.DockUMan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Models\BillAndPayment.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Booking.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Container.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Crane.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\CustomsOfficer.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\CustomsPenalty.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Dock.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Log.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Notification.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\PickupAgent.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Port.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\PortAuthorityAdmin.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Ship.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\ShipManager.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\ShippingAgent.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\TerminalOperator.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Threshold.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Truck.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\User.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\Yard.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\YardBlock.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\Menu.cpp">
+      <Filter>Views</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\UserInterface.cpp">
+      <Filter>Views</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller\DockUManController.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Models\BillAndPayment.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Booking.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Container.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Crane.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\CustomsOfficer.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\CustomsPenalty.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Dock.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Log.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Notification.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\PickupAgent.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Port.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\PortAuthorityAdmin.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Ship.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\ShipManager.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\ShippingAgent.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\TerminalOperator.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Threshold.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Truck.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\User.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\Yard.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models\YardBlock.h">
+      <Filter>Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\Menu.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\UserInterface.h">
+      <Filter>Views</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller\DockUManController.h">
+      <Filter>Controller</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

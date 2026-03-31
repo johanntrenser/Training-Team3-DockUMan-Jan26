@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Controller\DockUManController.cpp" />
+    <ClCompile Include="Factory\UserFactory.cpp" />
     <ClCompile Include="Models\BillAndPayment.cpp" />
     <ClCompile Include="Models\Booking.cpp" />
     <ClCompile Include="Models\Container.cpp" />
@@ -145,12 +146,27 @@
     <ClCompile Include="Models\User.cpp" />
     <ClCompile Include="Models\Yard.cpp" />
     <ClCompile Include="Models\YardBlock.cpp" />
+    <ClCompile Include="Services\BillAndPaymentService.cpp" />
+    <ClCompile Include="Services\BookingService.cpp" />
+    <ClCompile Include="Services\ContainerService.cpp" />
+    <ClCompile Include="Services\CraneService.cpp" />
+    <ClCompile Include="Services\CustomsService.cpp" />
+    <ClCompile Include="Services\DockService.cpp" />
+    <ClCompile Include="Services\LogService.cpp" />
+    <ClCompile Include="Services\NotificationService.cpp" />
+    <ClCompile Include="Services\PortService.cpp" />
+    <ClCompile Include="Services\ShipService.cpp" />
+    <ClCompile Include="Services\ThresholdService.cpp" />
+    <ClCompile Include="Services\TruckService.cpp" />
+    <ClCompile Include="Services\UserService.cpp" />
+    <ClCompile Include="Services\YardService.cpp" />
     <ClCompile Include="Trenser.DockUMan.cpp" />
     <ClCompile Include="Views\Menu.cpp" />
     <ClCompile Include="Views\UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller\DockUManController.h" />
+    <ClInclude Include="Factory\UserFactory.h" />
     <ClInclude Include="Models\BillAndPayment.h" />
     <ClInclude Include="Models\Booking.h" />
     <ClInclude Include="Models\Container.h" />
@@ -172,8 +188,24 @@
     <ClInclude Include="Models\User.h" />
     <ClInclude Include="Models\Yard.h" />
     <ClInclude Include="Models\YardBlock.h" />
+    <ClInclude Include="Services\BillAndPaymentService.h" />
+    <ClInclude Include="Services\BookingService.h" />
+    <ClInclude Include="Services\ContainerService.h" />
+    <ClInclude Include="Services\CraneService.h" />
+    <ClInclude Include="Services\CustomsService.h" />
+    <ClInclude Include="Services\DockService.h" />
+    <ClInclude Include="Services\LogService.h" />
+    <ClInclude Include="Services\NotificationService.h" />
+    <ClInclude Include="Services\PortService.h" />
+    <ClInclude Include="Services\ShipService.h" />
+    <ClInclude Include="Services\ThresholdService.h" />
+    <ClInclude Include="Services\TruckService.h" />
+    <ClInclude Include="Services\YardService.h" />
     <ClInclude Include="Views\Menu.h" />
     <ClInclude Include="Views\UserInterface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Services\UserService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

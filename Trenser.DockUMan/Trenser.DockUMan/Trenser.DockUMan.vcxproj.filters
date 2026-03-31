@@ -22,6 +22,12 @@
     <Filter Include="Controller">
       <UniqueIdentifier>{1f44c49d-1893-4f2d-aab6-d726a4268857}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Services">
+      <UniqueIdentifier>{0edb66cc-ca55-4ee5-880b-4f54b20036b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory">
+      <UniqueIdentifier>{f5438ab4-3ac8-443e-9cc2-c63370f454bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Trenser.DockUMan.cpp">
@@ -99,6 +105,48 @@
     <ClCompile Include="Controller\DockUManController.cpp">
       <Filter>Controller</Filter>
     </ClCompile>
+    <ClCompile Include="Services\BillAndPaymentService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\BookingService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\ContainerService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\CraneService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\CustomsService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\DockService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\LogService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\NotificationService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\PortService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\ShipService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\ThresholdService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\TruckService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Services\YardService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Factory\UserFactory.cpp">
+      <Filter>Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Models\BillAndPayment.h">
@@ -172,6 +220,56 @@
     </ClInclude>
     <ClInclude Include="Controller\DockUManController.h">
       <Filter>Controller</Filter>
+    </ClInclude>
+    <ClCompile Include="Services\UserService.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
+    <ClInclude Include="Services\BillAndPaymentService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\BookingService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\ContainerService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\CraneService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\CustomsService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\DockService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\LogService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\NotificationService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\PortService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\ShipService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\ThresholdService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\TruckService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\YardService.h">
+      <Filter>Services</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory\UserFactory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Services\UserService.h">
+      <Filter>Services</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

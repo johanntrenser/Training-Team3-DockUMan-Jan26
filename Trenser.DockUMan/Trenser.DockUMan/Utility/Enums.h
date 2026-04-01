@@ -4,6 +4,7 @@ namespace Enums {
 
 	enum class UserTypes
 	{
+		NOT_ASSIGNED,
 		PICKUP_AGENT,
 		PORT_AUTHORITY_ADMINISTRATOR,
 		FINANCE_MANAGER,

@@ -18,7 +18,7 @@ private:
 	std::shared_ptr<Ship>m_shipOfDeparture;
 	std::shared_ptr<User>m_pickupAgent;
 public:
-	Container() :m_containerId(""), m_weight(0.0), m_dateOfDeparture(""), m_expiryDate(""), m_customsCleared(false), m_shipOfDeparture(nullptr), m_pickupAgent(nullptr),m_containerStatus(Enums::ContainerStatus::ACTIVE) {};
+	Container() :m_containerId(""), m_weight(0.0), m_dateOfDeparture(""), m_expiryDate(""), m_customsCleared(false), m_shipOfDeparture(nullptr), m_pickupAgent(nullptr),m_containerType(Enums::ContainerType::GENERAL), m_containerStatus(Enums::ContainerStatus::ACTIVE),m_transportType(Enums::ContainerTransportType::IMPORT) {};
 	Container(std::string containerId, double weight, std::string dateOfDeparture, std::string expiryDate, bool customsCleared, std::shared_ptr<Ship> shipOfDeparture, std::shared_ptr<User> pickupAgent, Enums::ContainerType containerType,Enums::ContainerStatus containerStatus,Enums::ContainerTransportType transportType) :
 		m_containerId(containerId), m_weight(weight), m_dateOfDeparture(dateOfDeparture), m_expiryDate(expiryDate), m_customsCleared(customsCleared), m_shipOfDeparture(shipOfDeparture), m_pickupAgent(pickupAgent),m_containerType(containerType),m_containerStatus(containerStatus),m_transportType(transportType) {};
 	std::string getContainerId() const;

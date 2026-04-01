@@ -28,11 +28,14 @@
     <Filter Include="Factory">
       <UniqueIdentifier>{f5438ab4-3ac8-443e-9cc2-c63370f454bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{9c144cd6-783c-4fbd-b6e5-bc7f36c65adf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{a2b115ed-4b32-42fd-a1bc-3fef6995f135}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Trenser.DockUMan.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Models\BillAndPayment.cpp">
       <Filter>Models</Filter>
     </ClCompile>
@@ -146,6 +149,27 @@
     </ClCompile>
     <ClCompile Include="Factory\UserFactory.cpp">
       <Filter>Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Enums.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\InputHelper.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\OutputHelper.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Timestamp.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Trenser.DockUMan.cpp">
+      <Filter>Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Validator.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\DataStore.cpp">
+      <Filter>Data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,6 +289,24 @@
     </ClInclude>
     <ClInclude Include="Factory\UserFactory.h">
       <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Enums.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\InputHelper.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\OutputHelper.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Timestamp.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Validator.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\DataStore.h">
+      <Filter>Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

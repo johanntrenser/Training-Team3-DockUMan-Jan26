@@ -102,6 +102,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)Views;$(ProjectDir)Services;$(ProjectDir)Data;$(ProjectDir)Controller;$(ProjectDir)Factory;$(ProjectDir)Models;$(ProjectDir)Utility;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Controller\DockUManController.cpp" />
+    <ClCompile Include="Data\DataStore.cpp" />
     <ClCompile Include="Factory\UserFactory.cpp" />
     <ClCompile Include="Models\BillAndPayment.cpp" />
     <ClCompile Include="Models\Booking.cpp" />
@@ -161,11 +163,17 @@
     <ClCompile Include="Services\UserService.cpp" />
     <ClCompile Include="Services\YardService.cpp" />
     <ClCompile Include="Trenser.DockUMan.cpp" />
+    <ClCompile Include="Utility\Enums.cpp" />
+    <ClCompile Include="Utility\InputHelper.cpp" />
+    <ClCompile Include="Utility\OutputHelper.cpp" />
+    <ClCompile Include="Utility\Timestamp.cpp" />
+    <ClCompile Include="Utility\Validator.cpp" />
     <ClCompile Include="Views\Menu.cpp" />
     <ClCompile Include="Views\UserInterface.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller\DockUManController.h" />
+    <ClInclude Include="Data\DataStore.h" />
     <ClInclude Include="Factory\UserFactory.h" />
     <ClInclude Include="Models\BillAndPayment.h" />
     <ClInclude Include="Models\Booking.h" />
@@ -201,6 +209,11 @@
     <ClInclude Include="Services\ThresholdService.h" />
     <ClInclude Include="Services\TruckService.h" />
     <ClInclude Include="Services\YardService.h" />
+    <ClInclude Include="Utility\Enums.h" />
+    <ClInclude Include="Utility\InputHelper.h" />
+    <ClInclude Include="Utility\OutputHelper.h" />
+    <ClInclude Include="Utility\Timestamp.h" />
+    <ClInclude Include="Utility\Validator.h" />
     <ClInclude Include="Views\Menu.h" />
     <ClInclude Include="Views\UserInterface.h" />
   </ItemGroup>

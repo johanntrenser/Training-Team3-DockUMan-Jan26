@@ -1,67 +1,69 @@
 #include "User.h"
 
-User::User()
-{
-	m_id = "";
-	m_name = "";
-	m_password = "";
-	m_email = "";
-	m_phoneNumber = "";
-}
-
-User::User(std::string id, std::string name, std::string password, std::string email, std::string phoneNumber)
-{
-	m_id = id;
-	m_name = name;
-	m_password = password;
-	m_email = email;
-	m_phoneNumber = phoneNumber;
-}
-
-std::string User::getId()
+std::string User::getId() const
 {
 	return m_id;
 }
 
-std::string User::getName()
+std::string User::getName() const
 {
 	return m_name;
 }
 
-std::string User::getPassword()
+std::string User::getPassword() const
 {
 	return m_password;
 }
 
-std::string User::getEmail()
+std::string User::getEmail() const
 {
 	return m_email;
 }
 
-std::string User::getPhoneNumber()
+std::string User::getPhoneNumber() const
 {
 	return m_phoneNumber;
 }
 
-void User::setId(std::string id)
+Enums::UserTypes User::getRole() const
+{
+	return m_type;
+}
+
+Enums::UserStatus User::getStatus() const
+{
+	return m_status;
+}
+
+void User::setId(const std::string& id)
 {
 	m_id = id;
 }
 
-void User::setName(std::string name)
+void User::setName(const std::string& name)
 {
 	m_name = name;
 }
 
-void User::setPassword(std::string password)
+void User::setPassword(const std::string& password)
 {
 	m_password = password;
 }
-void User::setEmail(std::string email)
+void User::setEmail(const std::string& email)
 {
 	m_email = email;
 }
-void User::setPhoneNumber(std::string phoneNumber)
+void User::setPhoneNumber(const std::string& phoneNumber)
 {
 	m_phoneNumber = phoneNumber;
+}
+
+void User::setRole(const Enums::UserTypes& type)
+{
+	m_type = type;
+}
+
+void User::setStatus(const Enums::UserStatus& status)
+{
+	m_status = status;
 }

@@ -13,10 +13,16 @@ namespace Enums {
 		TERMINAL_OPERATOR,
 		SHIP_MANAGER
 	};
+	enum class ProcessStatus
+	{
+		FAILED,
+		SUCCESS
+	};
 	enum class UserStatus
 	{
 		ACTIVE,
-		INACTIVE
+		INACTIVE,
+		PENDING
 	};
 	enum class NotificationStatus
 	{

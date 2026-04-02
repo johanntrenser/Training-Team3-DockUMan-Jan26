@@ -2,8 +2,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include<utility>
 #include <map>
-#include <memory>
+#include "User.h"
 #include "Dock.h"
 #include "Yard.h"
 #include "Container.h"
@@ -19,8 +20,10 @@
 
 class DataStore
 {
+
 private:
     DataStore() = default;
+    std::vector<std::shared_ptr<User>> m_users;
     std::vector<std::shared_ptr<Dock>> m_docks;
     std::vector<std::shared_ptr<Yard>> m_yard;
     std::vector<std::shared_ptr<Container>> m_containers;
@@ -44,6 +47,12 @@ public:
     std::map<Enums::ContainerType, std::shared_ptr<Threshold>> getThresholds() const;
     std::vector<std::shared_ptr<Notification>> getNotifications() const;
     std::vector<std::shared_ptr<Log>> getLogs() const;
+    template<typename T>
+    static bool addUser(const std::shared_ptr<T>& agent)
+    {
+        getInstance().m_users.push_back(agent);
+        return true;
+    }
     void setDocks(const std::vector<std::shared_ptr<Dock>>& docks);
     void setYard(const std::vector<std::shared_ptr<Yard>>& yard);
     void setContainers(const std::vector<std::shared_ptr<Container>>& containers);

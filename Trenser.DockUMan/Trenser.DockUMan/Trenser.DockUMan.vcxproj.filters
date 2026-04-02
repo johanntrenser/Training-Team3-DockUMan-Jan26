@@ -162,14 +162,14 @@
     <ClCompile Include="Utility\Timestamp.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Trenser.DockUMan.cpp">
-      <Filter>Models</Filter>
-    </ClCompile>
     <ClCompile Include="Utility\Validator.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
     <ClCompile Include="Data\DataStore.cpp">
       <Filter>Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Trenser.DockUMan.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

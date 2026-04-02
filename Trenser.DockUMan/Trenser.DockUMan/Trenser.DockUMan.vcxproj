@@ -126,7 +126,7 @@
   <ItemGroup>
     <ClCompile Include="Controller\DockUManController.cpp" />
     <ClCompile Include="Data\DataStore.cpp" />
-    <ClCompile Include="Factory\UserFactory.cpp" />
+    <ClCompile Include="Factory\Factory.cpp" />
     <ClCompile Include="Models\BillAndPayment.cpp" />
     <ClCompile Include="Models\Booking.cpp" />
     <ClCompile Include="Models\Container.cpp" />
@@ -174,7 +174,7 @@
   <ItemGroup>
     <ClInclude Include="Controller\DockUManController.h" />
     <ClInclude Include="Data\DataStore.h" />
-    <ClInclude Include="Factory\UserFactory.h" />
+    <ClInclude Include="Factory\Factory.h" />
     <ClInclude Include="Models\BillAndPayment.h" />
     <ClInclude Include="Models\Booking.h" />
     <ClInclude Include="Models\Container.h" />

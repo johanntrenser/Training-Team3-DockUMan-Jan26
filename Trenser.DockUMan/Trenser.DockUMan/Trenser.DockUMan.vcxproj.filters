@@ -147,7 +147,7 @@
     <ClCompile Include="Services\YardService.cpp">
       <Filter>Services</Filter>
     </ClCompile>
-    <ClCompile Include="Factory\UserFactory.cpp">
+    <ClCompile Include="Factory\Factory.cpp">
       <Filter>Factory</Filter>
     </ClCompile>
     <ClCompile Include="Utility\Enums.cpp">
@@ -287,7 +287,7 @@
     <ClInclude Include="Services\YardService.h">
       <Filter>Services</Filter>
     </ClInclude>
-    <ClInclude Include="Factory\UserFactory.h">
+    <ClInclude Include="Factory\Factory.h">
       <Filter>Factory</Filter>
     </ClInclude>
     <ClInclude Include="Utility\Enums.h">

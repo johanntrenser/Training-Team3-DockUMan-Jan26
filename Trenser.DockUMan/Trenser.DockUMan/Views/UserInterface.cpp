@@ -163,6 +163,7 @@ void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userI
 	userInformation.push_back(licenseNumber);
 }
 
+<<<<<<< Updated upstream
 void UserInterface::logoutUser()
 {
 	m_dockUManController->logoutUser();
@@ -331,4 +332,21 @@ void UserInterface::handleCraneOperations()
 		}
 	}
 }
+=======
+void UserInterface::getUserList()
+{
+	std::vector<std::string> userList;
+	userList = m_dockUManController->getUserList();
+	displayUserList(userList);
+}
+
+void UserInterface::displayUserList(std::vector<std::string>& userList)
+{
+	for (std::vector<std::string>::iterator iterator = userList.begin(); iterator != userList.end(); iterator++)
+	{
+		std::cout << *iterator << std::endl;
+	}
+}
+
+>>>>>>> Stashed changes
 

@@ -347,5 +347,10 @@ void UserInterface::displayUserList(std::vector<std::string>& userList)
 	}
 }
 
+Enums::ProcessStatus UserInterface::deactivateUser(std::string& userId, std::string& password)
+{
+	return m_dockUManController->deactivateUser(userId, password);
+}
+
 
 

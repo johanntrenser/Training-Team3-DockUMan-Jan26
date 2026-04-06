@@ -4,6 +4,7 @@
 #include "Enums.h"
 #include "Factory.h"
 #include "ShippingAgent.h"
+#include "CustomsOfficer.h"
 #include "DataStore.h"
 class UserService
 {
@@ -14,5 +15,9 @@ public:
 	Enums::ProcessStatus registerUser(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
 	Enums::ProcessStatus authenticateUser(std::string&, std::string&);
 	Enums::UserTypes getUserType(std::string&);
+	bool IsPhoneNumberUnique(std::string&);
+	bool IsEmailIdUnique(std::string&);
+	bool IsLicenseNumberUnique(std::string&);
+	bool IsBadgeNumberUnique(std::string&);
 };
 

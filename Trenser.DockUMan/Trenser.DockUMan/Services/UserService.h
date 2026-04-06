@@ -21,7 +21,7 @@ public:
 	bool IsBadgeNumberUnique(std::string&);
 	void logoutUser();
 	std::vector<std::string> getUserList();
-	Enums::ProcessStatus deactivateUser(std::string&, std::string&);
+	Enums::ProcessStatus deactivateUser(std::string&);
 };
 
 

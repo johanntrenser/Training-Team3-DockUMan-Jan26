@@ -140,11 +140,11 @@ std::vector<std::string> UserService::getUserList()
 	return userList;
 }
 
-Enums::ProcessStatus UserService::deactivateUser(std::string& userId,std::string& password)
+Enums::ProcessStatus UserService::deactivateUser(std::string& userId)
 {
 	if (std::shared_ptr<User> user = m_dataStore.getUser(userId))
 	{
-		user->setPassword(password);
+		user->setStatus(Enums::UserStatus::INACTIVE);
 		return Enums::ProcessStatus::SUCCESS;
 	}
 	else

@@ -16,3 +16,8 @@ Enums::UserTypes DockUManController::getUserType(std::string& username)
 {
 	return m_userService->getUserType(username);
 }
+
+void DockUManController::logoutUser()
+{
+	m_userService->logoutUser();
+}

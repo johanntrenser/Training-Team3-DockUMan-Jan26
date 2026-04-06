@@ -163,4 +163,8 @@ void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userI
 	userInformation.push_back(licenseNumber);
 }
 
+void UserInterface::logoutUser()
+{
+	m_dockUManController->logoutUser();
+}
 

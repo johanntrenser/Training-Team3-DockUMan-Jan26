@@ -24,5 +24,6 @@ public:
 	Enums::UserTypes getUserType(std::string&);
 	void showUserMenu(Enums::UserTypes);
 	void handleShippingAgentUserInput(std::vector<std::string>&);
+	void logoutUser();
 };
 

@@ -14,5 +14,6 @@ public:
 	Enums::ProcessStatus registerUser(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
 	Enums::ProcessStatus authenticateUser(std::string&, std::string&);
 	Enums::UserTypes getUserType(std::string&);
+	void logoutUser();
 };
 

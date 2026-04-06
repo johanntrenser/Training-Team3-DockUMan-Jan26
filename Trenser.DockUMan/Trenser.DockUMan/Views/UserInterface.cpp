@@ -347,6 +347,15 @@ void UserInterface::displayUserList(std::vector<std::string>& userList)
 	}
 }
 
+Enums::ProcessStatus UserInterface::changeCurrentUserPassword()
+{
+	std::string newPassword;
+	std::cout << "Enter new password: ";
+	util::read(newPassword);
+	validator::validatePassword(newPassword);
+	return m_dockUManController->changeCurrentUserPassword(newPassword);
+}
+
 Enums::ProcessStatus UserInterface::deactivateUser(std::string& userId)
 {
 	return m_dockUManController->deactivateUser(userId);

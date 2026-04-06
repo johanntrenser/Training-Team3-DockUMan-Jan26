@@ -33,3 +33,9 @@ Enums::ProcessStatus DockUManController::deactivateUser(std::string& userID)
 {
 	return m_userService->deactivateUser(userID);
 }
+
+Enums::ProcessStatus DockUManController::changeCurrentUserPassword(std::string& password)
+{
+	return m_userService->changeCurrentUserPassword(password);
+}
+

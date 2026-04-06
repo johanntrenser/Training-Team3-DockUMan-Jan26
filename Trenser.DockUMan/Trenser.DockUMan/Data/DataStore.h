@@ -63,6 +63,7 @@ public:
     void setNotifications(const std::vector<std::shared_ptr<Notification>>& notifications);
     void setLogs(const std::vector<std::shared_ptr<Log>>& logs);
     void setCurrentUser(const std::shared_ptr<User>&);
+    std::shared_ptr<User>& getCurrentUser();
     DataStore(const DataStore&) = delete;
     DataStore& operator=(const DataStore&) = delete;
     static DataStore& getInstance();

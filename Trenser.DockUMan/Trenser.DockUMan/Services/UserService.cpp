@@ -50,9 +50,15 @@ Enums::ProcessStatus UserService::authenticateUser(std::string& username, std::s
 		return Enums::ProcessStatus::FAILED;
 	}
 }
+
 Enums::UserTypes UserService::getUserType(std::string& username)
 {
 	std::shared_ptr<User> user;
 	user = m_dataStore.getUser(username);
 	return user->getRole();
+}
+
+void UserService::logoutUser()
+{
+	m_dataStore.setCurrentUser(nullptr);
 }

@@ -29,7 +29,7 @@ std::vector<std::string> DockUManController::getUserList()
 	return userList;
 }
 
-Enums::ProcessStatus DockUManController::deactivateUser(std::string& userID, std::string& password)
+Enums::ProcessStatus DockUManController::deactivateUser(std::string& userID)
 {
-	return m_userService->deactivateUser(userID, password);
+	return m_userService->deactivateUser(userID);
 }

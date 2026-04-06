@@ -154,10 +154,10 @@ Enums::UserTypes UserInterface::getUserType(std::string& username)
 void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userInformation) //error management
 {
 	std::string licenseNumber, id, name, password, email, phoneNumber;
-	handlCommonUserInput(userInformation,name,password,email,phoneNumber);
 	std::cout << "Enter id : "; //id generaator
 	util::read(id);
 	userInformation.push_back(id);
+	handlCommonUserInput(userInformation,name,password,email,phoneNumber);
 	std::cout << "Enter license Number : ";
 	validator::validateLiscenseNumber(licenseNumber);
 	userInformation.push_back(licenseNumber);

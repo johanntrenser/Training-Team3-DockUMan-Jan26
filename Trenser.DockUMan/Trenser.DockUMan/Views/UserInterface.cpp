@@ -56,7 +56,7 @@ void UserInterface::authenticateUser()
 			{
 				std::cout << "User Login Success! Welcome user : " << username << std::endl;
 				isMenuActive = false;
-				showUserMenu(getUserType(username));
+				handleMenus(getUserType(username));
 			}
 			else
 			{
@@ -98,22 +98,8 @@ void UserInterface::registerShippingAgentUI()
 	//}
 }
 
-Enums::UserTypes UserInterface::getUserType(std::string& username)
+void UserInterface::handlCommonUserInput(std::vector<std::string>& userInformation,std::string& name, std::string& password, std::string& email, std::string& phoneNumber)
 {
-	return m_dockUManController->getUserType(username);
-}
-
-void UserInterface::showUserMenu(Enums::UserTypes)
-{
-
-}
-
-void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userInformation) //error management
-{
-	std::string licenseNumber, id, name, password, email, phoneNumber;
-	std::cout << "Enter id : "; //id generaator
-	util::read(id);
-	userInformation.push_back(id);
 	std::cout << "Enter Name :";
 	util::read(name);
 	userInformation.push_back(name);
@@ -126,6 +112,52 @@ void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userI
 	std::cout << "Enter phoneNumber : ";
 	validator::validatePhoneNumber(phoneNumber);
 	userInformation.push_back(phoneNumber);
+}
+
+void UserInterface::handleMenus(Enums::UserTypes userType)
+{
+	if (userType == Enums::UserTypes::PICKUP_AGENT)
+	{
+		//call pickupmenu
+	}
+	else if (userType == Enums::UserTypes::PORT_AUTHORITY_ADMINISTRATOR)
+	{
+		//call menu
+	}
+	else if (userType == Enums::UserTypes::SHIPPING_AGENT)
+	{
+		//call menu
+	}
+	else if (userType == Enums::UserTypes::SHIP_MANAGER)
+	{
+		//call menu
+	}
+	else if (userType == Enums::UserTypes::TERMINAL_OPERATOR)
+	{
+		//call menu
+	}
+	else if (userType == Enums::UserTypes::FINANCE_MANAGER)
+	{
+		//call menu
+	}
+	else if (userType == Enums::UserTypes::CUSTOMS_OFFICER)
+	{
+		//call menu
+	}
+}
+
+Enums::UserTypes UserInterface::getUserType(std::string& username)
+{
+	return m_dockUManController->getUserType(username);
+}
+
+void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userInformation) //error management
+{
+	std::string licenseNumber, id, name, password, email, phoneNumber;
+	handlCommonUserInput(userInformation,name,password,email,phoneNumber);
+	std::cout << "Enter id : "; //id generaator
+	util::read(id);
+	userInformation.push_back(id);
 	std::cout << "Enter license Number : ";
 	validator::validateLiscenseNumber(licenseNumber);
 	userInformation.push_back(licenseNumber);

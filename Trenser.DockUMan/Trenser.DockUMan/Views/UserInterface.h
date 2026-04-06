@@ -19,6 +19,8 @@ public:
 	void handleAuthenticationOperation(const int&,bool&);
 	void authenticateUser();
 	void registerShippingAgentUI();
+	void handlCommonUserInput(std::vector<std::string>& , std::string&, std::string&, std::string&, std::string&);
+	void handleMenus(Enums::UserTypes);
 	Enums::UserTypes getUserType(std::string&);
 	void showUserMenu(Enums::UserTypes);
 	void handleShippingAgentUserInput(std::vector<std::string>&);

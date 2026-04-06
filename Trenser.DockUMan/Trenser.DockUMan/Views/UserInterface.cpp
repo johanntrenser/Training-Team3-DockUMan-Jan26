@@ -28,7 +28,7 @@ void UserInterface::handleAuthenticationOperation(const int& choice,bool& isMenu
 		registerShippingAgentUI();
 		break;
 	case 2:
-		//login function
+		authenticateUser();
 		break;
 	case 3:
 		isMenuActive = false;
@@ -37,6 +37,36 @@ void UserInterface::handleAuthenticationOperation(const int& choice,bool& isMenu
 	default:
 		std::cout << "Invalid Input!" << std::endl;
 		break;
+	}
+}
+
+void UserInterface::authenticateUser()
+{
+	bool isMenuActive = true;
+	while (isMenuActive)
+	{
+		try
+		{
+			std::string username,password;
+			std::cout << "\nEnter UserName : ";
+			util::read<std::string>(username);
+			std::cout << "\nEnter Password : ";
+			util::read<std::string>(password);
+			if (m_dockUManController->handleAuthentication(username, password) == Enums::ProcessStatus::SUCCESS)
+			{
+				std::cout << "User Login Success! Welcome user : " << username << std::endl;
+				isMenuActive = false;
+				showUserMenu(getUserType(username));
+			}
+			else
+			{
+				std::cout << "Invalid credentials  ! " << std::endl;
+			}
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << "Exception : " << e.what() << std::endl;
+		}
 	}
 }
 
@@ -51,7 +81,7 @@ void UserInterface::registerShippingAgentUI()
 			Enums::UserTypes type=Enums::UserTypes::SHIPPING_AGENT;
 			Enums::UserStatus status = Enums::UserStatus::PENDING;
 			handleShippingAgentUserInput(userInformation);
-			Enums::ProcessStatus processStatus=m_DockUManController->registerShippingAgent(userInformation,type,status);
+			Enums::ProcessStatus processStatus=m_dockUManController->registerShippingAgent(userInformation,type,status);
 			if (processStatus == Enums::ProcessStatus::SUCCESS)
 			{
 				std::cout << "User Created Succesfull!" << std::endl;
@@ -66,6 +96,16 @@ void UserInterface::registerShippingAgentUI()
 			std::cout << "Exception : " << e.what() << std::endl;
 		}
 	//}
+}
+
+Enums::UserTypes UserInterface::getUserType(std::string& username)
+{
+	return m_dockUManController->getUserType(username);
+}
+
+void UserInterface::showUserMenu(Enums::UserTypes)
+{
+
 }
 
 void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userInformation) //error management
@@ -90,4 +130,5 @@ void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userI
 	validator::validateLiscenseNumber(licenseNumber);
 	userInformation.push_back(licenseNumber);
 }
+
 

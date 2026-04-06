@@ -35,6 +35,7 @@ private:
     std::map<Enums::ContainerType, std::shared_ptr<Threshold>> m_thresholds;
     std::vector<std::shared_ptr<Notification>> m_notifications;
     std::vector<std::shared_ptr<Log>> m_logs;
+    std::shared_ptr<User> m_currentUser;
 public:
     std::vector<std::shared_ptr<Dock>> getDocks() const;
     std::vector<std::shared_ptr<Yard>> getYard() const;
@@ -47,12 +48,8 @@ public:
     std::map<Enums::ContainerType, std::shared_ptr<Threshold>> getThresholds() const;
     std::vector<std::shared_ptr<Notification>> getNotifications() const;
     std::vector<std::shared_ptr<Log>> getLogs() const;
-    template<typename T>
-    static bool addUser(const std::shared_ptr<T>& agent)
-    {
-        getInstance().m_users.push_back(agent);
-        return true;
-    }
+    std::shared_ptr<User> getUser(std::string&);
+    bool addUser(const std::shared_ptr<User>& agent);
     void setDocks(const std::vector<std::shared_ptr<Dock>>& docks);
     void setYard(const std::vector<std::shared_ptr<Yard>>& yard);
     void setContainers(const std::vector<std::shared_ptr<Container>>& containers);
@@ -64,6 +61,7 @@ public:
     void setThresholds(const std::map<Enums::ContainerType, std::shared_ptr<Threshold>>& thresholds);
     void setNotifications(const std::vector<std::shared_ptr<Notification>>& notifications);
     void setLogs(const std::vector<std::shared_ptr<Log>>& logs);
+    void setCurrentUser(const std::shared_ptr<User>&);
     DataStore(const DataStore&) = delete;
     DataStore& operator=(const DataStore&) = delete;
     static DataStore& getInstance();

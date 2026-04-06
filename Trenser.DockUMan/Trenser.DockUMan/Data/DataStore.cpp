@@ -55,6 +55,24 @@ std::vector<std::shared_ptr<Log>> DataStore::getLogs() const
     return m_logs;
 }
 
+std::shared_ptr<User> DataStore::getUser(std::string& username)
+{
+    for (std::vector<std::shared_ptr<User>>::iterator iterator = m_users.begin();iterator!=m_users.end();iterator++)
+    {
+        if ((*iterator)->getName() == username)
+        {
+            return (*iterator);
+        }
+    }
+    return nullptr;
+}
+
+bool DataStore::addUser(const std::shared_ptr<User>& agent)
+{
+        m_users.push_back(agent);
+        return true;
+}
+
 void DataStore::setDocks(const std::vector<std::shared_ptr<Dock>>& docks)
 {
     m_docks = docks;
@@ -108,6 +126,11 @@ void DataStore::setNotifications(const std::vector<std::shared_ptr<Notification>
 void DataStore::setLogs(const std::vector<std::shared_ptr<Log>>& logs)
 {
     m_logs = logs;
+}
+
+void DataStore::setCurrentUser(const std::shared_ptr<User>& user)
+{
+    m_currentUser = user;
 }
 
 DataStore& DataStore::getInstance()

@@ -11,13 +11,16 @@ class UserInterface
 {
 private:
 	std::shared_ptr<Menu> m_menu;
-	std::shared_ptr<DockUManController> m_DockUManController;
+	std::shared_ptr<DockUManController> m_dockUManController;
 public:
 	UserInterface():m_menu(std::make_shared<Menu>()),
-		m_DockUManController(std::make_shared<DockUManController>()){};
+		m_dockUManController(std::make_shared<DockUManController>()){};
 	void start();
 	void handleAuthenticationOperation(const int&,bool&);
+	void authenticateUser();
 	void registerShippingAgentUI();
+	Enums::UserTypes getUserType(std::string&);
+	void showUserMenu(Enums::UserTypes);
 	void handleShippingAgentUserInput(std::vector<std::string>&);
 };
 

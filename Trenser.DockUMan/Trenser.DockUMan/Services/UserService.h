@@ -11,6 +11,8 @@ private:
 	DataStore& m_dataStore;
 public:
 	UserService() :m_dataStore(DataStore::getInstance()) {};
-	Enums::ProcessStatus registerShippingAgent(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
+	Enums::ProcessStatus registerUser(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
+	Enums::ProcessStatus authenticateUser(std::string&, std::string&);
+	Enums::UserTypes getUserType(std::string&);
 };
 

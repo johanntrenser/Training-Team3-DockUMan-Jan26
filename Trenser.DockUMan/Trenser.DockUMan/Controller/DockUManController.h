@@ -10,5 +10,7 @@ private:
 public:
 	DockUManController():m_userService(std::make_shared<UserService>()){};
 	Enums::ProcessStatus registerShippingAgent(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
+	Enums::ProcessStatus handleAuthentication(std::string&,std::string&);
+	Enums::UserTypes getUserType(std::string&);
 };
 

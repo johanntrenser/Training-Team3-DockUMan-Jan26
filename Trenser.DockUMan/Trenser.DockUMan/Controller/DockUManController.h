@@ -12,10 +12,7 @@ public:
 	Enums::ProcessStatus registerShippingAgent(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
 	Enums::ProcessStatus handleAuthentication(std::string&,std::string&);
 	Enums::UserTypes getUserType(std::string&);
-<<<<<<< Updated upstream
 	void logoutUser();
-=======
 	std::vector<std::string> getUserList();
->>>>>>> Stashed changes
 };
 

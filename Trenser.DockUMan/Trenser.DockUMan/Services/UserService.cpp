@@ -123,14 +123,12 @@ bool UserService::IsBadgeNumberUnique(std::string& badgeNumber)
 	}
 	return true;
 }
-}
 
-<<<<<<< Updated upstream
 void UserService::logoutUser()
 {
 	m_dataStore.setCurrentUser(nullptr);
 }
-=======
+
 std::vector<std::string> UserService::getUserList()
 {
 	std::vector<std::string> userList;
@@ -141,4 +139,4 @@ std::vector<std::string> UserService::getUserList()
 	}
 	return userList;
 }
->>>>>>> Stashed changes
+

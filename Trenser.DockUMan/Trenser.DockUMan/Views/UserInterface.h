@@ -31,5 +31,6 @@ public:
 	void handleCraneOperations();
 	void getUserList();
 	void displayUserList(std::vector<std::string>&);
+	Enums::ProcessStatus deactivateUser(std::string&,std::string&);
 };
 

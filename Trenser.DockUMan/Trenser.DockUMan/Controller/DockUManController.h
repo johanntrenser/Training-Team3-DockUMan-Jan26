@@ -14,5 +14,6 @@ public:
 	Enums::UserTypes getUserType(std::string&);
 	void logoutUser();
 	std::vector<std::string> getUserList();
+	Enums::ProcessStatus deactivateUser(std::string&,std::string&);
 };
 

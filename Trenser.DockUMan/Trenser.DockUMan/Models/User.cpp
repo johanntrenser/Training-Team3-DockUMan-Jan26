@@ -67,3 +67,8 @@ void User::setStatus(const Enums::UserStatus& status)
 {
 	m_status = status;
 }
+
+std::string User::toString()
+{
+	return m_id + " : " + m_name;
+}

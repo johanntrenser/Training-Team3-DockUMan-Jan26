@@ -29,6 +29,6 @@ public:
 	void setPhoneNumber(const std::string&);
 	void setRole(const Enums::UserTypes&);
 	void setStatus(const Enums::UserStatus&);
-
+	std::string toString();
 };
 

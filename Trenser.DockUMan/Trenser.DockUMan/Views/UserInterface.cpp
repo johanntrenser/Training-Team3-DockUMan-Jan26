@@ -78,20 +78,16 @@ void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userI
 	util::read(name);
 	userInformation.push_back(name);
 	std::cout << "Enter pasword : ";
-	util::read(password);
-	//password validation
+	validator::validatePassword(password);
 	userInformation.push_back(password);
 	std::cout << "Enter email : ";
-	util::read(email);
-	//email validation
+	validator::validateEmail(email);
 	userInformation.push_back(email);
 	std::cout << "Enter phoneNumber : ";
-	util::read(phoneNumber);
-	//phone number validation
+	validator::validatePhoneNumber(phoneNumber);
 	userInformation.push_back(phoneNumber);
 	std::cout << "Enter license Number : ";
-	util::read(licenseNumber);
-	//licensenumber validation
+	validator::validateLiscenseNumber(licenseNumber);
 	userInformation.push_back(licenseNumber);
 }
 

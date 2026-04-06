@@ -4,6 +4,7 @@
 #include "Menu.h"
 #include "DockUManController.h"
 #include "InputHelper.h"
+#include "Validator.h"
 #include "Enums.h"
 
 class UserInterface

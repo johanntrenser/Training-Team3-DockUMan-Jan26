@@ -24,5 +24,16 @@ public:
 	Enums::UserTypes getUserType(std::string&);
 	void showUserMenu(Enums::UserTypes);
 	void handleShippingAgentUserInput(std::vector<std::string>&);
+<<<<<<< Updated upstream
+	void logoutUser();
+	void handleAdminMenu();
+	void handleTerminalOperatorMenu();
+	void handleTruckOperations();
+	void handleCraneOperations();
+
+=======
+	void getUserList();
+	void displayUserList(std::vector<std::string>&);
+>>>>>>> Stashed changes
 };
 

@@ -16,3 +16,17 @@ Enums::UserTypes DockUManController::getUserType(std::string& username)
 {
 	return m_userService->getUserType(username);
 }
+
+<<<<<<< Updated upstream
+void DockUManController::logoutUser()
+{
+	m_userService->logoutUser();
+}
+=======
+std::vector<std::string> DockUManController::getUserList()
+{
+	std::vector<std::string> userList;
+	userList = m_userService->getUserList();
+	return userList;
+}
+>>>>>>> Stashed changes

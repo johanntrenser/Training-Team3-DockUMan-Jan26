@@ -122,7 +122,7 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 	}
 	else if (userType == Enums::UserTypes::PORT_AUTHORITY_ADMINISTRATOR)
 	{
-		//call menu
+		handleAdminMenu();
 	}
 	else if (userType == Enums::UserTypes::SHIPPING_AGENT)
 	{
@@ -134,7 +134,7 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 	}
 	else if (userType == Enums::UserTypes::TERMINAL_OPERATOR)
 	{
-		//call menu
+		handleTerminalOperatorMenu();
 	}
 	else if (userType == Enums::UserTypes::FINANCE_MANAGER)
 	{
@@ -163,4 +163,190 @@ void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userI
 	userInformation.push_back(licenseNumber);
 }
 
+<<<<<<< Updated upstream
+void UserInterface::logoutUser()
+{
+	m_dockUManController->logoutUser();
+}
+void UserInterface::handleAdminMenu()
+{
+	bool isMenuActive = true;
+	while (isMenuActive)
+	{
+		try
+		{
+			m_menu->getAdminMenu();
+			int choice;
+			std::cout << "\nEnter Choice : ";
+			util::read<int>(choice);
+			switch (choice)
+			{
+			case 1:
+				std::cout << "Add Users selected\n";
+				break;
+			case 2:
+				std::cout << "View User List selected\n";
+				break;
+			case 3:
+				std::cout << "Update User Profile selected\n";
+				break;
+			case 4:
+				std::cout << "Approve User selected\n";
+				break;
+			case 5:
+				std::cout << "Deactivate User selected\n";
+				break;
+			case 6:
+				std::cout << "Change Password selected\n";
+				break;
+			case 7:
+				isMenuActive = false;
+				std::cout << "Logging out ..." << std::endl;
+				break;
+			default:
+				std::cout << "Invalid Input!" << std::endl;
+				break;
+			}
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << "Exception Occurred : " << e.what() << std::endl;
+		}
+	}
+}
+
+void UserInterface::handleTerminalOperatorMenu()
+{
+	bool isMenuActive = true;
+	while (isMenuActive)
+	{
+		try
+		{
+			m_menu->getTerminalOperatorMenu(); 
+			int choice;
+			std::cout << "\nEnter Choice : ";
+			util::read<int>(choice);
+			switch (choice)
+			{
+			case 1:
+				handleTruckOperations();
+				break;
+			case 2:
+				handleCraneOperations();
+				break;
+			case 3:
+				isMenuActive = false;
+				std::cout << "Logging out Terminal Operator..." << std::endl;
+				break;
+			default:
+				std::cout << "Invalid Input!" << std::endl;
+				break;
+			}
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << "Exception : " << e.what() << std::endl;
+		}
+	}
+}
+
+void UserInterface::handleTruckOperations()
+{
+	bool isMenuActive = true;
+	while (isMenuActive)
+	{
+		try
+		{
+			m_menu->getTruckOperationsMenu();
+			int choice;
+			std::cout << "\nEnter Choice : ";
+			util::read<int>(choice);
+			switch (choice)
+			{
+			case 1: std::cout << "Add Truck selected\n";
+				break;
+			case 2: std::cout << "View Truck Details selected\n";
+				break;
+			case 3: std::cout << "Assign Container to Truck selected\n"; 
+				break;
+			case 4: std::cout << "Move Container to Yard selected\n";
+				break;
+			case 5: std::cout << "Update Truck Status selected\n";
+				break;
+			case 6: std::cout << "List Available Trucks selected\n"; 
+				break;
+			case 7: std::cout << "List All Trucks selected\n"; 
+				break;
+			case 8: isMenuActive = false;
+				break; 
+			default: std::cout << "Invalid Input!\n";
+				break;
+			}
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << "Exception : " << e.what() << std::endl;
+		}
+	}
+}
+
+void UserInterface::handleCraneOperations()
+{
+	bool isMenuActive = true;
+	while (isMenuActive)
+	{
+		try
+		{
+			m_menu->getCraneOperationsMenu();
+			int choice;
+			std::cout << "\nEnter Choice : ";
+			util::read<int>(choice);
+
+			switch (choice)
+			{
+			case 1: std::cout << "Add Crane selected\n"; 
+				break;
+			case 2: std::cout << "View Crane Details selected\n"; 
+				break;
+			case 3: std::cout << "Assign Container to Crane selected\n";
+				break;
+			case 4: std::cout << "Load Container to Ship selected\n";
+				break;
+			case 5: std::cout << "Unload Container from Ship selected\n"; 
+				break;
+			case 6: std::cout << "Update Crane Status selected\n"; 
+				break;
+			case 7: std::cout << "List Available Cranes selected\n"; 
+				break;
+			case 8: std::cout << "List All Cranes selected\n";
+				break;
+			case 9: isMenuActive = false;
+				break; 
+			default: std::cout << "Invalid Input!\n"; 
+				break;
+			}
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << "Exception : " << e.what() << std::endl;
+		}
+	}
+}
+=======
+void UserInterface::getUserList()
+{
+	std::vector<std::string> userList;
+	userList = m_dockUManController->getUserList();
+	displayUserList(userList);
+}
+
+void UserInterface::displayUserList(std::vector<std::string>& userList)
+{
+	for (std::vector<std::string>::iterator iterator = userList.begin(); iterator != userList.end(); iterator++)
+	{
+		std::cout << *iterator << std::endl;
+	}
+}
+
+>>>>>>> Stashed changes
 

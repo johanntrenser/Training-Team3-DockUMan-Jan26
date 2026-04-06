@@ -19,5 +19,10 @@ public:
 	bool IsEmailIdUnique(std::string&);
 	bool IsLicenseNumberUnique(std::string&);
 	bool IsBadgeNumberUnique(std::string&);
+<<<<<<< Updated upstream
+	void logoutUser();
+=======
+	std::vector<std::string> getUserList();
+>>>>>>> Stashed changes
 };
 

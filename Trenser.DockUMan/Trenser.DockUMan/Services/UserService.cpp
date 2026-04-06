@@ -50,6 +50,7 @@ Enums::ProcessStatus UserService::authenticateUser(std::string& username, std::s
 		return Enums::ProcessStatus::FAILED;
 	}
 }
+
 Enums::UserTypes UserService::getUserType(std::string& username)
 {
 	std::shared_ptr<User> user;
@@ -122,3 +123,22 @@ bool UserService::IsBadgeNumberUnique(std::string& badgeNumber)
 	}
 	return true;
 }
+}
+
+<<<<<<< Updated upstream
+void UserService::logoutUser()
+{
+	m_dataStore.setCurrentUser(nullptr);
+}
+=======
+std::vector<std::string> UserService::getUserList()
+{
+	std::vector<std::string> userList;
+	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
+	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	{
+		userList.push_back((*iterator)->toString());
+	}
+	return userList;
+}
+>>>>>>> Stashed changes

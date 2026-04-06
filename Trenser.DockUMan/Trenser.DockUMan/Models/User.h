@@ -30,5 +30,6 @@ public:
 	void setRole(const Enums::UserTypes&);
 	void setStatus(const Enums::UserStatus&);
 	std::string toString();
+	virtual ~User() = default;
 };
 

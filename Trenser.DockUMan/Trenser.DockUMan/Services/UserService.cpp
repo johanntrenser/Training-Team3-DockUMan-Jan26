@@ -56,3 +56,69 @@ Enums::UserTypes UserService::getUserType(std::string& username)
 	user = m_dataStore.getUser(username);
 	return user->getRole();
 }
+
+bool UserService::IsPhoneNumberUnique(std::string& phoneNumber)
+{
+	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
+	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	{
+		if ((*iterator)->getPhoneNumber() == phoneNumber)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool UserService::IsEmailIdUnique(std::string& email)
+{
+	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
+	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	{
+		if ((*iterator)->getEmail() == email)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool UserService::IsLicenseNumberUnique(std::string& licenseNumber)
+{
+	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
+	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	{
+		if ((*iterator)->getRole() == Enums::UserTypes::SHIP_MANAGER)
+		{
+			ShippingAgent* agent = dynamic_cast<ShippingAgent*>(iterator->get());
+			if (agent != nullptr)
+			{
+				if (agent->getLicenseNumber() == licenseNumber)
+				{
+					return false;
+				}
+			}
+		}
+	}
+	return true;
+}
+
+bool UserService::IsBadgeNumberUnique(std::string& badgeNumber)
+{
+	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
+	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	{
+		if ((*iterator)->getRole() == Enums::UserTypes::CUSTOMS_OFFICER)
+		{
+			CustomsOfficer* officer = dynamic_cast<CustomsOfficer*>(iterator->get());
+			if (officer != nullptr)
+			{
+				if (officer->getBadgeNumber() == badgeNumber)
+				{
+					return false;
+				}
+			}
+		}
+	}
+	return true;
+}

@@ -138,6 +138,11 @@ void DataStore::setCurrentUser(const std::shared_ptr<User>& user)
     m_currentUser = user;
 }
 
+std::shared_ptr<User>& DataStore::getCurrentUser()
+{
+    return m_currentUser;
+}
+
 DataStore& DataStore::getInstance()
 {
     static DataStore instance;

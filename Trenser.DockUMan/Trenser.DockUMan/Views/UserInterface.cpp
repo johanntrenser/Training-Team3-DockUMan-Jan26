@@ -126,7 +126,7 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 	}
 	else if (userType == Enums::UserTypes::SHIPPING_AGENT)
 	{
-		//call shipping menu
+		//menu
 	}
 	else if (userType == Enums::UserTypes::SHIP_MANAGER)
 	{
@@ -196,7 +196,8 @@ void UserInterface::handleAdminMenu()
 				std::cout << "Deactivate User selected\n";
 				break;
 			case 6:
-				std::cout << "Change Password selected\n";
+				std::cout << "Ship List\n";
+				getShipList();
 				break;
 			case 7:
 				std::cout << "Ship register\n";
@@ -404,6 +405,13 @@ void UserInterface::handleRegisterShipManager(std::vector<std::string>&userInfor
 	util::read(id);
 	userInformation.push_back(id);
 	handlCommonUserInput(userInformation, name, password, email, phoneNumber);
+}
+
+void UserInterface::getShipList()
+{
+	std::vector<std::string> shipList;
+	shipList = m_dockUManController->getShipList();
+	displayList(shipList);
 }
 
 

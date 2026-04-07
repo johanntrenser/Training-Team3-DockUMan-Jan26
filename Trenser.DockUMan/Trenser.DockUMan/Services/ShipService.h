@@ -15,5 +15,6 @@ public:
 	ShipService() :m_dataStore(DataStore::getInstance()) {}
 	Enums::ProcessStatus registerShip(std::vector<std::string>&, Enums::AvailabilityStatus, Enums::ShipStatus, std::shared_ptr<User>);
 	Enums::ProcessStatus registerShipObject(std::vector<std::string>& shipInformation, std::shared_ptr<User>, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status);
+	std::vector<std::string> getShipList();
 };
 

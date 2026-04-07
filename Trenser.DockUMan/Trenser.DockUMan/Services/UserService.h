@@ -22,7 +22,7 @@ public:
 	void logoutUser();
 	std::vector<std::string> getUserList();
 	Enums::ProcessStatus changeCurrentUserPassword(std::string& password);
-	Enums::ProcessStatus deactivateUser(std::string&);
+	Enums::ProcessStatus changeUserStatus(std::string&, Enums::UserStatus);
 };
 
 

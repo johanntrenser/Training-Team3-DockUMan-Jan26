@@ -29,9 +29,9 @@ std::vector<std::string> DockUManController::getUserList()
 	return userList;
 }
 
-Enums::ProcessStatus DockUManController::deactivateUser(std::string& userID)
+Enums::ProcessStatus DockUManController::deactivateUser(std::string& userId)
 {
-	return m_userService->deactivateUser(userID);
+	return m_userService->changeUserStatus(userId, Enums::UserStatus::INACTIVE);
 }
 
 Enums::ProcessStatus DockUManController::changeCurrentUserPassword(std::string& password)
@@ -39,3 +39,7 @@ Enums::ProcessStatus DockUManController::changeCurrentUserPassword(std::string& 
 	return m_userService->changeCurrentUserPassword(password);
 }
 
+Enums::ProcessStatus DockUManController::approveUser(std::string& userId)
+{
+	return m_userService->changeUserStatus(userId, Enums::UserStatus::ACTIVE);
+}

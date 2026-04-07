@@ -33,5 +33,6 @@ public:
 	void displayUserList(std::vector<std::string>&);
 	Enums::ProcessStatus changeCurrentUserPassword();
 	Enums::ProcessStatus deactivateUser(std::string&);
+	Enums::ProcessStatus approveUser(std::string&);
 };
 

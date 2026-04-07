@@ -13,8 +13,12 @@ public:
 	Enums::ProcessStatus addUser(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
 	Enums::ProcessStatus handleAuthentication(std::string&,std::string&);
 	Enums::UserTypes getUserType(std::string&);
+	std::vector<std::string> getUserDetailByIdAndType(std::string&, Enums::UserTypes);
 	void logoutUser();
 	std::vector<std::string> getUserList();
+	std::vector<std::string> getUserListByRole(Enums::UserTypes);
+	Enums::ProcessStatus updatedUserPhoneNumber(std::string&, std::string&);
+	Enums::ProcessStatus updatedUserEmailId(std::string&, std::string&);
 	Enums::ProcessStatus IsEmailIdUnique(std::string& email);
 	Enums::ProcessStatus IsPhoneNumberUnique(std::string& phoneNumber);
 	Enums::ProcessStatus IsLicenseNumberUnique(std::string& licenseNumber);

@@ -49,6 +49,7 @@ public:
     const std::map<Enums::ContainerType, std::shared_ptr<Threshold>>& getThresholds() const;
     const std::vector<std::shared_ptr<Notification>>& getNotifications() const;
     const std::vector<std::shared_ptr<Log>>& getLogs() const;
+    std::shared_ptr<User> getUserById(std::string&);
     std::shared_ptr<User> getUserByMail(std::string&);
     bool addUser(const std::shared_ptr<User>& agent);
     void setDocks(const std::vector<std::shared_ptr<Dock>>& docks);

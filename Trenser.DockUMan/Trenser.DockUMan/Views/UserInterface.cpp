@@ -248,6 +248,7 @@ void UserInterface::logoutUser()
 {
 	m_dockUManController->logoutUser();
 }
+
 void UserInterface::handleAdminMenu()
 {
 	bool isMenuActive = true;
@@ -269,7 +270,7 @@ void UserInterface::handleAdminMenu()
 				std::cout << "View User List selected\n";
 				break;
 			case 3:
-				std::cout << "Update User Profile selected\n";
+				updateUserDetailsUI();
 				break;
 			case 4:
 				std::cout << "Approve User selected\n";
@@ -414,6 +415,23 @@ void UserInterface::handleCraneOperations()
 	}
 }
 
+void UserInterface::handleUserUpdate(Enums::UserTypes role)
+{
+	std::string userId;
+	std::vector<std::string> users = m_dockUManController->getUserListByRole(role);
+	displayUserList(users);
+	std::cout << "Enter id of user to update: ";
+	util::read(userId);
+	std::vector<std::string> userDetails = m_dockUManController->getUserDetailByIdAndType(userId, role);
+	if (userDetails.empty())
+	{
+		std::cout << "Invalid user id or user doesn't exist!!" << std::endl;
+		return;
+	}
+	displayUserList(userDetails);
+	updateUserAttributeUI(userId);
+}
+
 void UserInterface::getUserList()
 {
 	std::vector<std::string> userList;
@@ -429,6 +447,43 @@ void UserInterface::displayUserList(std::vector<std::string>& userList)
 	}
 }
 
+
+
+void UserInterface::updateUserDetailsUI()
+{
+	try
+	{
+		int userRoleChoice;
+		m_menu->getUserRolesMenu();
+		std::cout << "\nEnter Choice : ";
+		util::read<int>(userRoleChoice);
+		switch (userRoleChoice)
+		{
+		case 1:
+			handleUserUpdate(Enums::UserTypes::FINANCE_MANAGER);
+			break;
+		case 2:
+			handleUserUpdate(Enums::UserTypes::PORT_AUTHORITY_ADMINISTRATOR);
+			break;
+		case 3:
+			handleUserUpdate(Enums::UserTypes::CUSTOMS_OFFICER);
+			break;
+		case 4:
+			handleUserUpdate(Enums::UserTypes::TERMINAL_OPERATOR);
+			break;
+		case 5:
+			handleUserUpdate(Enums::UserTypes::SHIP_MANAGER);
+			break;
+		default:
+			std::cout << "Invalid Input!" << std::endl;
+			break;
+		}
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "Exception : " << e.what() << std::endl;
+	}
+}
 Enums::ProcessStatus UserInterface::changeCurrentUserPassword()
 {
 	std::string newPassword;
@@ -438,6 +493,47 @@ Enums::ProcessStatus UserInterface::changeCurrentUserPassword()
 	return m_dockUManController->changeCurrentUserPassword(newPassword);
 }
 
+void UserInterface::updateUserAttributeUI(std::string& userId)
+{
+	int choice;
+	Enums::ProcessStatus processStatus;
+	std::string updatedAttribute;
+	try
+	{
+		m_menu->getUpdateDetailsMenu();
+		util::read<int>(choice);
+		switch (choice)
+		{
+		case 1:
+			std::cout << "Enter the updated email id: ";
+			util::read(updatedAttribute);
+			validator::validateEmail(updatedAttribute);
+			processStatus = m_dockUManController->updatedUserEmailId(userId, updatedAttribute);
+			break;
+		case 2:
+			std::cout << "Enter the updated phone no: ";
+			util::read(updatedAttribute);
+			validator::validatePhoneNumber(updatedAttribute);
+			processStatus = m_dockUManController->updatedUserPhoneNumber(userId, updatedAttribute);
+			break;
+		default:
+			std::cout << "Invalid choice!!" << std::endl;
+			break;
+		}
+		if (processStatus == Enums::ProcessStatus::SUCCESS)
+		{
+			std::cout << "Updation Operation Successfull" << std::endl;
+		}
+		else
+		{
+			std::cout << "Updation Operation Failed!!" << std::endl;
+		}
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "Exception : " << e.what() << std::endl;
+	}
+}
 Enums::ProcessStatus UserInterface::deactivateUser(std::string& userId)
 {
 	return m_dockUManController->deactivateUser(userId);

@@ -17,6 +17,11 @@ Enums::UserTypes DockUManController::getUserType(std::string& username)
 	return m_userService->getUserType(username);
 }
 
+std::vector<std::string> DockUManController::getUserDetailByIdAndType(std::string& userId, Enums::UserTypes role)
+{
+	return m_userService->getUserDetailByIdAndType(userId, role);
+}
+
 void DockUManController::logoutUser()
 {
 	m_userService->logoutUser();
@@ -68,6 +73,21 @@ Enums::ProcessStatus DockUManController::IsLicenseNumberUnique(std::string& lice
 	{
 		return Enums::ProcessStatus::FAILED;
 	}
+}
+
+std::vector<std::string> DockUManController::getUserListByRole(Enums::UserTypes role)
+{
+	return m_userService->getUserListByRole(role);
+}
+
+Enums::ProcessStatus DockUManController::updatedUserPhoneNumber(std::string& userId, std::string& updatedPhoneNumber)
+{
+	return m_userService->updatedUserPhoneNumber(userId, updatedPhoneNumber);
+}
+
+Enums::ProcessStatus DockUManController::updatedUserEmailId(std::string& userId, std::string& updatedEmailId)
+{
+	return m_userService->updatedUserEmailId(userId, updatedEmailId);
 }
 
 Enums::ProcessStatus DockUManController::deactivateUser(std::string& userId)

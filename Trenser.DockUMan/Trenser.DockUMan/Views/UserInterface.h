@@ -30,8 +30,11 @@ public:
 	void handleTerminalOperatorMenu();
 	void handleTruckOperations();
 	void handleCraneOperations();
+	void handleUserUpdate(Enums::UserTypes);
 	void getUserList();
 	void displayUserList(std::vector<std::string>&);
+	void updateUserDetailsUI();
+	void updateUserAttributeUI(std::string&);
 	void addUserUI();
 	void handlePickupAgentUserInput(std::vector<std::string>& userInformation);
 	void handlePortAuthorityAdminUserInput(std::vector<std::string>& userInformation);

@@ -154,11 +154,11 @@ Enums::ProcessStatus UserService::changeCurrentUserPassword(std::string& passwor
 	}
 }
 
-Enums::ProcessStatus UserService::deactivateUser(std::string& userId)
+Enums::ProcessStatus UserService::changeUserStatus(std::string& userId, Enums::UserStatus userStatus)
 {
 	if (std::shared_ptr<User> user = m_dataStore.getUser(userId))
 	{
-		user->setStatus(Enums::UserStatus::INACTIVE);
+		user->setStatus(userStatus);
 		return Enums::ProcessStatus::SUCCESS;
 	}
 	else

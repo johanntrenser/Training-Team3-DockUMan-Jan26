@@ -361,5 +361,10 @@ Enums::ProcessStatus UserInterface::deactivateUser(std::string& userId)
 	return m_dockUManController->deactivateUser(userId);
 }
 
+Enums::ProcessStatus UserInterface::approveUser(std::string& userId)
+{
+	return m_dockUManController->approveUser(userId);
+}
+
 
 

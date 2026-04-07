@@ -16,5 +16,6 @@ public:
 	std::vector<std::string> getUserList();
 	Enums::ProcessStatus changeCurrentUserPassword(std::string& password);
 	Enums::ProcessStatus deactivateUser(std::string&);
+	Enums::ProcessStatus approveUser(std::string&);
 };
 

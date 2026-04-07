@@ -4,6 +4,7 @@
 #include "Enums.h"
 #include "Factory.h"
 #include "ShippingAgent.h"
+#include "ShipManager.h"
 #include "CustomsOfficer.h"
 #include "DataStore.h"
 class UserService
@@ -22,6 +23,7 @@ public:
 	void logoutUser();
 	std::vector<std::string> getUserList();
 	Enums::ProcessStatus deactivateUser(std::string&);
+	std::shared_ptr<User> registerShipManger(std::vector<std::string>&);
 };
 
 

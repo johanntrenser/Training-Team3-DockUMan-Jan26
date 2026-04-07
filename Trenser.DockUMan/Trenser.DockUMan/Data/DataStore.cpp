@@ -78,6 +78,12 @@ bool DataStore::addUser(const std::shared_ptr<User>& agent)
         return true;
 }
 
+bool DataStore::addShip(const std::shared_ptr<Ship>& ship)
+{
+    m_ships.push_back(ship);
+    return true;
+}
+
 void DataStore::setDocks(const std::vector<std::shared_ptr<Dock>>& docks)
 {
     m_docks = docks;

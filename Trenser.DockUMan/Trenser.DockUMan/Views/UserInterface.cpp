@@ -126,7 +126,7 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 	}
 	else if (userType == Enums::UserTypes::SHIPPING_AGENT)
 	{
-		//call menu
+		//call shipping menu
 	}
 	else if (userType == Enums::UserTypes::SHIP_MANAGER)
 	{
@@ -199,6 +199,10 @@ void UserInterface::handleAdminMenu()
 				std::cout << "Change Password selected\n";
 				break;
 			case 7:
+				std::cout << "Ship register\n";
+				registerShipUI();
+				break;
+			case 8:
 				isMenuActive = false;
 				std::cout << "Logging out ..." << std::endl;
 				break;
@@ -336,12 +340,12 @@ void UserInterface::getUserList()
 {
 	std::vector<std::string> userList;
 	userList = m_dockUManController->getUserList();
-	displayUserList(userList);
+	displayList(userList);
 }
 
-void UserInterface::displayUserList(std::vector<std::string>& userList)
+void UserInterface::displayList(std::vector<std::string>& List)
 {
-	for (std::vector<std::string>::iterator iterator = userList.begin(); iterator != userList.end(); iterator++)
+	for (std::vector<std::string>::iterator iterator = List.begin(); iterator != List.end(); iterator++)
 	{
 		std::cout << *iterator << std::endl;
 	}
@@ -351,6 +355,57 @@ Enums::ProcessStatus UserInterface::deactivateUser(std::string& userId)
 {
 	return m_dockUManController->deactivateUser(userId);
 }
+
+void UserInterface::registerShipUI()
+{
+	bool isMenuActive = true;
+	//while (isMenuActive)
+	//{
+	try
+	{
+		std::vector<std::string>shipInformation;
+		std::vector<std::string>userInformation;
+		Enums::ShipStatus status =Enums::ShipStatus::ACTIVE;
+		Enums::AvailabilityStatus isAvailable = Enums::AvailabilityStatus::AVAILABLE;
+		handleRegisterShipInput(shipInformation);
+		handleRegisterShipManager(userInformation);
+		Enums::ProcessStatus processStatus = m_dockUManController->registerShip(userInformation, shipInformation,isAvailable,status);
+		if (processStatus == Enums::ProcessStatus::SUCCESS)
+		{
+			std::cout << "Ship and ShipManager Created Succesfull!" << std::endl;
+		}
+		else
+		{
+			std::cout << "User Creation Failed !" << std::endl;
+		}
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "Exception : " << e.what() << std::endl;
+	}
+}
+
+void UserInterface::handleRegisterShipInput(std::vector<std::string>& shipInformation)
+{
+	std::string id, name;
+	std::cout << "Enter ShipID :";
+	util::read(id);
+	shipInformation.push_back(id);
+	std::cout << "Enter Shipname : ";
+	util::read(name);
+	shipInformation.push_back(name);
+}
+
+void UserInterface::handleRegisterShipManager(std::vector<std::string>&userInformation)
+{
+	std::string id, name, password, email, phoneNumber;
+	std::cout << "enter ship manager details" << std::endl;
+	std::cout << "Enter id : "; 
+	util::read(id);
+	userInformation.push_back(id);
+	handlCommonUserInput(userInformation, name, password, email, phoneNumber);
+}
+
 
 
 

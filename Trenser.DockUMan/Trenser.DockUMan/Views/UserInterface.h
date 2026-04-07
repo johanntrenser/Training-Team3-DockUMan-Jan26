@@ -30,7 +30,11 @@ public:
 	void handleTruckOperations();
 	void handleCraneOperations();
 	void getUserList();
-	void displayUserList(std::vector<std::string>&);
+	void displayList(std::vector<std::string>&);
 	Enums::ProcessStatus deactivateUser(std::string&);
+	void registerShipUI();
+	void handleRegisterShipInput(std::vector<std::string>&);
+	void handleRegisterShipManager(std::vector<std::string>&);
+
 };
 

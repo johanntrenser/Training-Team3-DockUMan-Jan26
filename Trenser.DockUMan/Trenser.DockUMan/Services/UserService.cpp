@@ -29,11 +29,11 @@ Enums::ProcessStatus UserService::registerUser(std::vector<std::string>& userInf
 	}
 }
 
-Enums::ProcessStatus UserService::authenticateUser(std::string& username, std::string& password)
+Enums::ProcessStatus UserService::authenticateUser(std::string& email, std::string& password)
 {
 	bool isUserActive=false;
 	std::shared_ptr<User> user;
-	if (user=m_dataStore.getUser(username))
+	if (user=m_dataStore.getUserByMail(email))
 	{
 		if((*user).getPassword() == password)
 		{
@@ -51,10 +51,10 @@ Enums::ProcessStatus UserService::authenticateUser(std::string& username, std::s
 	}
 }
 
-Enums::UserTypes UserService::getUserType(std::string& username)
+Enums::UserTypes UserService::getUserType(std::string& email)
 {
 	std::shared_ptr<User> user;
-	user = m_dataStore.getUser(username);
+	user = m_dataStore.getUserByMail(email);
 	return user->getRole();
 }
 
@@ -138,6 +138,52 @@ std::vector<std::string> UserService::getUserList()
 		userList.push_back((*iterator)->toString());
 	}
 	return userList;
+}
+
+Enums::ProcessStatus UserService::addUser(std::vector<std::string>& userInformation, Enums::UserTypes& type, Enums::UserStatus& status)
+{
+	std::string id, name, password, email, phoneNumber;
+	auto iterator = userInformation.begin();
+	id = *iterator++;
+	name = *iterator++;
+	password = *iterator++;
+	email = *iterator++;
+	phoneNumber = *iterator++;
+	std::shared_ptr<User> user;
+	switch (type)
+	{
+	case Enums::UserTypes::PICKUP_AGENT:
+		user = Factory::getObject<PickupAgent>(id, name, password, email, phoneNumber, type, status);
+		break;
+	case Enums::UserTypes::PORT_AUTHORITY_ADMINISTRATOR:
+		user = Factory::getObject<PortAuthorityAdmin>(id, name, password, email, phoneNumber, type, status);
+		break;
+	case Enums::UserTypes::SHIP_MANAGER:
+		user = Factory::getObject<ShipManager>(id, name, password, email, phoneNumber, type, status);
+		break;
+	case Enums::UserTypes::TERMINAL_OPERATOR:
+		user = Factory::getObject<TerminalOperator>(id, name, password, email, phoneNumber, type, status);
+		break;
+	/*case Enums::UserTypes::FINANCE_MANAGER:
+		user = Factory::getObject<FinanceManager>(id, name, password, email, phoneNumber, type, status);
+		break;*/
+	case Enums::UserTypes::CUSTOMS_OFFICER:
+	{
+		std::string badgeNumber = *iterator;
+		user = Factory::getObject<CustomsOfficer>(badgeNumber, id, name, password, email, phoneNumber, type, status);
+		break;
+	}
+	default:
+		return Enums::ProcessStatus::FAILED;
+	}
+	if (m_dataStore.addUser(user))
+	{
+		return Enums::ProcessStatus::SUCCESS;
+	}
+	else
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
 }
 
 Enums::ProcessStatus UserService::changeCurrentUserPassword(std::string& password)

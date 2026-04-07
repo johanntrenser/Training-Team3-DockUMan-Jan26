@@ -60,11 +60,11 @@ const std::vector<std::shared_ptr<Log>>& DataStore::getLogs() const
     return m_logs;
 }
 
-std::shared_ptr<User> DataStore::getUser(std::string& username)
+std::shared_ptr<User> DataStore::getUserByMail(std::string& email)
 {
     for (std::vector<std::shared_ptr<User>>::iterator iterator = m_users.begin();iterator!=m_users.end();iterator++)
     {
-        if ((*iterator)->getName() == username)
+        if ((*iterator)->getEmail() == email)
         {
             return (*iterator);
         }

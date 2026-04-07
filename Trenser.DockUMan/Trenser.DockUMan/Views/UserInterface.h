@@ -19,7 +19,8 @@ public:
 	void handleAuthenticationOperation(const int&,bool&);
 	void authenticateUser();
 	void registerShippingAgentUI();
-	void handlCommonUserInput(std::vector<std::string>& , std::string&, std::string&, std::string&, std::string&);
+	void handleCommonUserInput(std::vector<std::string>& , std::string&, std::string&, std::string&, std::string&);
+	void handleCustomsOfficerUserInput(std::vector<std::string>& );
 	void handleMenus(Enums::UserTypes);
 	Enums::UserTypes getUserType(std::string&);
 	void showUserMenu(Enums::UserTypes);
@@ -31,6 +32,12 @@ public:
 	void handleCraneOperations();
 	void getUserList();
 	void displayUserList(std::vector<std::string>&);
+	void addUserUI();
+	void handlePickupAgentUserInput(std::vector<std::string>& userInformation);
+	void handlePortAuthorityAdminUserInput(std::vector<std::string>& userInformation);
+	void handleShipManagerUserInput(std::vector<std::string>& userInformation);
+	void handleTerminalOperatorUserInput(std::vector<std::string>& userInformation);
+	void handleFinanceManagerUserInput(std::vector<std::string>& userInformation);
 	Enums::ProcessStatus changeCurrentUserPassword();
 	Enums::ProcessStatus deactivateUser(std::string&);
 	Enums::ProcessStatus approveUser(std::string&);

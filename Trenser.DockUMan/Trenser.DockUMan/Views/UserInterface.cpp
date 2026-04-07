@@ -100,10 +100,6 @@ void UserInterface::registerShippingAgentUI()
 
 void UserInterface::handleCommonUserInput(std::vector<std::string>& userInformation,std::string& name, std::string& password, std::string& email, std::string& phoneNumber)
 {
-	std::string licenseNumber, id, name, password, email, phoneNumber;
-	std::cout << "Enter id : "; //id generaator
-	util::read(id);
-	userInformation.push_back(id);
 	std::cout << "Enter Name :";
 	util::read(name);
 	userInformation.push_back(name);

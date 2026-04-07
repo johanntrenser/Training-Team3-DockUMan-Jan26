@@ -9,5 +9,6 @@ public:
 	void getTerminalOperatorMenu();
 	void getTruckOperationsMenu();
 	void getCraneOperationsMenu();
+	void getUserRolesMenu();
+	void getUpdateDetailsMenu();
 };
-

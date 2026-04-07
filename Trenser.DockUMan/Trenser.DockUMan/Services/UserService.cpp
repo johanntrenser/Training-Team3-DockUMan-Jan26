@@ -58,6 +58,21 @@ Enums::UserTypes UserService::getUserType(std::string& email)
 	return user->getRole();
 }
 
+std::vector<std::string> UserService::getUserDetailByIdAndType(std::string& userId, Enums::UserTypes role)
+{
+	std::vector<std::string> userDetails = {};
+	std::shared_ptr<User> user = m_dataStore.getUserById(userId);
+	if (user != nullptr && user->getRole() == role)
+	{
+		userDetails.push_back("Name: " + user->getName());
+		userDetails.push_back("Email: " + user->getEmail());
+		userDetails.push_back("Phone: " + user->getPhoneNumber());
+		return userDetails;
+	}
+	userDetails.clear();
+	return userDetails;
+}
+
 bool UserService::IsPhoneNumberUnique(std::string& phoneNumber)
 {
 	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
@@ -198,6 +213,40 @@ Enums::ProcessStatus UserService::changeCurrentUserPassword(std::string& passwor
 		currentUser->setPassword(password);
 		return Enums::ProcessStatus::SUCCESS;
 	}
+}
+
+std::vector<std::string> UserService::getUserListByRole(Enums::UserTypes role)
+{
+	std::vector<std::string> userList;
+	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
+	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	{
+		if ((*iterator)->getRole() == role)
+		{
+			userList.push_back((*iterator)->toString());
+		}
+	}
+	return userList;
+}
+
+Enums::ProcessStatus UserService::updatedUserPhoneNumber(std::string& userId, std::string& updatedPhoneNumber)
+{
+	m_dataStore.getUserById(userId)->setPhoneNumber(updatedPhoneNumber);
+	if (m_dataStore.getUserById(userId)->getPhoneNumber() == updatedPhoneNumber)
+	{
+		return Enums::ProcessStatus::SUCCESS;
+	}
+	return Enums::ProcessStatus::FAILED;
+}
+
+Enums::ProcessStatus UserService::updatedUserEmailId(std::string& userId, std::string& updatedEmailId)
+{
+	m_dataStore.getUserById(userId)->setEmail(updatedEmailId);
+	if (m_dataStore.getUserById(userId)->getEmail() == updatedEmailId)
+	{
+		return Enums::ProcessStatus::SUCCESS;
+	}
+	return Enums::ProcessStatus::FAILED;
 }
 
 Enums::ProcessStatus UserService::changeUserStatus(std::string& userId, Enums::UserStatus userStatus)

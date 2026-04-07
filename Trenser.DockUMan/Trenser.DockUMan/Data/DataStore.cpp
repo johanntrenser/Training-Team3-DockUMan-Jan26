@@ -72,6 +72,18 @@ std::shared_ptr<User> DataStore::getUserByMail(std::string& email)
     return nullptr;
 }
 
+std::shared_ptr<User> DataStore::getUserById(std::string& userId)
+{
+    for (std::vector<std::shared_ptr<User>>::iterator iterator = m_users.begin(); iterator != m_users.end(); ++iterator)
+    {
+        if ((*iterator)->getId() == userId)
+        {
+            return (*iterator);
+        }
+    }
+    return nullptr;
+}
+
 bool DataStore::addUser(const std::shared_ptr<User>& agent)
 {
         m_users.push_back(agent);

@@ -54,3 +54,22 @@ void Menu::getCraneOperationsMenu()
     std::cout << "8. List All Cranes" << std::endl;
     std::cout << "9. Back to Terminal Operator Menu" << std::endl;
 }
+
+void Menu::getUserRolesMenu()
+{
+    std::cout << "-------------------User Roles Menu------------------" << std::endl;
+    std::cout << "1. Finance Manager\n";
+    std::cout << "2. Port Authority Administrator\n";
+    std::cout << "3. Customs Officer\n";
+    std::cout << "4. Terminal Operator\n";
+    std::cout << "5. Ship Manager\n";
+    std::cout << "Select User Role: " << std::endl;
+}
+
+void Menu::getUpdateDetailsMenu()
+{
+    std::cout << "-------------------Update Details Menu------------------" << std::endl;
+    std::cout << "1. Email Address\n";
+    std::cout << "2. Phone Number\n";
+    std::cout << "Select Detail to Update: " << std::endl;
+}

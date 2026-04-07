@@ -152,3 +152,26 @@ Enums::ProcessStatus UserService::deactivateUser(std::string& userId)
 		return Enums::ProcessStatus::FAILED;
 	}
 }
+std::shared_ptr<User> UserService::registerShipManger(std::vector<std::string>& userInformation)
+{
+	std::string  id, name, password, email, phoneNumber;
+	Enums::UserTypes type = Enums::UserTypes::SHIP_MANAGER;
+	Enums::UserStatus userStatus = Enums::UserStatus::ACTIVE;
+	std::vector<std::string>::iterator iterator = userInformation.begin();
+	id = *iterator++;
+	name = *iterator++;
+	password = *iterator++;
+	email = *iterator++;
+	phoneNumber = *iterator;
+	std::shared_ptr<User> agent = Factory::getObject<ShipManager>(id, name, password, email, phoneNumber, type, userStatus);
+	if (m_dataStore.addUser(agent))
+	{
+		return agent;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+

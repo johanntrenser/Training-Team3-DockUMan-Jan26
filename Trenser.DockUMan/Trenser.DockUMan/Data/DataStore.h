@@ -51,6 +51,7 @@ public:
     const std::vector<std::shared_ptr<Log>>& getLogs() const;
     std::shared_ptr<User> getUser(std::string&);
     bool addUser(const std::shared_ptr<User>& agent);
+    bool addShip(const std::shared_ptr<Ship>& ship);
     void setDocks(const std::vector<std::shared_ptr<Dock>>& docks);
     void setYard(const std::vector<std::shared_ptr<Yard>>& yard);
     void setContainers(const std::vector<std::shared_ptr<Container>>& containers);

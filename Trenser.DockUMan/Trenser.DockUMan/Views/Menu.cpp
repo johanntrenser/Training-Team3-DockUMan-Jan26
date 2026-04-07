@@ -17,6 +17,7 @@ void Menu::getAdminMenu()
 	std::cout << "Approve User" << std::endl;
 	std::cout << "Deactivate User" << std::endl;
 	std::cout << "Change Password" << std::endl;
+    std::cout << "Add Ship" << std::endl;
 	std::cout << "Logout" << std::endl;
 }
 

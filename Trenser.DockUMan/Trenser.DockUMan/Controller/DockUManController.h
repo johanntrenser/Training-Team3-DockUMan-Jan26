@@ -10,10 +10,15 @@ private:
 public:
 	DockUManController():m_userService(std::make_shared<UserService>()){};
 	Enums::ProcessStatus registerShippingAgent(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
+	Enums::ProcessStatus addUser(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
 	Enums::ProcessStatus handleAuthentication(std::string&,std::string&);
 	Enums::UserTypes getUserType(std::string&);
 	void logoutUser();
 	std::vector<std::string> getUserList();
+	Enums::ProcessStatus IsEmailIdUnique(std::string& email);
+	Enums::ProcessStatus IsPhoneNumberUnique(std::string& phoneNumber);
+	Enums::ProcessStatus IsLicenseNumberUnique(std::string& licenseNumber);
+	Enums::ProcessStatus IsBadgeNumberUnique(std::string& badgeNumber);
 	Enums::ProcessStatus changeCurrentUserPassword(std::string& password);
 	Enums::ProcessStatus deactivateUser(std::string&);
 	Enums::ProcessStatus approveUser(std::string&);

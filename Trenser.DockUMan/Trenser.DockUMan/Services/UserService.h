@@ -5,6 +5,11 @@
 #include "Factory.h"
 #include "ShippingAgent.h"
 #include "CustomsOfficer.h"
+//#include "FinanceManager.h"
+#include "TerminalOperator.h"
+#include "PickupAgent.h"
+#include "PortAuthorityAdmin.h"
+#include "ShipManager.h"
 #include "DataStore.h"
 class UserService
 {
@@ -12,6 +17,7 @@ private:
 	DataStore& m_dataStore;
 public:
 	UserService() :m_dataStore(DataStore::getInstance()) {};
+	Enums::ProcessStatus addUser(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
 	Enums::ProcessStatus registerUser(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
 	Enums::ProcessStatus authenticateUser(std::string&, std::string&);
 	Enums::UserTypes getUserType(std::string&);

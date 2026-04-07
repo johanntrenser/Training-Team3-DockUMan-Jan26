@@ -31,6 +31,11 @@ std::string Ship::getETD() const
     return m_ETD;
 }
 
+std::string Ship::toString() const
+{
+    return m_shipName + " : " + m_shipId;
+}
+
 std::shared_ptr<Dock> Ship::getAssignedDock() const
 {
     return m_assignedDock;

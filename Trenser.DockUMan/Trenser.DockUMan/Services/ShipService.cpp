@@ -31,3 +31,17 @@ Enums::ProcessStatus ShipService::registerShipObject(std::vector<std::string>& s
 		return Enums::ProcessStatus::FAILED;
 	}
 }
+
+std::vector<std::string> ShipService::getShipList()
+{
+	std::vector<std::string> shipList;
+	const std::vector<std::shared_ptr<Ship>>& ships = m_dataStore.getShips();
+	for (std::vector<std::shared_ptr<Ship>>::const_iterator iterator = ships.begin(); iterator != ships.end(); ++iterator)
+	{
+		if ((*iterator)->getShipStatus() == Enums::ShipStatus::ACTIVE)
+		{
+			shipList.push_back((*iterator)->toString());
+		}
+	}
+	return shipList;
+}

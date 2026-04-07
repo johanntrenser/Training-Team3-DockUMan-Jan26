@@ -29,6 +29,13 @@ std::vector<std::string> DockUManController::getUserList()
 	return userList;
 }
 
+std::vector<std::string> DockUManController::getShipList()
+{
+	std::vector<std::string> shipList;
+	shipList=m_shipService->getShipList();
+	return shipList;
+}
+
 Enums::ProcessStatus DockUManController::deactivateUser(std::string& userID)
 {
 	return m_userService->deactivateUser(userID);

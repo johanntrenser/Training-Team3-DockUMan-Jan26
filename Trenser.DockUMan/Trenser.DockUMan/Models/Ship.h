@@ -29,6 +29,7 @@ public:
 	std::shared_ptr<User> getShipManager() const;
 	std::string getETA() const;
 	std::string getETD() const;
+	std::string toString() const;
 	std::shared_ptr<Dock> getAssignedDock() const;
 	Enums::ShipStatus getShipStatus() const;
 	Enums::AvailabilityStatus getAvailabilityStatus() const;

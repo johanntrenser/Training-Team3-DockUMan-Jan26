@@ -64,4 +64,17 @@ Enums::ProcessStatus ShipService::trackShipStatus(std::string& shipId,std::strin
 	}
 }
 
+Enums::ProcessStatus ShipService::recordShipArrival(std::string& shipId)
+{
+	std::string timestampString;
+	std::shared_ptr<Ship>ship = m_dataStore.getShipById(shipId);
+	if (ship == nullptr)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	util::Timestamp timestamp;
+	timestampString = timestamp.toString();
+	ship->setETA(timestampString);
+	ship->setAvailabilityStatus(Enums::AvailabilityStatus::ARRIVED);
+	return Enums::ProcessStatus::SUCCESS;
 }

@@ -37,5 +37,6 @@ public:
 	void handleRegisterShipManager(std::vector<std::string>&);
 	bool getShipList();
 	void trackShipStatus();
+	void recordShipArrival();
 };
 

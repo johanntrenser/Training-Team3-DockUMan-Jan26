@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<vector>
+#include "Timestamp.h"
 #include "Enums.h"
 #include "Factory.h"
 #include "ShippingAgent.h"
@@ -17,5 +18,6 @@ public:
 	Enums::ProcessStatus registerShipObject(std::vector<std::string>& shipInformation, std::shared_ptr<User>, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status);
 	std::vector<std::string> getShipList();
 	Enums::ProcessStatus trackShipStatus(std::string&,std::string&);
+	Enums::ProcessStatus recordShipArrival(std::string& shipId);
 };
 

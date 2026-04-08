@@ -191,7 +191,8 @@ void UserInterface::handleAdminMenu()
 				std::cout << "Update User Profile selected\n";
 				break;
 			case 4:
-				std::cout << "Approve User selected\n";
+				std::cout << "Record Ship Arrival\n";
+				recordShipArrival();
 				break;
 			case 5:
 				std::cout << "Track Ship Status\n";
@@ -445,6 +446,24 @@ void UserInterface::trackShipStatus()
 	}
 }
 
-
+void UserInterface::recordShipArrival()
+{
+	std::string shipId, shipStatus;
+	Enums::ProcessStatus status;
+	if ((getShipList()))
+	{
+		std::cout << "Enter ship ID : " << std::endl;
+		util::read(shipId);
+		status = m_dockUManController->recordShipArrival(shipId);
+		if (status == Enums::ProcessStatus::SUCCESS)
+		{
+			std::cout << "Arrival time recorded ! " << std::endl;
+		}
+		else
+		{
+			std::cout << "Could not record time !" << std::endl;
+		}
+	}
+}
 
 

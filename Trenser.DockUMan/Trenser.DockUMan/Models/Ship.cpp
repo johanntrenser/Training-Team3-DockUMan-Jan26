@@ -91,7 +91,7 @@ void Ship::getShipStatus(const Enums::ShipStatus& shipStatus)
     m_shipStatus = shipStatus;
 }
 
-void Ship::getAvailabilityStatus(const Enums::AvailabilityStatus& availableStatus)
+void Ship::setAvailabilityStatus(const Enums::AvailabilityStatus& availableStatus)
 {
     m_availabilityStatus = availableStatus;
 }

@@ -35,6 +35,7 @@ public:
 	void registerShipUI();
 	void handleRegisterShipInput(std::vector<std::string>&);
 	void handleRegisterShipManager(std::vector<std::string>&);
-	void getShipList();
+	bool getShipList();
+	void trackShipStatus();
 };
 

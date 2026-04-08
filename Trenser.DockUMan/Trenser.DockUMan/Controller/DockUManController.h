@@ -19,5 +19,6 @@ public:
 	Enums::ProcessStatus deactivateUser(std::string&);
 	Enums::ProcessStatus registerShip(std::vector<std::string>& userInformation, std::vector<std::string>& shipInformation, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status);
 	std::vector<std::string> getShipList();
+	Enums::ProcessStatus trackShipStatus(std::string&,std::string&);
 };
 

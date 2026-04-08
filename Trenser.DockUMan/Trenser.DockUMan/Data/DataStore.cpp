@@ -72,6 +72,18 @@ std::shared_ptr<User> DataStore::getUser(std::string& username)
     return nullptr;
 }
 
+std::shared_ptr<Ship> DataStore::getShipById(std::string& shipId)
+{
+    for (std::vector<std::shared_ptr<Ship>>::iterator iterator = m_ships.begin(); iterator != m_ships.end(); iterator++)
+    {
+        if ((*iterator)->getShipId() == shipId)
+        {
+            return (*iterator);
+        }
+    }
+    return nullptr;
+}
+
 bool DataStore::addUser(const std::shared_ptr<User>& agent)
 {
         m_users.push_back(agent);

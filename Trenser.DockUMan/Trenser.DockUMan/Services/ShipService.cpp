@@ -45,3 +45,23 @@ std::vector<std::string> ShipService::getShipList()
 	}
 	return shipList;
 }
+
+Enums::ProcessStatus ShipService::trackShipStatus(std::string& shipId,std::string& shipStatus)
+{
+	std::shared_ptr<Ship>ship=m_dataStore.getShipById(shipId);
+	if (ship == nullptr)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	shipStatus = Enums::trackShipStatus(ship->getAvailabilityStatus());
+	if (shipStatus == "Not Available")
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	else
+	{
+		return Enums::ProcessStatus::SUCCESS;
+	}
+}
+
+}

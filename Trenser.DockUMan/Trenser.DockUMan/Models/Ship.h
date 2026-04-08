@@ -41,7 +41,6 @@ public:
 	void setETD(const std::string&);
 	void setAssignedDock(const std::shared_ptr<Dock>&);
 	void getShipStatus(const Enums::ShipStatus&);
-	void getAvailabilityStatus(const Enums::AvailabilityStatus&);
-
+	void setAvailabilityStatus(const Enums::AvailabilityStatus&);
 };
 

@@ -14,7 +14,7 @@ void Menu::getAdminMenu()
 	std::cout << "Add Users" << std::endl;
 	std::cout << "View User List" << std::endl;
 	std::cout << "Update User Profile" << std::endl;
-	std::cout << "Approve User" << std::endl;
+	std::cout << "Record Ship Arrival" << std::endl;
 	std::cout << "TrackShip" << std::endl;
 	std::cout << "ShipList" << std::endl;
     std::cout << "Add Ship" << std::endl;

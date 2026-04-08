@@ -126,7 +126,8 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 	}
 	else if (userType == Enums::UserTypes::SHIPPING_AGENT)
 	{
-		//menu
+		handleAdminMenu();
+		//call shipping menu
 	}
 	else if (userType == Enums::UserTypes::SHIP_MANAGER)
 	{
@@ -193,7 +194,8 @@ void UserInterface::handleAdminMenu()
 				std::cout << "Approve User selected\n";
 				break;
 			case 5:
-				std::cout << "Deactivate User selected\n";
+				std::cout << "Track Ship Status\n";
+				trackShipStatus();
 				break;
 			case 6:
 				std::cout << "Ship List\n";
@@ -407,11 +409,40 @@ void UserInterface::handleRegisterShipManager(std::vector<std::string>&userInfor
 	handlCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
 
-void UserInterface::getShipList()
+bool UserInterface::getShipList()
 {
 	std::vector<std::string> shipList;
 	shipList = m_dockUManController->getShipList();
-	displayList(shipList);
+	if (shipList.empty())
+	{
+		std::cout << "No Ships Found !" << std::endl;
+		return false;
+	}
+	else
+	{
+		displayList(shipList);
+		return true;
+	}
+}
+
+void UserInterface::trackShipStatus()
+{
+	std::string shipId,shipStatus;
+	Enums::ProcessStatus status;
+	if ((getShipList()))
+	{
+		std::cout << "Enter ship ID : " << std::endl;
+		util::read(shipId);
+		status = m_dockUManController->trackShipStatus(shipId, shipStatus);
+		if (status == Enums::ProcessStatus::SUCCESS)
+		{
+			std::cout << "Ship " << shipId << " : " << shipStatus << std::endl;
+		}
+		else
+		{
+			std::cout << "Ship with ship ID not found !" << std::endl;
+		}
+	}
 }
 
 

@@ -1,4 +1,5 @@
 #pragma once
+#include<iostream>
 
 namespace Enums {
 
@@ -74,7 +75,8 @@ namespace Enums {
 	enum class AvailabilityStatus
 	{
 		OCCUPIED,
-		AVAILABLE
+		AVAILABLE,
+		DOCKED
 	};
 	enum class DockStatus
 	{
@@ -109,5 +111,19 @@ namespace Enums {
 		ACTIVE,
 		INACTIVE
 	};
+	inline std::string trackShipStatus(Enums::AvailabilityStatus status)
+	{
+		switch (status)
+		{
+		case Enums::AvailabilityStatus::AVAILABLE:
+			return "Available";
+		case Enums::AvailabilityStatus::DOCKED:
+			return "Docked";
+		case Enums::AvailabilityStatus::OCCUPIED:
+			return "Occupied";
+		default:
+			return "Not Available";
+		}
+	}
 }
 

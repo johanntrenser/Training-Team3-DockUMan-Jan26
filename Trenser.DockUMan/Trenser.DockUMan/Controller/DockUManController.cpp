@@ -46,3 +46,9 @@ Enums::ProcessStatus DockUManController::registerShip(std::vector<std::string>& 
 	Enums::ProcessStatus processStatus = m_shipService->registerShip(shipInformation, isAvailable, status, m_userService->registerShipManger(userInformation));
 	return processStatus;
 }
+
+Enums::ProcessStatus DockUManController::trackShipStatus(std::string& shipId,std::string& shipStatus)
+{
+	Enums::ProcessStatus status = m_shipService->trackShipStatus(shipId, shipStatus);
+	return status;
+}

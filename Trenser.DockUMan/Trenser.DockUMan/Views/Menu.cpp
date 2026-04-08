@@ -73,3 +73,16 @@ void Menu::getUpdateDetailsMenu()
     std::cout << "2. Phone Number\n";
     std::cout << "Select Detail to Update: " << std::endl;
 }
+
+void Menu::getAddUserMenu()
+{
+    std::cout << "-------------------User Types Menu------------------" << std::endl;
+    std::cout << "1. Pickup Agent\n";
+    std::cout << "2. Port Authority Admin\n";
+    std::cout << "3. Shipping Agent\n";
+    std::cout << "4. Ship Manager\n";
+    std::cout << "5. Terminal Operator\n";
+    std::cout << "6. Finance Manager\n";
+    std::cout << "7. Customs Officer\n";
+    std::cout << "Select User Type: ";
+}

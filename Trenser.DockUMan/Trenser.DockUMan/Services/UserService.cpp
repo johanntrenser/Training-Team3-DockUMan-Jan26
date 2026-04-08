@@ -1,6 +1,6 @@
 #include "UserService.h"
 
-Enums::ProcessStatus UserService::registerUser(std::vector<std::string>& userInformation, Enums::UserTypes& type, Enums::UserStatus& status)
+Enums::ProcessStatus UserService::registerUser(std::vector<std::string>& userInformation, Enums::UserTypes type, Enums::UserStatus status)
 {
 
 	if (type == Enums::UserTypes::SHIPPING_AGENT)
@@ -28,16 +28,18 @@ Enums::ProcessStatus UserService::registerUser(std::vector<std::string>& userInf
 		return Enums::ProcessStatus::FAILED;
 	}
 }
+//can add further users if needed in the future
 
-Enums::ProcessStatus UserService::authenticateUser(std::string& email, std::string& password)
+Enums::ProcessStatus UserService::authenticateUser(std::string& email, std::string& password, std::string& username)
 {
 	bool isUserActive=false;
 	std::shared_ptr<User> user;
-	if (user=m_dataStore.getUserByMail(email))
+	if (user = m_dataStore.getUserByEmail(email))
 	{
-		if((*user).getPassword() == password)
+		if(user->getPassword() == password && user->getStatus() == Enums::UserStatus::ACTIVE)
 		{
 			m_dataStore.setCurrentUser(user);
+			username = user->getName();
 			return Enums::ProcessStatus::SUCCESS;
 		}
 		else
@@ -54,13 +56,13 @@ Enums::ProcessStatus UserService::authenticateUser(std::string& email, std::stri
 Enums::UserTypes UserService::getUserType(std::string& email)
 {
 	std::shared_ptr<User> user;
-	user = m_dataStore.getUserByMail(email);
+	user = m_dataStore.getUserByEmail(email);
 	return user->getRole();
 }
 
 std::vector<std::string> UserService::getUserDetailByIdAndType(std::string& userId, Enums::UserTypes role)
 {
-	std::vector<std::string> userDetails = {};
+	std::vector<std::string> userDetails;
 	std::shared_ptr<User> user = m_dataStore.getUserById(userId);
 	if (user != nullptr && user->getRole() == role)
 	{
@@ -155,10 +157,10 @@ std::vector<std::string> UserService::getUserList()
 	return userList;
 }
 
-Enums::ProcessStatus UserService::addUser(std::vector<std::string>& userInformation, Enums::UserTypes& type, Enums::UserStatus& status)
+Enums::ProcessStatus UserService::addUser(std::vector<std::string>& userInformation, Enums::UserTypes type, Enums::UserStatus status)
 {
 	std::string id, name, password, email, phoneNumber;
-	auto iterator = userInformation.begin();
+	std::vector<std::string>::iterator iterator = userInformation.begin();
 	id = *iterator++;
 	name = *iterator++;
 	password = *iterator++;

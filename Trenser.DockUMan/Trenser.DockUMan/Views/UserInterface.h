@@ -32,7 +32,7 @@ public:
 	void handleCraneOperations();
 	void handleUserUpdate(Enums::UserTypes);
 	void getUserList();
-	void displayUserList(std::vector<std::string>&);
+	void displayList(std::vector<std::string>& list);
 	void updateUserDetailsUI();
 	void updateUserAttributeUI(std::string&);
 	void addUserUI();

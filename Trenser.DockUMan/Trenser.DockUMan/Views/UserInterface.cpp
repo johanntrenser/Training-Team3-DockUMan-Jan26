@@ -3,11 +3,11 @@
 void UserInterface::start()
 {
 	bool isMenuActive = true;
-	m_menu->getAuthenticationMenu();
 	while (isMenuActive)
 	{
 		try
 		{
+			m_menu->getAuthenticationMenu();
 			int choice;
 			std::cout << "\nEnter Choice : ";
 			util::read<int>(choice);
@@ -15,7 +15,7 @@ void UserInterface::start()
 		}
 		catch (const std::exception &e)
 		{
-			std::cout << "Exception : " << e.what() << std::endl;
+			std::cout << "Exception : " << e.what() << std::endl << std::endl;
 		}
 	}
 }
@@ -47,12 +47,12 @@ void UserInterface::authenticateUser()
 	{
 		try
 		{
-			std::string username,password;
-			std::cout << "\nEnter UserName : ";
-			util::read<std::string>(username);
+			std::string username,password,email;
+			std::cout << "\nEnter User Email Id : ";
+			util::read<std::string>(email);
 			std::cout << "\nEnter Password : ";
 			util::read<std::string>(password);
-			if (m_dockUManController->handleAuthentication(username, password) == Enums::ProcessStatus::SUCCESS)
+			if (m_dockUManController->handleAuthentication(username, password, email) == Enums::ProcessStatus::SUCCESS)
 			{
 				std::cout << "User Login Success! Welcome user : " << username << std::endl;
 				isMenuActive = false;
@@ -60,7 +60,7 @@ void UserInterface::authenticateUser()
 			}
 			else
 			{
-				std::cout << "Invalid credentials  ! " << std::endl;
+				std::cout << "Invalid credentials! " << std::endl;
 			}
 		}
 		catch (const std::exception& e)
@@ -72,30 +72,26 @@ void UserInterface::authenticateUser()
 
 void UserInterface::registerShippingAgentUI()
 {
-	bool isMenuActive = true;
-	//while (isMenuActive)
-	//{
-		try
-		{ 
-			std::vector<std::string>userInformation;
-			Enums::UserTypes type=Enums::UserTypes::SHIPPING_AGENT;
-			Enums::UserStatus status = Enums::UserStatus::PENDING;
-			handleShippingAgentUserInput(userInformation);
-			Enums::ProcessStatus processStatus=m_dockUManController->registerShippingAgent(userInformation,type,status);
-			if (processStatus == Enums::ProcessStatus::SUCCESS)
-			{
-				std::cout << "User Created Succesfull!" << std::endl;
-			}
-			else
-			{
-				std::cout << "User Creation Failed !" << std::endl;
-			}
-		}
-		catch (const std::exception& e)
+	try
+	{ 
+		std::vector<std::string> userInformation;
+		Enums::UserTypes type = Enums::UserTypes::SHIPPING_AGENT;
+		Enums::UserStatus status = Enums::UserStatus::PENDING;
+		handleShippingAgentUserInput(userInformation);
+		Enums::ProcessStatus processStatus = m_dockUManController->registerShippingAgent(userInformation, type, status);
+		if (processStatus == Enums::ProcessStatus::SUCCESS)
 		{
-			std::cout << "Exception : " << e.what() << std::endl;
+			std::cout << "User Created Succesfull!" << std::endl;
 		}
-	//}
+		else
+		{
+			std::cout << "User Creation Failed!" << std::endl;
+		}
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "Exception : " << e.what() << std::endl;
+	}
 }
 
 void UserInterface::handleCommonUserInput(std::vector<std::string>& userInformation,std::string& name, std::string& password, std::string& email, std::string& phoneNumber)
@@ -110,17 +106,17 @@ void UserInterface::handleCommonUserInput(std::vector<std::string>& userInformat
 	validator::validateEmail(email);
 	while (m_dockUManController->IsEmailIdUnique(email) != Enums::ProcessStatus::SUCCESS)
 	{
-		std::cout << "Email already exist\nTry Again\n";
+		std::cout << "Email already exists\nTry Again\n";
 		std::cout << "Enter email : ";
 		validator::validateEmail(email);
 	}
 	userInformation.push_back(email);
-	std::cout << "Enter phoneNumber : ";
+	std::cout << "Enter phone number : ";
 	validator::validatePhoneNumber(phoneNumber);
 	while (m_dockUManController->IsPhoneNumberUnique(phoneNumber) != Enums::ProcessStatus::SUCCESS)
 	{
-		std::cout << "Phone number already exist\nTry Again\n";
-		std::cout << "Enter phoneNumber : ";
+		std::cout << "Phone number already exists\nTry Again\n";
+		std::cout << "Enter phone number : ";
 		validator::validatePhoneNumber(phoneNumber);
 	}
 	userInformation.push_back(phoneNumber);
@@ -130,7 +126,7 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 {
 	if (userType == Enums::UserTypes::PICKUP_AGENT)
 	{
-		//call pickupmenu
+		//call pickup agent menu
 	}
 	else if (userType == Enums::UserTypes::PORT_AUTHORITY_ADMINISTRATOR)
 	{
@@ -138,11 +134,11 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 	}
 	else if (userType == Enums::UserTypes::SHIPPING_AGENT)
 	{
-		handleAdminMenu();
+		handleAdminMenu(); // change later to shipping agent menu. set as admin menu for testing purpose
 	}
 	else if (userType == Enums::UserTypes::SHIP_MANAGER)
 	{
-		//call menu
+		//call ship manager menu
 	}
 	else if (userType == Enums::UserTypes::TERMINAL_OPERATOR)
 	{
@@ -150,11 +146,11 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 	}
 	else if (userType == Enums::UserTypes::FINANCE_MANAGER)
 	{
-		//call menu
+		//call finance manager menu
 	}
 	else if (userType == Enums::UserTypes::CUSTOMS_OFFICER)
 	{
-		//call menu
+		//call custom officer menu
 	}
 }
 
@@ -163,20 +159,20 @@ Enums::UserTypes UserInterface::getUserType(std::string& username)
 	return m_dockUManController->getUserType(username);
 }
 
-void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userInformation) //error management
+void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userInformation) 
 {
 	std::string licenseNumber, id, name, password, email, phoneNumber;
-	std::cout << "Enter id : "; //id generaator
+	std::cout << "Enter id : "; //Add id generaator
 	util::read(id);
 	userInformation.push_back(id);
 	handleCommonUserInput(userInformation,name,password,email,phoneNumber);
 	std::cout << "Enter license Number : ";
-	validator::validateLiscenseNumber(licenseNumber);
+	validator::validateLicenseNumber(licenseNumber);
 	while (m_dockUManController->IsLicenseNumberUnique(licenseNumber) != Enums::ProcessStatus::SUCCESS)
 	{
-		std::cout << "License number already exist\nTry Again\n";
+		std::cout << "License number already exists\nTry Again\n";
 		std::cout << "Enter license Number : ";
-		validator::validateLiscenseNumber(licenseNumber);
+		validator::validateLicenseNumber(licenseNumber);
 	}
 	userInformation.push_back(licenseNumber);
 }
@@ -184,15 +180,16 @@ void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userI
 void UserInterface::handleCustomsOfficerUserInput(std::vector<std::string>& userInformation)
 {
 	std::string badgeNumber, id, name, password, email, phoneNumber;
-	std::cout << "Enter id : ";
+	std::cout << "Enter id : "; // Add id generator
 	util::read(id);
 	userInformation.push_back(id);
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 	std::cout << "Enter badge number : ";
 	/*validator::validateBadgeNumber(badgeNumber); */
+	//need research
 	while (m_dockUManController->IsBadgeNumberUnique(badgeNumber) != Enums::ProcessStatus::SUCCESS)
 	{
-		std::cout << "License number already exist\nTry Again\n";
+		std::cout << "Badge number already exists\nTry Again\n";
 		std::cout << "Enter badge number : ";
 		/*validator::validateBadgeNumber(badgeNumber); */
 	}
@@ -282,6 +279,7 @@ void UserInterface::handleAdminMenu()
 				std::cout << "Change Password selected\n";
 				break;
 			case 7:
+				logoutUser();
 				isMenuActive = false;
 				std::cout << "Logging out ..." << std::endl;
 				break;
@@ -419,7 +417,7 @@ void UserInterface::handleUserUpdate(Enums::UserTypes role)
 {
 	std::string userId;
 	std::vector<std::string> users = m_dockUManController->getUserListByRole(role);
-	displayUserList(users);
+	displayList(users);
 	std::cout << "Enter id of user to update: ";
 	util::read(userId);
 	std::vector<std::string> userDetails = m_dockUManController->getUserDetailByIdAndType(userId, role);
@@ -428,7 +426,7 @@ void UserInterface::handleUserUpdate(Enums::UserTypes role)
 		std::cout << "Invalid user id or user doesn't exist!!" << std::endl;
 		return;
 	}
-	displayUserList(userDetails);
+	displayList(userDetails);
 	updateUserAttributeUI(userId);
 }
 
@@ -436,18 +434,16 @@ void UserInterface::getUserList()
 {
 	std::vector<std::string> userList;
 	userList = m_dockUManController->getUserList();
-	displayUserList(userList);
+	displayList(userList);
 }
 
-void UserInterface::displayUserList(std::vector<std::string>& userList)
+void UserInterface::displayList(std::vector<std::string>& list)
 {
-	for (std::vector<std::string>::iterator iterator = userList.begin(); iterator != userList.end(); iterator++)
+	for (std::vector<std::string>::iterator iterator = list.begin(); iterator != list.end(); iterator++)
 	{
 		std::cout << *iterator << std::endl;
 	}
 }
-
-
 
 void UserInterface::updateUserDetailsUI()
 {
@@ -508,12 +504,24 @@ void UserInterface::updateUserAttributeUI(std::string& userId)
 			std::cout << "Enter the updated email id: ";
 			util::read(updatedAttribute);
 			validator::validateEmail(updatedAttribute);
+			while (m_dockUManController->IsEmailIdUnique(updatedAttribute) != Enums::ProcessStatus::SUCCESS)
+			{
+				std::cout << "Email already exists\nTry Again\n";
+				std::cout << "Enter email : ";
+				validator::validateEmail(updatedAttribute);
+			}
 			processStatus = m_dockUManController->updatedUserEmailId(userId, updatedAttribute);
 			break;
 		case 2:
 			std::cout << "Enter the updated phone no: ";
 			util::read(updatedAttribute);
 			validator::validatePhoneNumber(updatedAttribute);
+			while (m_dockUManController->IsPhoneNumberUnique(updatedAttribute) != Enums::ProcessStatus::SUCCESS)
+			{
+				std::cout << "Phone number already exists\nTry Again\n";
+				std::cout << "Enter phone number : ";
+				validator::validatePhoneNumber(updatedAttribute);
+			}
 			processStatus = m_dockUManController->updatedUserPhoneNumber(userId, updatedAttribute);
 			break;
 		default:
@@ -544,8 +552,6 @@ Enums::ProcessStatus UserInterface::approveUser(std::string& userId)
 	return m_dockUManController->approveUser(userId);
 }
 
-
-
 void UserInterface::addUserUI()
 {
 	try
@@ -554,7 +560,7 @@ void UserInterface::addUserUI()
 		Enums::UserTypes type;
 		Enums::UserStatus status = Enums::UserStatus::ACTIVE;
 		int typeChoice;
-		std::cout << "Select User Type: \n" << "1. Pickup Agent\n2. Port Authority Admin\n3. Shipping Agent\n4. Ship Manager\n5. Terminal Operator\n6. Finance Manager\n7. Customs Officer\nChoice: ";
+		m_menu->getAddUserMenu();
 		util::read<int>(typeChoice);
 		switch (typeChoice)
 		{

@@ -60,9 +60,9 @@ const std::vector<std::shared_ptr<Log>>& DataStore::getLogs() const
     return m_logs;
 }
 
-std::shared_ptr<User> DataStore::getUserByMail(std::string& email)
+std::shared_ptr<User> DataStore::getUserByEmail(std::string& email)
 {
-    for (std::vector<std::shared_ptr<User>>::iterator iterator = m_users.begin();iterator!=m_users.end();iterator++)
+    for (std::vector<std::shared_ptr<User>>::iterator iterator = m_users.begin();iterator != m_users.end(); ++iterator)
     {
         if ((*iterator)->getEmail() == email)
         {
@@ -84,10 +84,10 @@ std::shared_ptr<User> DataStore::getUserById(std::string& userId)
     return nullptr;
 }
 
-bool DataStore::addUser(const std::shared_ptr<User>& agent)
+bool DataStore::addUser(const std::shared_ptr<User> agent)
 {
-        m_users.push_back(agent);
-        return true;
+    m_users.push_back(agent);
+    return true;
 }
 
 void DataStore::setDocks(const std::vector<std::shared_ptr<Dock>>& docks)
@@ -145,7 +145,7 @@ void DataStore::setLogs(const std::vector<std::shared_ptr<Log>>& logs)
     m_logs = logs;
 }
 
-void DataStore::setCurrentUser(const std::shared_ptr<User>& user)
+void DataStore::setCurrentUser(const std::shared_ptr<User> user)
 {
     m_currentUser = user;
 }

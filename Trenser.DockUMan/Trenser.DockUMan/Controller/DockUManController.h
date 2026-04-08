@@ -9,9 +9,9 @@ private:
 	std::shared_ptr<UserService> m_userService;
 public:
 	DockUManController():m_userService(std::make_shared<UserService>()){};
-	Enums::ProcessStatus registerShippingAgent(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
-	Enums::ProcessStatus addUser(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
-	Enums::ProcessStatus handleAuthentication(std::string&,std::string&);
+	Enums::ProcessStatus registerShippingAgent(std::vector<std::string>&, Enums::UserTypes, Enums::UserStatus);
+	Enums::ProcessStatus addUser(std::vector<std::string>&, Enums::UserTypes type, Enums::UserStatus status);
+	Enums::ProcessStatus handleAuthentication(std::string& email,std::string& password, std::string& username);
 	Enums::UserTypes getUserType(std::string&);
 	std::vector<std::string> getUserDetailByIdAndType(std::string&, Enums::UserTypes);
 	void logoutUser();

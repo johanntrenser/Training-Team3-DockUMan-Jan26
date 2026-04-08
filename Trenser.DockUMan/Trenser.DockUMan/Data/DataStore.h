@@ -50,8 +50,8 @@ public:
     const std::vector<std::shared_ptr<Notification>>& getNotifications() const;
     const std::vector<std::shared_ptr<Log>>& getLogs() const;
     std::shared_ptr<User> getUserById(std::string&);
-    std::shared_ptr<User> getUserByMail(std::string&);
-    bool addUser(const std::shared_ptr<User>& agent);
+    std::shared_ptr<User> getUserByEmail(std::string&);
+    bool addUser(const std::shared_ptr<User> agent);
     void setDocks(const std::vector<std::shared_ptr<Dock>>& docks);
     void setYard(const std::vector<std::shared_ptr<Yard>>& yard);
     void setContainers(const std::vector<std::shared_ptr<Container>>& containers);
@@ -63,7 +63,7 @@ public:
     void setThresholds(const std::map<Enums::ContainerType, std::shared_ptr<Threshold>>& thresholds);
     void setNotifications(const std::vector<std::shared_ptr<Notification>>& notifications);
     void setLogs(const std::vector<std::shared_ptr<Log>>& logs);
-    void setCurrentUser(const std::shared_ptr<User>&);
+    void setCurrentUser(const std::shared_ptr<User> user);
     std::shared_ptr<User>& getCurrentUser();
     DataStore(const DataStore&) = delete;
     DataStore& operator=(const DataStore&) = delete;

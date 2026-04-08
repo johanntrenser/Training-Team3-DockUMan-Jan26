@@ -17,9 +17,9 @@ private:
 	DataStore& m_dataStore;
 public:
 	UserService() :m_dataStore(DataStore::getInstance()) {};
-	Enums::ProcessStatus addUser(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
-	Enums::ProcessStatus registerUser(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
-	Enums::ProcessStatus authenticateUser(std::string&, std::string&);
+	Enums::ProcessStatus addUser(std::vector<std::string>&, Enums::UserTypes type, Enums::UserStatus status);
+	Enums::ProcessStatus registerUser(std::vector<std::string>&, Enums::UserTypes, Enums::UserStatus);
+	Enums::ProcessStatus authenticateUser(std::string& email, std::string& password, std::string& username);
 	Enums::UserTypes getUserType(std::string&);
 	std::vector<std::string> getUserDetailByIdAndType(std::string&, Enums::UserTypes);
 	bool IsPhoneNumberUnique(std::string&);

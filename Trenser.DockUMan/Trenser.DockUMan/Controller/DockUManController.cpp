@@ -1,14 +1,14 @@
 #include "DockUManController.h"
 
-Enums::ProcessStatus DockUManController::registerShippingAgent(std::vector<std::string>& userInformation, Enums::UserTypes& type, Enums::UserStatus& status)
+Enums::ProcessStatus DockUManController::registerShippingAgent(std::vector<std::string>& userInformation, Enums::UserTypes type, Enums::UserStatus status)
 {
-	Enums::ProcessStatus processStatus=m_userService->registerUser(userInformation, type, status);
+	Enums::ProcessStatus processStatus = m_userService->registerUser(userInformation, type, status); 
 	return processStatus;
 }
 
-Enums::ProcessStatus DockUManController::handleAuthentication(std::string& email, std::string& password)
+Enums::ProcessStatus DockUManController::handleAuthentication(std::string& email, std::string& password, std::string& username)
 {
-	Enums::ProcessStatus processStatus = m_userService->authenticateUser(email, password);
+	Enums::ProcessStatus processStatus = m_userService->authenticateUser(email, password, username);
 	return processStatus;
 }
 
@@ -34,7 +34,7 @@ std::vector<std::string> DockUManController::getUserList()
 	return userList;
 }
 
-Enums::ProcessStatus DockUManController::addUser(std::vector<std::string>& userInformation, Enums::UserTypes& type, Enums::UserStatus& status)
+Enums::ProcessStatus DockUManController::addUser(std::vector<std::string>& userInformation, Enums::UserTypes type, Enums::UserStatus status)
 {
 	return m_userService->addUser(userInformation, type, status);
 }

@@ -11,4 +11,5 @@ public:
 	void getCraneOperationsMenu();
 	void getUserRolesMenu();
 	void getUpdateDetailsMenu();
+	void getAddUserMenu();
 };

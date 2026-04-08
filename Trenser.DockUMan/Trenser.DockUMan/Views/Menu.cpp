@@ -18,6 +18,7 @@ void Menu::getAdminMenu()
 	std::cout << "TrackShip" << std::endl;
 	std::cout << "ShipList" << std::endl;
     std::cout << "Add Ship" << std::endl;
+    std::cout << "Record Ship Departure" << std::endl;
 	std::cout << "Logout" << std::endl;
 }
 

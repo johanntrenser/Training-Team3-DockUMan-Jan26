@@ -207,6 +207,10 @@ void UserInterface::handleAdminMenu()
 				registerShipUI();
 				break;
 			case 8:
+				std::cout << "Record Ship Departure\n";
+				recordShipDeparture();
+				break;
+			case 9:
 				isMenuActive = false;
 				std::cout << "Logging out ..." << std::endl;
 				break;
@@ -458,6 +462,26 @@ void UserInterface::recordShipArrival()
 		if (status == Enums::ProcessStatus::SUCCESS)
 		{
 			std::cout << "Arrival time recorded ! " << std::endl;
+		}
+		else
+		{
+			std::cout << "Could not record time !" << std::endl;
+		}
+	}
+}
+
+void UserInterface::recordShipDeparture()
+{
+	std::string shipId, shipStatus;
+	Enums::ProcessStatus status;
+	if ((getShipList()))
+	{
+		std::cout << "Enter ship ID : " << std::endl;
+		util::read(shipId);
+		status = m_dockUManController->recordShipDeparture(shipId);
+		if (status == Enums::ProcessStatus::SUCCESS)
+		{
+			std::cout << "Departure time recorded ! " << std::endl;
 		}
 		else
 		{

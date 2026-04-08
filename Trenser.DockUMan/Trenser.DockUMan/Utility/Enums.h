@@ -77,7 +77,8 @@ namespace Enums {
 		OCCUPIED,
 		AVAILABLE,
 		DOCKED,
-		ARRIVED
+		ARRIVED,
+		DEPARTED
 	};
 	enum class DockStatus
 	{
@@ -124,6 +125,8 @@ namespace Enums {
 			return "Occupied";
 		case Enums::AvailabilityStatus::ARRIVED:
 			return "Arrived";
+		case Enums::AvailabilityStatus::DEPARTED:
+			return "Departed";
 		default:
 			return "Not Available";
 		}

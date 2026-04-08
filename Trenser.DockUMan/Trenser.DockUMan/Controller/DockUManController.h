@@ -21,5 +21,6 @@ public:
 	std::vector<std::string> getShipList();
 	Enums::ProcessStatus trackShipStatus(std::string&,std::string&);
 	Enums::ProcessStatus recordShipArrival(std::string&);
+	Enums::ProcessStatus recordShipDeparture(std::string&);
 };
 

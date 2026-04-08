@@ -38,5 +38,6 @@ public:
 	bool getShipList();
 	void trackShipStatus();
 	void recordShipArrival();
+	void recordShipDeparture();
 };
 

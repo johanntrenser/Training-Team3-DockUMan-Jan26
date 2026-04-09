@@ -1,5 +1,16 @@
+/*
+ * File: UserInterface.cpp
+ * Description: Handles user interface operations including authentication, 
+				user management, and menu-driven interactions for DockUMan system
+ * Author: Entire Team
+ * Created: 02-Apr-2026
+ */
 #include "UserInterface.h"
 
+ /*
+  * Function: start
+  * Description: Initializes and manages the authentication menu loop
+  */
 void UserInterface::start()
 {
 	bool isMenuActive = true;
@@ -20,6 +31,13 @@ void UserInterface::start()
 	}
 }
 
+/*
+ * Function: handleAuthenticationOperation
+ * Description: Processes user choice from authentication menu
+ * Parameters:
+ *    choice - selected menu option
+ *    isMenuActive - controls menu loop execution
+ */
 void UserInterface::handleAuthenticationOperation(const int& choice,bool& isMenuActive)
 {
 	switch (choice)
@@ -40,6 +58,10 @@ void UserInterface::handleAuthenticationOperation(const int& choice,bool& isMenu
 	}
 }
 
+/*
+ * Function: authenticateUser
+ * Description: Handles user login and redirects to respective menus upon success
+ */
 void UserInterface::authenticateUser()
 {
 	bool isMenuActive = true;
@@ -70,6 +92,10 @@ void UserInterface::authenticateUser()
 	}
 }
 
+/*
+ * Function: registerShippingAgentUI
+ * Description: Handles UI flow for registering a shipping agent
+ */
 void UserInterface::registerShippingAgentUI()
 {
 	try
@@ -94,6 +120,16 @@ void UserInterface::registerShippingAgentUI()
 	}
 }
 
+/*
+ * Function: handleCommonUserInput
+ * Description: Collects and validates common user details
+ * Parameters:
+ *    userInformation - vector storing user data
+ *    name - user name
+ *    password - user password
+ *    email - user email
+ *    phoneNumber - user phone number
+ */
 void UserInterface::handleCommonUserInput(std::vector<std::string>& userInformation,std::string& name, std::string& password, std::string& email, std::string& phoneNumber)
 {
 	std::cout << "Enter Name :";
@@ -122,6 +158,12 @@ void UserInterface::handleCommonUserInput(std::vector<std::string>& userInformat
 	userInformation.push_back(phoneNumber);
 }
 
+/*
+ * Function: handleMenus
+ * Description: Routes user to appropriate menu based on user type
+ * Parameters:
+ *    userType - type of logged-in user
+ */
 void UserInterface::handleMenus(Enums::UserTypes userType)
 {
 	if (userType == Enums::UserTypes::PICKUP_AGENT)
@@ -154,11 +196,25 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 	}
 }
 
+/*
+ * Function: getUserType
+ * Description: Retrieves user type based on username
+ * Parameters:
+ *    username - user identifier
+ * Returns:
+ *    User type
+ */
 Enums::UserTypes UserInterface::getUserType(std::string& username)
 {
 	return m_dockUManController->getUserType(username);
 }
 
+/*
+ * Function: handleShippingAgentUserInput
+ * Description: Collects input specific to shipping agent registration
+ * Parameters:
+ *    userInformation - vector storing user data
+ */
 void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userInformation) 
 {
 	std::string licenseNumber, id, name, password, email, phoneNumber;
@@ -177,6 +233,12 @@ void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userI
 	userInformation.push_back(licenseNumber);
 }
 
+/*
+ * Function: handleCustomsOfficerUserInput
+ * Description: Collects input specific to customs officer registration
+ * Parameters:
+ *    userInformation - vector storing user data
+ */
 void UserInterface::handleCustomsOfficerUserInput(std::vector<std::string>& userInformation)
 {
 	std::string badgeNumber, id, name, password, email, phoneNumber;
@@ -196,6 +258,12 @@ void UserInterface::handleCustomsOfficerUserInput(std::vector<std::string>& user
 	userInformation.push_back(badgeNumber);
 }
 
+/*
+ * Function: handleShipManagerUserInput
+ * Description: Collects input for ship manager registration
+ * Parameters:
+ *    userInformation - vector storing user data
+ */
 void UserInterface::handleShipManagerUserInput(std::vector<std::string>& userInformation)
 {
 	std::string id, name, password, email, phoneNumber;
@@ -205,6 +273,12 @@ void UserInterface::handleShipManagerUserInput(std::vector<std::string>& userInf
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
 
+/*
+ * Function: handlePickupAgentUserInput
+ * Description: Collects input for pickup agent registration
+ * Parameters:
+ *    userInformation - vector storing user data
+ */
 void UserInterface::handlePickupAgentUserInput(std::vector<std::string>& userInformation)
 {
 	std::string id, name, password, email, phoneNumber;
@@ -214,6 +288,12 @@ void UserInterface::handlePickupAgentUserInput(std::vector<std::string>& userInf
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
 
+/*
+ * Function: handlePortAuthorityAdminUserInput
+ * Description: Collects input for port authority administrator registration
+ * Parameters:
+ *    userInformation - vector storing user data
+ */
 void UserInterface::handlePortAuthorityAdminUserInput(std::vector<std::string>& userInformation)
 {
 	std::string id, name, password, email, phoneNumber;
@@ -223,6 +303,12 @@ void UserInterface::handlePortAuthorityAdminUserInput(std::vector<std::string>& 
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
 
+/*
+ * Function: handleFinanceManagerUserInput
+ * Description: Collects input for finance manager registration
+ * Parameters:
+ *    userInformation - vector storing user data
+ */
 void UserInterface::handleFinanceManagerUserInput(std::vector<std::string>& userInformation)
 {
 	std::string id, name, password, email, phoneNumber;
@@ -232,6 +318,12 @@ void UserInterface::handleFinanceManagerUserInput(std::vector<std::string>& user
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
 
+/*
+ * Function: handleTerminalOperatorUserInput
+ * Description: Collects input for terminal operator registration
+ * Parameters:
+ *    userInformation - vector storing user data
+ */
 void UserInterface::handleTerminalOperatorUserInput(std::vector<std::string>& userInformation)
 {
 	std::string id, name, password, email, phoneNumber;
@@ -241,11 +333,19 @@ void UserInterface::handleTerminalOperatorUserInput(std::vector<std::string>& us
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
 
+/*
+ * Function: logoutUser
+ * Description: Logs out the currently authenticated user
+ */
 void UserInterface::logoutUser()
 {
 	m_dockUManController->logoutUser();
 }
 
+/*
+ * Function: handleAdminMenu
+ * Description: Displays and processes admin menu operations
+ */
 void UserInterface::handleAdminMenu()
 {
 	bool isMenuActive = true;
@@ -295,6 +395,10 @@ void UserInterface::handleAdminMenu()
 	}
 }
 
+/*
+ * Function: handleTerminalOperatorMenu
+ * Description: Displays and processes terminal operator menu operations
+ */
 void UserInterface::handleTerminalOperatorMenu()
 {
 	bool isMenuActive = true;
@@ -330,6 +434,10 @@ void UserInterface::handleTerminalOperatorMenu()
 	}
 }
 
+/*
+ * Function: handleTruckOperations
+ * Description: Handles truck-related operations menu
+ */
 void UserInterface::handleTruckOperations()
 {
 	bool isMenuActive = true;
@@ -370,6 +478,10 @@ void UserInterface::handleTruckOperations()
 	}
 }
 
+/*
+ * Function: handleCraneOperations
+ * Description: Handles crane-related operations menu
+ */
 void UserInterface::handleCraneOperations()
 {
 	bool isMenuActive = true;
@@ -413,6 +525,12 @@ void UserInterface::handleCraneOperations()
 	}
 }
 
+/*
+ * Function: handleUserUpdate
+ * Description: Handles updating user details based on role
+ * Parameters:
+ *    role - user role
+ */
 void UserInterface::handleUserUpdate(Enums::UserTypes role)
 {
 	std::string userId;
@@ -430,6 +548,10 @@ void UserInterface::handleUserUpdate(Enums::UserTypes role)
 	updateUserAttributeUI(userId);
 }
 
+/*
+ * Function: getUserList
+ * Description: Retrieves and displays all users
+ */
 void UserInterface::getUserList()
 {
 	std::vector<std::string> userList;
@@ -437,6 +559,12 @@ void UserInterface::getUserList()
 	displayList(userList);
 }
 
+/*
+ * Function: displayList
+ * Description: Displays a list of strings
+ * Parameters:
+ *    list - vector of strings to display
+ */
 void UserInterface::displayList(std::vector<std::string>& list)
 {
 	for (std::vector<std::string>::iterator iterator = list.begin(); iterator != list.end(); iterator++)
@@ -445,6 +573,10 @@ void UserInterface::displayList(std::vector<std::string>& list)
 	}
 }
 
+/*
+ * Function: updateUserDetailsUI
+ * Description: Handles UI for updating user details
+ */
 void UserInterface::updateUserDetailsUI()
 {
 	try
@@ -480,6 +612,13 @@ void UserInterface::updateUserDetailsUI()
 		std::cout << "Exception : " << e.what() << std::endl;
 	}
 }
+
+/*
+ * Function: changeCurrentUserPassword
+ * Description: Changes password of the current user
+ * Returns:
+ *    Process status
+ */
 Enums::ProcessStatus UserInterface::changeCurrentUserPassword()
 {
 	std::string newPassword;
@@ -489,6 +628,12 @@ Enums::ProcessStatus UserInterface::changeCurrentUserPassword()
 	return m_dockUManController->changeCurrentUserPassword(newPassword);
 }
 
+/*
+ * Function: updateUserAttributeUI
+ * Description: Updates specific user attributes like email or phone number
+ * Parameters:
+ *    userId - ID of the user to update
+ */
 void UserInterface::updateUserAttributeUI(std::string& userId)
 {
 	int choice;
@@ -542,16 +687,37 @@ void UserInterface::updateUserAttributeUI(std::string& userId)
 		std::cout << "Exception : " << e.what() << std::endl;
 	}
 }
+
+/*
+ * Function: deactivateUser
+ * Description: Deactivates a user account
+ * Parameters:
+ *    userId - ID of the user
+ * Returns:
+ *    Process status
+ */
 Enums::ProcessStatus UserInterface::deactivateUser(std::string& userId)
 {
 	return m_dockUManController->deactivateUser(userId);
 }
 
+/*
+ * Function: approveUser
+ * Description: Approves a user account
+ * Parameters:
+ *    userId - ID of the user
+ * Returns:
+ *    Process status
+ */
 Enums::ProcessStatus UserInterface::approveUser(std::string& userId)
 {
 	return m_dockUManController->approveUser(userId);
 }
 
+/*
+ * Function: addUserUI
+ * Description: Handles UI flow for adding new users of different roles
+ */
 void UserInterface::addUserUI()
 {
 	try

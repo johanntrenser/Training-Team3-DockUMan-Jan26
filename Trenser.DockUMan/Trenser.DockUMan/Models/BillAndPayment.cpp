@@ -1,3 +1,9 @@
+/*
+ * File: BillAndPayment.cpp
+ * Description: Handles billing and payment details including getters and setters for transaction-related information
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #include "BillAndPayment.h"
 
 std::string BillAndPayment::getId() const

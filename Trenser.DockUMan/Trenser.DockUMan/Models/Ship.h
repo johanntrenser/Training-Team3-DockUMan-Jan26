@@ -1,3 +1,9 @@
+/*
+ * File: Ship.h
+ * Description: Defines the Ship class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include <iostream>
 #include <vector>

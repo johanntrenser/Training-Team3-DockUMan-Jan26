@@ -1,7 +1,14 @@
+/*
+ * File: Notification.h
+ * Description: Defines the Notification class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include<iostream>
 #include "Enums.h"
 #include "User.h"
+
 class Notification
 {
 private:

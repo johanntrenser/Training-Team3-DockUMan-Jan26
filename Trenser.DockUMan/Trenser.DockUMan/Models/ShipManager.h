@@ -1,3 +1,9 @@
+/*
+ * File: ShipManager.h
+ * Description: Defines the ShipManager class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include "User.h"
 class ShipManager :

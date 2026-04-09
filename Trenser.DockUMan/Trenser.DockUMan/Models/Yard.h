@@ -1,3 +1,9 @@
+/*
+ * File: Yard.h
+ * Description: Defines the Yard class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include <iostream>
 #include <string>

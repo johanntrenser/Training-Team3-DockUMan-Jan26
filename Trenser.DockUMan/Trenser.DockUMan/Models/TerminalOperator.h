@@ -1,5 +1,12 @@
+/*
+ * File: TerminalOperator.h
+ * Description: Defines the TerminalOperator class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include "User.h"
+
 class TerminalOperator :
     public User
 {

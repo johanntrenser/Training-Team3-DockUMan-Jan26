@@ -1,3 +1,9 @@
+/*
+ * File: DataStore.cpp
+ * Description: Manages in-memory storage and retrieval of system entities such as users, docks, containers, and transactions
+ * Author: Entire Team
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include <iostream>
 #include <string>

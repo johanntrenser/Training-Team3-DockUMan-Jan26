@@ -1,3 +1,9 @@
+/*
+ * File: Container.cpp
+ * Description: Contains getters and setters for Container model class representing container-related data
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #include "Container.h"
 #include "Ship.h"
 

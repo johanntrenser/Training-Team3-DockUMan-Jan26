@@ -1,3 +1,9 @@
+/*
+ * File: Truck.h
+ * Description: Defines the Truck class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include <iostream>
 #include <string>

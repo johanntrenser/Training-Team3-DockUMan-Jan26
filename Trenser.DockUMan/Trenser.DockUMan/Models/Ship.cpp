@@ -1,3 +1,9 @@
+/*
+ * File: Ship.cpp
+ * Description: Implements getter and setter functions for the Ship model class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #include "Ship.h"
 #include "Container.h"
 

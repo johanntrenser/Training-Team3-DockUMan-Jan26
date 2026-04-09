@@ -1,3 +1,9 @@
+/*
+ * File: Booking.h
+ * Description: Defines the Booking class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include <iostream>
 #include <string>

@@ -1,8 +1,24 @@
+/*
+ * File: UserService.cpp
+ * Description: Handles user-related business logic including registration, 
+				authentication, validation, and user management operations
+ * Author: Entire Team
+ * Created: 02-Apr-2026
+ */
 #include "UserService.h"
 
+ /*
+  * Function: registerUser
+  * Description: Registers a new user based on user type and provided information
+  * Parameters:
+  *    userInformation - vector containing user details
+  *    type - user type
+  *    status - user status
+  * Returns:
+  *    Process status indicating success or failure
+  */
 Enums::ProcessStatus UserService::registerUser(std::vector<std::string>& userInformation, Enums::UserTypes type, Enums::UserStatus status)
 {
-
 	if (type == Enums::UserTypes::SHIPPING_AGENT)
 	{
 		std::string licenseNumber, id, name, password, email, phoneNumber;
@@ -27,12 +43,21 @@ Enums::ProcessStatus UserService::registerUser(std::vector<std::string>& userInf
 	{
 		return Enums::ProcessStatus::FAILED;
 	}
+	//can add further users if needed in the future
 }
-//can add further users if needed in the future
 
+/*
+ * Function: authenticateUser
+ * Description: Authenticates user based on email and password
+ * Parameters:
+ *    email - user email
+ *    password - user password
+ *    username - stores authenticated user's name
+ * Returns:
+ *    Process status
+ */
 Enums::ProcessStatus UserService::authenticateUser(std::string& email, std::string& password, std::string& username)
 {
-	bool isUserActive=false;
 	std::shared_ptr<User> user;
 	if (user = m_dataStore.getUserByEmail(email))
 	{
@@ -53,6 +78,14 @@ Enums::ProcessStatus UserService::authenticateUser(std::string& email, std::stri
 	}
 }
 
+/*
+ * Function: getUserType
+ * Description: Retrieves user type based on email
+ * Parameters:
+ *    email - user email
+ * Returns:
+ *    User type
+ */
 Enums::UserTypes UserService::getUserType(std::string& email)
 {
 	std::shared_ptr<User> user;
@@ -60,6 +93,15 @@ Enums::UserTypes UserService::getUserType(std::string& email)
 	return user->getRole();
 }
 
+/*
+ * Function: getUserDetailByIdAndType
+ * Description: Retrieves user details by user ID and role
+ * Parameters:
+ *    userId - ID of the user
+ *    role - user role
+ * Returns:
+ *    Vector containing user details
+ */
 std::vector<std::string> UserService::getUserDetailByIdAndType(std::string& userId, Enums::UserTypes role)
 {
 	std::vector<std::string> userDetails;
@@ -75,6 +117,14 @@ std::vector<std::string> UserService::getUserDetailByIdAndType(std::string& user
 	return userDetails;
 }
 
+/*
+ * Function: IsPhoneNumberUnique
+ * Description: Checks if the given phone number is unique
+ * Parameters:
+ *    phoneNumber - phone number to validate
+ * Returns:
+ *    True if unique, otherwise false
+ */
 bool UserService::IsPhoneNumberUnique(std::string& phoneNumber)
 {
 	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
@@ -88,6 +138,14 @@ bool UserService::IsPhoneNumberUnique(std::string& phoneNumber)
 	return true;
 }
 
+/*
+ * Function: IsEmailIdUnique
+ * Description: Checks if the given email ID is unique
+ * Parameters:
+ *    email - email to validate
+ * Returns:
+ *    True if unique, otherwise false
+ */
 bool UserService::IsEmailIdUnique(std::string& email)
 {
 	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
@@ -101,6 +159,14 @@ bool UserService::IsEmailIdUnique(std::string& email)
 	return true;
 }
 
+/*
+ * Function: IsLicenseNumberUnique
+ * Description: Checks if the given license number is unique among shipping agents
+ * Parameters:
+ *    licenseNumber - license number to validate
+ * Returns:
+ *    True if unique, otherwise false
+ */
 bool UserService::IsLicenseNumberUnique(std::string& licenseNumber)
 {
 	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
@@ -121,6 +187,14 @@ bool UserService::IsLicenseNumberUnique(std::string& licenseNumber)
 	return true;
 }
 
+/*
+ * Function: IsBadgeNumberUnique
+ * Description: Checks if the given badge number is unique among customs officers
+ * Parameters:
+ *    badgeNumber - badge number to validate
+ * Returns:
+ *    True if unique, otherwise false
+ */
 bool UserService::IsBadgeNumberUnique(std::string& badgeNumber)
 {
 	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
@@ -141,11 +215,21 @@ bool UserService::IsBadgeNumberUnique(std::string& badgeNumber)
 	return true;
 }
 
+/*
+ * Function: logoutUser
+ * Description: Logs out the currently active user
+ */
 void UserService::logoutUser()
 {
 	m_dataStore.setCurrentUser(nullptr);
 }
 
+/*
+ * Function: getUserList
+ * Description: Retrieves list of all users
+ * Returns:
+ *    Vector containing user details as strings
+ */
 std::vector<std::string> UserService::getUserList()
 {
 	std::vector<std::string> userList;
@@ -157,6 +241,16 @@ std::vector<std::string> UserService::getUserList()
 	return userList;
 }
 
+/*
+ * Function: addUser
+ * Description: Adds a new user of specified type
+ * Parameters:
+ *    userInformation - vector containing user details
+ *    type - user type
+ *    status - user status
+ * Returns:
+ *    Process status
+ */
 Enums::ProcessStatus UserService::addUser(std::vector<std::string>& userInformation, Enums::UserTypes type, Enums::UserStatus status)
 {
 	std::string id, name, password, email, phoneNumber;
@@ -203,6 +297,14 @@ Enums::ProcessStatus UserService::addUser(std::vector<std::string>& userInformat
 	}
 }
 
+/*
+ * Function: changeCurrentUserPassword
+ * Description: Changes password of the currently logged-in user
+ * Parameters:
+ *    password - new password
+ * Returns:
+ *    Process status
+ */
 Enums::ProcessStatus UserService::changeCurrentUserPassword(std::string& password)
 {
 	std::shared_ptr<User>& currentUser = m_dataStore.getCurrentUser();
@@ -217,6 +319,14 @@ Enums::ProcessStatus UserService::changeCurrentUserPassword(std::string& passwor
 	}
 }
 
+/*
+ * Function: getUserListByRole
+ * Description: Retrieves list of users filtered by role
+ * Parameters:
+ *    role - user role
+ * Returns:
+ *    Vector containing filtered user list
+ */
 std::vector<std::string> UserService::getUserListByRole(Enums::UserTypes role)
 {
 	std::vector<std::string> userList;
@@ -231,6 +341,15 @@ std::vector<std::string> UserService::getUserListByRole(Enums::UserTypes role)
 	return userList;
 }
 
+/*
+ * Function: updatedUserPhoneNumber
+ * Description: Updates phone number of a user
+ * Parameters:
+ *    userId - ID of the user
+ *    updatedPhoneNumber - new phone number
+ * Returns:
+ *    Process status
+ */
 Enums::ProcessStatus UserService::updatedUserPhoneNumber(std::string& userId, std::string& updatedPhoneNumber)
 {
 	m_dataStore.getUserById(userId)->setPhoneNumber(updatedPhoneNumber);
@@ -241,6 +360,15 @@ Enums::ProcessStatus UserService::updatedUserPhoneNumber(std::string& userId, st
 	return Enums::ProcessStatus::FAILED;
 }
 
+/*
+ * Function: updatedUserEmailId
+ * Description: Updates email ID of a user
+ * Parameters:
+ *    userId - ID of the user
+ *    updatedEmailId - new email ID
+ * Returns:
+ *    Process status
+ */
 Enums::ProcessStatus UserService::updatedUserEmailId(std::string& userId, std::string& updatedEmailId)
 {
 	m_dataStore.getUserById(userId)->setEmail(updatedEmailId);
@@ -251,6 +379,15 @@ Enums::ProcessStatus UserService::updatedUserEmailId(std::string& userId, std::s
 	return Enums::ProcessStatus::FAILED;
 }
 
+/*
+ * Function: changeUserStatus
+ * Description: Changes the status of a user
+ * Parameters:
+ *    userId - ID of the user
+ *    userStatus - new status to be assigned
+ * Returns:
+ *    Process status
+ */
 Enums::ProcessStatus UserService::changeUserStatus(std::string& userId, Enums::UserStatus userStatus)
 {
 	if (std::shared_ptr<User> user = m_dataStore.getUserById(userId))

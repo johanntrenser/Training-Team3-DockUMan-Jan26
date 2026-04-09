@@ -1,3 +1,9 @@
+/*
+ * File: Crane.cpp
+ * Description: Contains getters and setters for Crane model class representing crane-related data
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #include "Crane.h"
 using namespace std;
 

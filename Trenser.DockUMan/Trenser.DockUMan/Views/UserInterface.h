@@ -1,3 +1,9 @@
+/*
+ * File: UserInterface.h
+ * Description: Defines the UserInterface class
+ * Author: Entire Team
+ * Created: 02-Apr-2026
+ */
 #pragma once
 #include<iostream>
 #include<vector>

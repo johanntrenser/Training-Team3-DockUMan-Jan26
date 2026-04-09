@@ -1,3 +1,9 @@
+/*
+ * File: Threshold.h
+ * Description: Defines the Threshold class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include <iostream>
 #include <string>

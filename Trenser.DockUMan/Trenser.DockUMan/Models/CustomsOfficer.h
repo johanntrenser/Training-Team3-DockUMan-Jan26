@@ -1,3 +1,9 @@
+/*
+ * File: CustomsOfficer.cpp
+ * Description: Defines the CustomsOfficer class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include "User.h"
 class CustomsOfficer :

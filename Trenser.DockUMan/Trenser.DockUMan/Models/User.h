@@ -1,3 +1,9 @@
+/*
+ * File: User.h
+ * Description: Defines the User class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include <iostream>
 #include "Enums.h"

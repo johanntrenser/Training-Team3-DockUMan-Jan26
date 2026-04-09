@@ -1,3 +1,10 @@
+/*
+ * File: UserService.h
+ * Description: Handles user-related business logic including registration, 
+				authentication, validation, and user management operations
+ * Author: Entire Team
+ * Created: 02-Apr-2026
+ */
 #pragma once
 #include<iostream>
 #include<vector>
@@ -11,6 +18,7 @@
 #include "PortAuthorityAdmin.h"
 #include "ShipManager.h"
 #include "DataStore.h"
+
 class UserService
 {
 private:

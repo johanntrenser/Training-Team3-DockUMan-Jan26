@@ -1,3 +1,9 @@
+/*
+ * File: Enums.h
+ * Description: Defines all enumerations used across the DockUMan system including user roles, statuses, and operational types
+ * Author: Akish Babu
+ * Created: 02-Apr-2026
+ */
 #pragma once
 
 namespace Enums {

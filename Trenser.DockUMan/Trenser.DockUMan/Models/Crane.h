@@ -1,3 +1,9 @@
+/*
+ * File: Crane.h
+ * Description: Defines the Crane class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include <iostream>
 #include <string>
@@ -23,5 +29,4 @@ public:
     void setStatus(Enums::CraneStatus status);
     Enums::AvailabilityStatus getAvailabilityStatus() const;
     void setAvailabilityStatus(Enums::AvailabilityStatus status);
-    
 };

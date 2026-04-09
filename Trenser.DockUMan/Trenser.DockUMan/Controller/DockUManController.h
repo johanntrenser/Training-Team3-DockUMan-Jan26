@@ -1,8 +1,15 @@
+/*
+ * File: DockUManController.h
+ * Description: Acts as an intermediary between the UI and service layers
+ * Author: Entire Team
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include <vector>
 #include<iostream>
 #include "UserService.h"
 #include "Enums.h"
+
 class DockUManController
 {
 private:

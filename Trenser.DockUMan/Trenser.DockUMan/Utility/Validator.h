@@ -1,3 +1,9 @@
+/*
+ * File: Validator.h
+ * Description: Provides input validation functions for password, email, phone number, and license number
+ * Author: Akish Babu
+ * Created: 02-Apr-2026
+ */
 #pragma once
 #include<iostream>
 #include<string>

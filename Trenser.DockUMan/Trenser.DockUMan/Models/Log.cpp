@@ -1,3 +1,9 @@
+/*
+ * File: Log.cpp
+ * Description: Implements getter and setter functions for the Log model class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #include "Log.h"
 
 std::string Log::getMessage() const

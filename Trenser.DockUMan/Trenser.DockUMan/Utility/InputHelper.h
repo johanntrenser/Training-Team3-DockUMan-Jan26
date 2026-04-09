@@ -1,3 +1,9 @@
+/*
+ * File: InputHelper.h
+ * Description: Provides utility functions for safe and validated console input handling
+ * Author: Akish Babu
+ * Created: 02-Apr-2026
+ */
 #pragma once
 #include<iostream>
 #include<string>

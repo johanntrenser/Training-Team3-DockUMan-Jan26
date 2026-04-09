@@ -1,3 +1,9 @@
+/*
+ * File: Dock.cpp
+ * Description: Implements getter and setter functions for the Dock class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #include "Dock.h"
 #include "Ship.h"
 

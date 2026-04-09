@@ -1,3 +1,9 @@
+/*
+ * File: PickupAgent.cpp
+ * Description: Implements getter and setter functions for the PickupAgent model class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #include "PickupAgent.h"
 #include"Container.h"
 

@@ -1,3 +1,9 @@
+/*
+ * File: User.cpp
+ * Description: Implements getter and setter functions for the User model class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #include "User.h"
 
 std::string User::getId() const
@@ -66,4 +72,9 @@ void User::setRole(const Enums::UserTypes& type)
 void User::setStatus(const Enums::UserStatus& status)
 {
 	m_status = status;
+}
+
+std::string User::toString()
+{
+	return m_id + " : " + m_name;
 }

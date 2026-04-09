@@ -1,3 +1,9 @@
+/*
+ * File: User.h
+ * Description: Defines the User class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include <iostream>
 #include "Enums.h"
@@ -29,6 +35,7 @@ public:
 	void setPhoneNumber(const std::string&);
 	void setRole(const Enums::UserTypes&);
 	void setStatus(const Enums::UserStatus&);
-
+	std::string toString();
+	virtual ~User() = default;
 };
 

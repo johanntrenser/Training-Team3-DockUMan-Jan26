@@ -13,9 +13,9 @@
 class DockUManController
 {
 private:
-	std::shared_ptr<UserService> m_userService;
+	UserService* m_userService;
 public:
-	DockUManController():m_userService(std::make_shared<UserService>()){};
+	DockUManController():m_userService(new UserService()){};
 	Enums::ProcessStatus registerShippingAgent(std::vector<std::string>&, Enums::UserTypes, Enums::UserStatus);
 	Enums::ProcessStatus addUser(std::vector<std::string>&, Enums::UserTypes type, Enums::UserStatus status);
 	Enums::ProcessStatus handleAuthentication(std::string& email,std::string& password, std::string& username);
@@ -33,5 +33,9 @@ public:
 	Enums::ProcessStatus changeCurrentUserPassword(std::string& password);
 	Enums::ProcessStatus deactivateUser(std::string&);
 	Enums::ProcessStatus approveUser(std::string&);
+	~DockUManController()
+	{
+		delete m_userService;
+	}
 };
 

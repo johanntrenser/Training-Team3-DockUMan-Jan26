@@ -30,10 +30,10 @@ public:
 	Enums::ProcessStatus authenticateUser(std::string& email, std::string& password, std::string& username);
 	Enums::UserTypes getUserType(std::string&);
 	std::vector<std::string> getUserDetailByIdAndType(std::string&, Enums::UserTypes);
-	bool IsPhoneNumberUnique(std::string&);
-	bool IsEmailIdUnique(std::string&);
-	bool IsLicenseNumberUnique(std::string&);
-	bool IsBadgeNumberUnique(std::string&);
+	bool IsPhoneNumberUnique(const std::string&);
+	bool IsEmailIdUnique(const std::string&);
+	bool IsLicenseNumberUnique(const std::string&);
+	bool IsBadgeNumberUnique(const std::string&);
 	void logoutUser();
 	std::vector<std::string> getUserList();
 	std::vector<std::string> getUserListByRole(Enums::UserTypes);

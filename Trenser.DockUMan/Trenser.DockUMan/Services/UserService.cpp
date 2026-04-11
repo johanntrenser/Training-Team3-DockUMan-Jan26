@@ -29,7 +29,7 @@ Enums::ProcessStatus UserService::registerUser(std::vector<std::string>& userInf
 		email = *iterator++;
 		phoneNumber = *iterator++;
 		licenseNumber = *iterator;
-		std::shared_ptr<User> agent = Factory::getObject<ShippingAgent>(licenseNumber, id, name, password, email, phoneNumber,type,status);
+		User* agent = Factory::getObject<ShippingAgent>(licenseNumber, id, name, password, email, phoneNumber,type,status);
 		if ((m_dataStore.addUser(agent)))
 		{
 			return Enums::ProcessStatus::SUCCESS;
@@ -58,10 +58,12 @@ Enums::ProcessStatus UserService::registerUser(std::vector<std::string>& userInf
  */
 Enums::ProcessStatus UserService::authenticateUser(std::string& email, std::string& password, std::string& username)
 {
-	std::shared_ptr<User> user;
+	User* user;
 	if (user = m_dataStore.getUserByEmail(email))
 	{
-		if(user->getPassword() == password && user->getStatus() == Enums::UserStatus::ACTIVE)
+		/*if (user->getPassword() == password && user->getStatus() == Enums::UserStatus::ACTIVE)*/ //commented now as shipping agent has status
+		//pending. change the below later to the above
+		if (user->getPassword() == password)
 		{
 			m_dataStore.setCurrentUser(user);
 			username = user->getName();
@@ -88,9 +90,13 @@ Enums::ProcessStatus UserService::authenticateUser(std::string& email, std::stri
  */
 Enums::UserTypes UserService::getUserType(std::string& email)
 {
-	std::shared_ptr<User> user;
+	User* user;
 	user = m_dataStore.getUserByEmail(email);
-	return user->getRole();
+	if (user != nullptr)
+	{
+		return user->getRole();
+	}
+	return Enums::UserTypes::NOT_ASSIGNED;    //check later if other error to be replaced with
 }
 
 /*
@@ -105,7 +111,7 @@ Enums::UserTypes UserService::getUserType(std::string& email)
 std::vector<std::string> UserService::getUserDetailByIdAndType(std::string& userId, Enums::UserTypes role)
 {
 	std::vector<std::string> userDetails;
-	std::shared_ptr<User> user = m_dataStore.getUserById(userId);
+	User* user = m_dataStore.getUserById(userId);
 	if (user != nullptr && user->getRole() == role)
 	{
 		userDetails.push_back("Name: " + user->getName());
@@ -125,10 +131,10 @@ std::vector<std::string> UserService::getUserDetailByIdAndType(std::string& user
  * Returns:
  *    True if unique, otherwise false
  */
-bool UserService::IsPhoneNumberUnique(std::string& phoneNumber)
+bool UserService::IsPhoneNumberUnique(const std::string& phoneNumber)
 {
-	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
-	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	const std::vector<User*>& users = m_dataStore.getUsers();
+	for (std::vector<User*>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
 	{
 		if ((*iterator)->getPhoneNumber() == phoneNumber)
 		{
@@ -146,10 +152,10 @@ bool UserService::IsPhoneNumberUnique(std::string& phoneNumber)
  * Returns:
  *    True if unique, otherwise false
  */
-bool UserService::IsEmailIdUnique(std::string& email)
+bool UserService::IsEmailIdUnique(const std::string& email)
 {
-	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
-	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	const std::vector<User*>& users = m_dataStore.getUsers();
+	for (std::vector<User*>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
 	{
 		if ((*iterator)->getEmail() == email)
 		{
@@ -167,14 +173,14 @@ bool UserService::IsEmailIdUnique(std::string& email)
  * Returns:
  *    True if unique, otherwise false
  */
-bool UserService::IsLicenseNumberUnique(std::string& licenseNumber)
+bool UserService::IsLicenseNumberUnique(const std::string& licenseNumber)
 {
-	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
-	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	const std::vector<User*>& users = m_dataStore.getUsers();
+	for (std::vector<User*>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
 	{
-		if ((*iterator)->getRole() == Enums::UserTypes::SHIP_MANAGER)
+		if ((*iterator)->getRole() == Enums::UserTypes::SHIPPING_AGENT)
 		{
-			ShippingAgent* agent = dynamic_cast<ShippingAgent*>(iterator->get());
+			ShippingAgent* agent = dynamic_cast<ShippingAgent*>(*iterator);
 			if (agent != nullptr)
 			{
 				if (agent->getLicenseNumber() == licenseNumber)
@@ -195,14 +201,14 @@ bool UserService::IsLicenseNumberUnique(std::string& licenseNumber)
  * Returns:
  *    True if unique, otherwise false
  */
-bool UserService::IsBadgeNumberUnique(std::string& badgeNumber)
+bool UserService::IsBadgeNumberUnique(const std::string& badgeNumber)
 {
-	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
-	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	const std::vector<User*>& users = m_dataStore.getUsers();
+	for (std::vector<User*>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
 	{
 		if ((*iterator)->getRole() == Enums::UserTypes::CUSTOMS_OFFICER)
 		{
-			CustomsOfficer* officer = dynamic_cast<CustomsOfficer*>(iterator->get());
+			CustomsOfficer* officer = dynamic_cast<CustomsOfficer*>(*iterator);
 			if (officer != nullptr)
 			{
 				if (officer->getBadgeNumber() == badgeNumber)
@@ -233,8 +239,8 @@ void UserService::logoutUser()
 std::vector<std::string> UserService::getUserList()
 {
 	std::vector<std::string> userList;
-	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
-	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	const std::vector<User*>& users = m_dataStore.getUsers();
+	for (std::vector<User*>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
 	{
 		userList.push_back((*iterator)->toString());
 	}
@@ -260,7 +266,7 @@ Enums::ProcessStatus UserService::addUser(std::vector<std::string>& userInformat
 	password = *iterator++;
 	email = *iterator++;
 	phoneNumber = *iterator++;
-	std::shared_ptr<User> user;
+	User* user;
 	switch (type)
 	{
 	case Enums::UserTypes::PICKUP_AGENT:
@@ -307,7 +313,7 @@ Enums::ProcessStatus UserService::addUser(std::vector<std::string>& userInformat
  */
 Enums::ProcessStatus UserService::changeCurrentUserPassword(std::string& password)
 {
-	std::shared_ptr<User>& currentUser = m_dataStore.getCurrentUser();
+	User* currentUser = m_dataStore.getCurrentUser();
 	if (currentUser == nullptr)
 	{
 		return Enums::ProcessStatus::FAILED;
@@ -330,8 +336,8 @@ Enums::ProcessStatus UserService::changeCurrentUserPassword(std::string& passwor
 std::vector<std::string> UserService::getUserListByRole(Enums::UserTypes role)
 {
 	std::vector<std::string> userList;
-	const std::vector<std::shared_ptr<User>>& users = m_dataStore.getUsers();
-	for (std::vector<std::shared_ptr<User>>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	const std::vector<User*>& users = m_dataStore.getUsers();
+	for (std::vector<User*>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
 	{
 		if ((*iterator)->getRole() == role)
 		{
@@ -352,8 +358,13 @@ std::vector<std::string> UserService::getUserListByRole(Enums::UserTypes role)
  */
 Enums::ProcessStatus UserService::updatedUserPhoneNumber(std::string& userId, std::string& updatedPhoneNumber)
 {
-	m_dataStore.getUserById(userId)->setPhoneNumber(updatedPhoneNumber);
-	if (m_dataStore.getUserById(userId)->getPhoneNumber() == updatedPhoneNumber)
+	User* user = m_dataStore.getUserById(userId);
+	if (user == nullptr)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	user->setPhoneNumber(updatedPhoneNumber);
+	if (user->getPhoneNumber() == updatedPhoneNumber)
 	{
 		return Enums::ProcessStatus::SUCCESS;
 	}
@@ -371,8 +382,13 @@ Enums::ProcessStatus UserService::updatedUserPhoneNumber(std::string& userId, st
  */
 Enums::ProcessStatus UserService::updatedUserEmailId(std::string& userId, std::string& updatedEmailId)
 {
-	m_dataStore.getUserById(userId)->setEmail(updatedEmailId);
-	if (m_dataStore.getUserById(userId)->getEmail() == updatedEmailId)
+	User* user = m_dataStore.getUserById(userId);
+	if (user == nullptr)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	user->setEmail(updatedEmailId);
+	if (user->getEmail() == updatedEmailId)
 	{
 		return Enums::ProcessStatus::SUCCESS;
 	}
@@ -390,7 +406,8 @@ Enums::ProcessStatus UserService::updatedUserEmailId(std::string& userId, std::s
  */
 Enums::ProcessStatus UserService::changeUserStatus(std::string& userId, Enums::UserStatus userStatus)
 {
-	if (std::shared_ptr<User> user = m_dataStore.getUserById(userId))
+	User* user = m_dataStore.getUserById(userId);
+	if (user != nullptr)
 	{
 		user->setStatus(userStatus);
 		return Enums::ProcessStatus::SUCCESS;

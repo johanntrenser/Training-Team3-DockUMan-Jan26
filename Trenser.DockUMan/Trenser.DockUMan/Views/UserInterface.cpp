@@ -74,7 +74,7 @@ void UserInterface::authenticateUser()
 			util::read<std::string>(email);
 			std::cout << "\nEnter Password : ";
 			util::read<std::string>(password);
-			if (m_dockUManController->handleAuthentication(username, password, email) == Enums::ProcessStatus::SUCCESS)
+			if (m_dockUManController->handleAuthentication(email, password, username) == Enums::ProcessStatus::SUCCESS)
 			{
 				std::cout << "User Login Success! Welcome user : " << username << std::endl;
 				isMenuActive = false;

@@ -13,17 +13,17 @@ private:
 	DataStore& m_dataStore;
 public:
 	UserService() :m_dataStore(DataStore::getInstance()) {};
-	Enums::ProcessStatus registerUser(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
-	Enums::ProcessStatus authenticateUser(std::string&, std::string&);
+	Enums::ProcessStatus registerUser(std::vector<std::string>&, Enums::UserTypes, Enums::UserStatus);
+	Enums::ProcessStatus authenticateUser(std::string& email, std::string& password, std::string& username);
 	Enums::UserTypes getUserType(std::string&);
-	bool IsPhoneNumberUnique(std::string&);
-	bool IsEmailIdUnique(std::string&);
-	bool IsLicenseNumberUnique(std::string&);
-	bool IsBadgeNumberUnique(std::string&);
+	bool IsPhoneNumberUnique(const std::string&);
+	bool IsEmailIdUnique(const std::string&);
+	bool IsLicenseNumberUnique(const std::string&);
+	bool IsBadgeNumberUnique(const std::string&);
 	void logoutUser();
 	std::vector<std::string> getUserList();
 	Enums::ProcessStatus deactivateUser(std::string&);
-	std::shared_ptr<User> registerShipManger(std::vector<std::string>&);
+	User* registerShipManger(std::vector<std::string>&);
 };
 
 

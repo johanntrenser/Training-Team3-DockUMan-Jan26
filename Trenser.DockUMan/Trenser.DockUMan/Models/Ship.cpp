@@ -11,12 +11,12 @@ std::string Ship::getShipName() const
     return m_shipName;
 }
 
-std::vector<std::shared_ptr<Container>> Ship::getContainers() const
+std::vector<Container*> Ship::getContainers() const
 {
     return m_container;
 }
 
-std::shared_ptr<User> Ship::getShipManager() const
+User* Ship::getShipManager() const
 {
     return m_shipManager;
 }
@@ -36,7 +36,7 @@ std::string Ship::toString() const
     return m_shipName + " : " + m_shipId;
 }
 
-std::shared_ptr<Dock> Ship::getAssignedDock() const
+Dock* Ship::getAssignedDock() const
 {
     return m_assignedDock;
 }
@@ -61,12 +61,12 @@ void Ship::setShipName(const std::string& shipName)
     m_shipName = shipName;
 }
 
-void Ship::setContainers(const std::vector<std::shared_ptr<Container>>& containers)
+void Ship::setContainers(const std::vector<Container*>& containers)
 {
     m_container = containers;
 }
 
-void Ship::setShipManager(const std::shared_ptr<User>& shipManager)
+void Ship::setShipManager(User* shipManager)
 {
     m_shipManager = shipManager;
 }
@@ -81,7 +81,7 @@ void Ship::setETD(const std::string& ETD)
     m_ETD = ETD;
 }
 
-void Ship::setAssignedDock(const std::shared_ptr<Dock>& assignedDock)
+void Ship::setAssignedDock(Dock* assignedDock)
 {
     m_assignedDock = assignedDock;
 }

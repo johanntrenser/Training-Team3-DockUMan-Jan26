@@ -40,6 +40,10 @@ void UserInterface::handleAuthenticationOperation(const int& choice,bool& isMenu
 	}
 }
 
+/*
+ * Function: authenticateUser
+ * Description: Handles user login and redirects to respective menus upon success
+ */
 void UserInterface::authenticateUser()
 {
 	bool isMenuActive = true;
@@ -47,12 +51,12 @@ void UserInterface::authenticateUser()
 	{
 		try
 		{
-			std::string username,password;
-			std::cout << "\nEnter UserName : ";
-			util::read<std::string>(username);
+			std::string username, password, email;
+			std::cout << "\nEnter User Email Id : ";
+			util::read<std::string>(email);
 			std::cout << "\nEnter Password : ";
 			util::read<std::string>(password);
-			if (m_dockUManController->handleAuthentication(username, password) == Enums::ProcessStatus::SUCCESS)
+			if (m_dockUManController->handleAuthentication(email, password, username) == Enums::ProcessStatus::SUCCESS)
 			{
 				std::cout << "User Login Success! Welcome user : " << username << std::endl;
 				isMenuActive = false;
@@ -60,7 +64,7 @@ void UserInterface::authenticateUser()
 			}
 			else
 			{
-				std::cout << "Invalid credentials  ! " << std::endl;
+				std::cout << "Invalid credentials! " << std::endl;
 			}
 		}
 		catch (const std::exception& e)
@@ -69,6 +73,7 @@ void UserInterface::authenticateUser()
 		}
 	}
 }
+
 
 void UserInterface::registerShippingAgentUI()
 {
@@ -150,6 +155,10 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 Enums::UserTypes UserInterface::getUserType(std::string& username)
 {
 	return m_dockUManController->getUserType(username);
+}
+
+void UserInterface::showUserMenu(Enums::UserTypes)
+{
 }
 
 void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userInformation) //error management

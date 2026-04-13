@@ -12,34 +12,42 @@ class Ship
 private:
 	std::string m_shipId;
 	std::string m_shipName;
-	std::vector<std::shared_ptr<Container>> m_container;
-	std::shared_ptr<User> m_shipManager;
+	std::vector<Container*> m_container;
+	User* m_shipManager;
 	Enums::ShipStatus m_shipStatus;
 	Enums::AvailabilityStatus m_availabilityStatus;
 	std::string m_ETA;
 	std::string m_ETD;
-	std::shared_ptr<Dock> m_assignedDock;
+	Dock* m_assignedDock;
 public:
-	Ship() :m_shipId(""), m_shipName(""), m_shipManager(nullptr), m_ETA(""), m_ETD(""),m_shipStatus(Enums::ShipStatus::ACTIVE),m_availabilityStatus(Enums::AvailabilityStatus::AVAILABLE) {};
-	Ship(std::string shipId, std::string shipName, std::vector<std::shared_ptr<Container>> containers, std::shared_ptr<User> shipManager, std::string ETA, std::string ETD, std::shared_ptr<Dock> assignedDock, Enums::ShipStatus shipStatus, Enums::AvailabilityStatus availabilityStatus) :
+	Ship() :
+		m_shipId(""),
+		m_shipName(""),
+		m_shipManager(nullptr),
+		m_ETA(""),
+		m_ETD(""),
+		m_shipStatus(Enums::ShipStatus::ACTIVE),
+		m_availabilityStatus(Enums::AvailabilityStatus::AVAILABLE),
+		m_assignedDock(nullptr) {};
+	Ship(std::string shipId, std::string shipName, std::vector<Container*> containers, User* shipManager, std::string ETA, std::string ETD, Dock* assignedDock, Enums::ShipStatus shipStatus, Enums::AvailabilityStatus availabilityStatus) :
 		m_shipId(shipId), m_shipName(shipName), m_container(containers), m_shipManager(shipManager), m_ETA(ETA), m_ETD(ETD), m_assignedDock(assignedDock),m_shipStatus(shipStatus), m_availabilityStatus(availabilityStatus) { };
 	std::string getShipId() const;
 	std::string getShipName() const;
-	std::vector<std::shared_ptr<Container>> getContainers() const;
-	std::shared_ptr<User> getShipManager() const;
+	std::vector<Container*> getContainers() const;
+	User* getShipManager() const;
 	std::string getETA() const;
 	std::string getETD() const;
 	std::string toString() const;
-	std::shared_ptr<Dock> getAssignedDock() const;
+	Dock* getAssignedDock() const;
 	Enums::ShipStatus getShipStatus() const;
 	Enums::AvailabilityStatus getAvailabilityStatus() const;
 	void setShipId(const std::string&);
 	void setShipName(const std::string&);
-	void setContainers(const std::vector<std::shared_ptr<Container>>&);
-	void setShipManager(const std::shared_ptr<User>&);
+	void setContainers(const std::vector<Container*>&);
+	void setShipManager(User*);
 	void setETA(const std::string&);
 	void setETD(const std::string&);
-	void setAssignedDock(const std::shared_ptr<Dock>&);
+	void setAssignedDock(Dock*);
 	void getShipStatus(const Enums::ShipStatus&);
 	void setAvailabilityStatus(const Enums::AvailabilityStatus&);
 };

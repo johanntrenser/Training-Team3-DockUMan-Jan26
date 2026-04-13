@@ -1,70 +1,156 @@
+/*
+ * File: DataStore.cpp
+ * Description: Manages in-memory storage and retrieval of system entities such as users, docks, containers, and transactions
+ * Author: Entire Team
+ * Created: 30-Mar-2026
+ */
 #include "DataStore.h"
 
-const std::vector<std::shared_ptr<User>>& DataStore::getUsers() const 
+ /*
+  * Function: getUsers
+  * Description: Retrieves all users from the data store
+  * Returns:
+  *    Reference to vector of users
+  */
+const std::vector<User*>& DataStore::getUsers() const
 {
     return m_users;
 }
 
-const std::vector<std::shared_ptr<Dock>>& DataStore::getDocks() const
+/*
+ * Function: getDocks
+ * Description: Retrieves all docks from the data store
+ * Returns:
+ *    Reference to vector of docks
+ */
+const std::vector<Dock*>& DataStore::getDocks() const
 {
     return m_docks;
 }
 
-const std::vector<std::shared_ptr<Yard>>& DataStore::getYard() const
+/*
+ * Function: getYard
+ * Description: Retrieves all yard data
+ * Returns:
+ *    Reference to vector of yard objects
+ */
+const std::vector<Yard*>& DataStore::getYard() const
 {
     return m_yard;
 }
 
-const std::vector<std::shared_ptr<Container>>& DataStore::getContainers() const
+/*
+ * Function: getContainers
+ * Description: Retrieves all containers
+ * Returns:
+ *    Reference to vector of containers
+ */
+const std::vector<Container*>& DataStore::getContainers() const
 {
     return m_containers;
 }
 
-const std::vector<std::shared_ptr<Crane>>& DataStore::getCranes() const
+/*
+ * Function: getCranes
+ * Description: Retrieves all cranes
+ * Returns:
+ *    Reference to vector of cranes
+ */
+const std::vector<Crane*>& DataStore::getCranes() const
 {
     return m_cranes;
 }
 
-const std::vector<std::shared_ptr<Truck>>& DataStore::getTrucks() const
+/*
+ * Function: getTrucks
+ * Description: Retrieves all trucks
+ * Returns:
+ *    Reference to vector of trucks
+ */
+const std::vector<Truck*>& DataStore::getTrucks() const
 {
     return m_trucks;
 }
 
-const std::vector<std::shared_ptr<Ship>>& DataStore::getShips() const
+/*
+ * Function: getShips
+ * Description: Retrieves all ships
+ * Returns:
+ *    Reference to vector of ships
+ */
+const std::vector<Ship*>& DataStore::getShips() const
 {
     return m_ships;
 }
 
-const std::vector<std::shared_ptr<Booking>>& DataStore::getBookings() const
+/*
+ * Function: getBookings
+ * Description: Retrieves all bookings
+ * Returns:
+ *    Reference to vector of bookings
+ */
+const std::vector<Booking*>& DataStore::getBookings() const
 {
     return m_bookings;
 }
 
-const std::vector<std::shared_ptr<BillAndPayment>>& DataStore::getBillAndPayments() const
+/*
+ * Function: getBillAndPayments
+ * Description: Retrieves all billing and payment records
+ * Returns:
+ *    Reference to vector of bill and payment objects
+ */
+const std::vector<BillAndPayment*>& DataStore::getBillAndPayments() const
 {
     return m_billAndPayments;
 }
 
-const std::map<Enums::ContainerType, std::shared_ptr<Threshold>>& DataStore::getThresholds() const
+/*
+ * Function: getThresholds
+ * Description: Retrieves container threshold configurations
+ * Returns:
+ *    Map of container types to threshold objects
+ */
+const std::map<Enums::ContainerType, Threshold*>& DataStore::getThresholds() const
 {
     return m_thresholds;
 }
 
-const std::vector<std::shared_ptr<Notification>>& DataStore::getNotifications() const
+/*
+ * Function: getNotifications
+ * Description: Retrieves all notifications
+ * Returns:
+ *    Reference to vector of notifications
+ */
+const std::vector<Notification*>& DataStore::getNotifications() const
 {
     return m_notifications;
 }
 
-const std::vector<std::shared_ptr<Log>>& DataStore::getLogs() const
+/*
+ * Function: getLogs
+ * Description: Retrieves all system logs
+ * Returns:
+ *    Reference to vector of logs
+ */
+const std::vector<Log*>& DataStore::getLogs() const
 {
     return m_logs;
 }
 
-std::shared_ptr<User> DataStore::getUser(std::string& username)
+/*
+ * Function: getUserByEmail
+ * Description: Retrieves a user based on email
+ * Parameters:
+ *    email - email of the user
+ * Returns:
+ *    Pointer to user if found, otherwise nullptr
+ */
+User* DataStore::getUserByEmail(const std::string& email)
 {
-    for (std::vector<std::shared_ptr<User>>::iterator iterator = m_users.begin();iterator!=m_users.end();iterator++)
+    for (std::vector<User*>::iterator iterator = m_users.begin(); iterator != m_users.end(); ++iterator)
     {
-        if ((*iterator)->getName() == username)
+        if ((*iterator)->getEmail() == email)
         {
             return (*iterator);
         }
@@ -72,9 +158,9 @@ std::shared_ptr<User> DataStore::getUser(std::string& username)
     return nullptr;
 }
 
-std::shared_ptr<Ship> DataStore::getShipById(std::string& shipId)
+Ship* DataStore::getShipById(std::string& shipId)
 {
-    for (std::vector<std::shared_ptr<Ship>>::iterator iterator = m_ships.begin(); iterator != m_ships.end(); iterator++)
+    for (std::vector<Ship*>::iterator iterator = m_ships.begin(); iterator != m_ships.end(); iterator++)
     {
         if ((*iterator)->getShipId() == shipId)
         {
@@ -84,80 +170,249 @@ std::shared_ptr<Ship> DataStore::getShipById(std::string& shipId)
     return nullptr;
 }
 
-bool DataStore::addUser(const std::shared_ptr<User>& agent)
+/*
+ * Function: getUserById
+ * Description: Retrieves a user based on user ID
+ * Parameters:
+ *    userId - ID of the user
+ * Returns:
+ *    Pointer to user if found, otherwise nullptr
+ */
+User* DataStore::getUserById(const std::string& userId)
 {
-        m_users.push_back(agent);
-        return true;
+    for (std::vector<User*>::iterator iterator = m_users.begin(); iterator != m_users.end(); ++iterator)
+    {
+        if ((*iterator)->getId() == userId)
+        {
+            return (*iterator);
+        }
+    }
+    return nullptr;
 }
 
-bool DataStore::addShip(const std::shared_ptr<Ship>& ship)
+/*
+ * Function: addUser
+ * Description: Adds a new user to the data store
+ * Parameters:
+ *    agent - Pointer to user object
+ * Returns:
+ *    True if added successfully
+ */
+bool DataStore::addUser(User* agent)
+{
+    m_users.push_back(agent);
+    return true;
+}
+
+bool DataStore::addShip(Ship* ship)
 {
     m_ships.push_back(ship);
     return true;
 }
 
-void DataStore::setDocks(const std::vector<std::shared_ptr<Dock>>& docks)
+/*
+ * Function: setDocks
+ * Description: Sets the dock data in the store
+ * Parameters:
+ *    docks - vector of dock objects
+ */
+void DataStore::setDocks(const std::vector<Dock*>& docks)
 {
     m_docks = docks;
 }
 
-void DataStore::setYard(const std::vector<std::shared_ptr<Yard>>& yard)
+/*
+ * Function: setYard
+ * Description: Sets the yard data
+ * Parameters:
+ *    yard - vector of yard objects
+ */
+void DataStore::setYard(const std::vector<Yard*>& yard)
 {
     m_yard = yard;
 }
 
-void DataStore::setContainers(const std::vector<std::shared_ptr<Container>>& containers)
+/*
+ * Function: setContainers
+ * Description: Sets container data
+ * Parameters:
+ *    containers - vector of container objects
+ */
+void DataStore::setContainers(const std::vector<Container*>& containers)
 {
     m_containers = containers;
 }
 
-void DataStore::setCranes(const std::vector<std::shared_ptr<Crane>>& cranes)
+/*
+ * Function: setCranes
+ * Description: Sets crane data
+ * Parameters:
+ *    cranes - vector of crane objects
+ */
+void DataStore::setCranes(const std::vector<Crane*>& cranes)
 {
     m_cranes = cranes;
 }
 
-void DataStore::setTrucks(const std::vector<std::shared_ptr<Truck>>& trucks)
+/*
+ * Function: setTrucks
+ * Description: Sets truck data
+ * Parameters:
+ *    trucks - vector of truck objects
+ */
+void DataStore::setTrucks(const std::vector<Truck*>& trucks)
 {
     m_trucks = trucks;
 }
 
-void DataStore::setShips(const std::vector<std::shared_ptr<Ship>>& ships)
+/*
+ * Function: setShips
+ * Description: Sets ship data
+ * Parameters:
+ *    ships - vector of ship objects
+ */
+void DataStore::setShips(const std::vector<Ship*>& ships)
 {
     m_ships = ships;
 }
 
-void DataStore::setBookings(const std::vector<std::shared_ptr<Booking>>& bookings)
+/*
+ * Function: setBookings
+ * Description: Sets booking data
+ * Parameters:
+ *    bookings - vector of booking objects
+ */
+void DataStore::setBookings(const std::vector<Booking*>& bookings)
 {
     m_bookings = bookings;
 }
 
-void DataStore::setBillAndPayments(const std::vector<std::shared_ptr<BillAndPayment>>& billAndPayments)
+/*
+ * Function: setBillAndPayments
+ * Description: Sets billing and payment data
+ * Parameters:
+ *    billAndPayments - vector of billingAndPayment objects
+ */
+void DataStore::setBillAndPayments(const std::vector<BillAndPayment*>& billAndPayments)
 {
     m_billAndPayments = billAndPayments;
 }
 
-void DataStore::setThresholds(const std::map<Enums::ContainerType, std::shared_ptr<Threshold>>& thresholds)
+/*
+ * Function: setThresholds
+ * Description: Sets threshold configurations
+ * Parameters:
+ *    thresholds - map of container type to threshold
+ */
+void DataStore::setThresholds(const std::map<Enums::ContainerType, Threshold*>& thresholds)
 {
     m_thresholds = thresholds;
 }
 
-void DataStore::setNotifications(const std::vector<std::shared_ptr<Notification>>& notifications)
+/*
+ * Function: setNotifications
+ * Description: Sets notification data
+ * Parameters:
+ *    notifications - vector of notifications
+ */
+void DataStore::setNotifications(const std::vector<Notification*>& notifications)
 {
     m_notifications = notifications;
 }
 
-void DataStore::setLogs(const std::vector<std::shared_ptr<Log>>& logs)
+/*
+ * Function: setLogs
+ * Description: Sets log data
+ * Parameters:
+ *    logs - vector of logs
+ */
+void DataStore::setLogs(const std::vector<Log*>& logs)
 {
     m_logs = logs;
 }
 
-void DataStore::setCurrentUser(const std::shared_ptr<User>& user)
+/*
+ * Function: setCurrentUser
+ * Description: Sets the currently logged-in user
+ * Parameters:
+ *    user - pointer to user
+ */
+void DataStore::setCurrentUser(User* user)
 {
     m_currentUser = user;
 }
 
+/*
+ * Function: getCurrentUser
+ * Description: Retrieves the currently logged-in user
+ * Returns:
+ *    Pointer of current user
+ */
+User* DataStore::getCurrentUser()
+{
+    return m_currentUser;
+}
+
+/*
+ * Function: getInstance
+ * Description: Provides singleton instance of DataStore
+ * Returns:
+ *    Reference to DataStore instance
+ */
 DataStore& DataStore::getInstance()
 {
     static DataStore instance;
     return instance;
+}
+
+DataStore::~DataStore()
+{
+    for (User* user : m_users)
+    {
+        delete user;
+    }
+    for (Dock* dock : m_docks)
+    {
+        delete dock;
+    }
+    for (Yard* yard : m_yard)
+    {
+        delete yard;
+    }
+    for (Container* container : m_containers)
+    {
+        delete container;
+    }
+    for (Crane* crane : m_cranes)
+    {
+        delete crane;
+    }
+    for (Truck* truck : m_trucks)
+    {
+        delete truck;
+    }
+    for (Ship* ship : m_ships)
+    {
+        delete ship;
+    }
+    for (Booking* booking : m_bookings)
+    {
+        delete booking;
+    }
+    for (BillAndPayment* billAndPayment : m_billAndPayments)
+    {
+        delete billAndPayment;
+    }
+    for (Notification* notification : m_notifications)
+    {
+        delete notification;
+    }
+    for (Log* log : m_logs)
+    {
+        delete log;
+    }
+    for (auto& pair : m_thresholds)
+    {
+        delete pair.second;
+    }
 }

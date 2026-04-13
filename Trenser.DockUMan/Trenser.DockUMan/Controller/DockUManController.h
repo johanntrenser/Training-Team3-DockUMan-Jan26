@@ -7,12 +7,12 @@
 class DockUManController
 {
 private:
-	std::shared_ptr<UserService> m_userService;
-	std::shared_ptr<ShipService> m_shipService;
+	UserService* m_userService;
+	ShipService* m_shipService;
 public:
-	DockUManController():m_userService(std::make_shared<UserService>()),m_shipService(std::make_shared<ShipService>()){};
-	Enums::ProcessStatus registerShippingAgent(std::vector<std::string>&, Enums::UserTypes&, Enums::UserStatus&);
-	Enums::ProcessStatus handleAuthentication(std::string&,std::string&);
+	DockUManController() : m_userService(new UserService()), m_shipService(new ShipService()){};
+	Enums::ProcessStatus registerShippingAgent(std::vector<std::string>&, Enums::UserTypes, Enums::UserStatus);
+	Enums::ProcessStatus handleAuthentication(std::string& email, std::string& password, std::string& username);
 	Enums::UserTypes getUserType(std::string&);
 	void logoutUser();
 	std::vector<std::string> getUserList();
@@ -22,5 +22,10 @@ public:
 	Enums::ProcessStatus trackShipStatus(std::string&,std::string&);
 	Enums::ProcessStatus recordShipArrival(std::string&);
 	Enums::ProcessStatus recordShipDeparture(std::string&);
+	~DockUManController()
+	{
+		delete m_userService;
+		delete m_shipService;
+	}
 };
 

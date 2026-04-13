@@ -418,7 +418,7 @@ Enums::ProcessStatus UserService::changeUserStatus(std::string& userId, Enums::U
 	}
 }
 
-User* UserService::registerShipManger(std::vector<std::string>& userInformation)
+User* UserService::registerShipManager(std::vector<std::string>& userInformation)
 {
 	std::string  id, name, password, email, phoneNumber;
 	Enums::UserTypes type = Enums::UserTypes::SHIP_MANAGER;

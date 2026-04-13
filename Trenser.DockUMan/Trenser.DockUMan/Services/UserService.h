@@ -43,7 +43,7 @@ public:
 	Enums::ProcessStatus changeCurrentUserPassword(std::string& password);
 	Enums::ProcessStatus changeUserStatus(std::string&, Enums::UserStatus);
 	Enums::ProcessStatus deactivateUser(std::string&);
-	User* registerShipManger(std::vector<std::string>&);
+	User* registerShipManager(std::vector<std::string>&);
 };
 
 

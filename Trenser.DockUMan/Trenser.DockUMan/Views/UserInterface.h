@@ -16,11 +16,10 @@
 class UserInterface
 {
 private:
-	std::shared_ptr<Menu> m_menu;
-	std::shared_ptr<DockUManController> m_dockUManController;
+	Menu* m_menu;
+	DockUManController* m_dockUManController;
 public:
-	UserInterface():m_menu(std::make_shared<Menu>()),
-		m_dockUManController(std::make_shared<DockUManController>()){};
+	UserInterface() : m_menu(new Menu()), m_dockUManController(new DockUManController()){};
 	void start();
 	void handleAuthenticationOperation(const int&,bool&);
 	void authenticateUser();
@@ -50,5 +49,10 @@ public:
 	Enums::ProcessStatus changeCurrentUserPassword();
 	Enums::ProcessStatus deactivateUser(std::string&);
 	Enums::ProcessStatus approveUser(std::string&);
+	~UserInterface()
+	{
+		delete m_menu;
+		delete m_dockUManController;
+	}
 };
 

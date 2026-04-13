@@ -418,6 +418,20 @@ Enums::ProcessStatus UserService::changeUserStatus(std::string& userId, Enums::U
 	}
 }
 
+Enums::ProcessStatus UserService::deactivateUser(std::string& userId)
+{
+	User* user = m_dataStore.getUserById(userId); // could be a problem later because of function renaming. check function calls
+	if (user != nullptr)
+	{
+		user->setStatus(Enums::UserStatus::INACTIVE);
+		return Enums::ProcessStatus::SUCCESS;
+	}
+	else
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+}
+
 User* UserService::registerShipManager(std::vector<std::string>& userInformation)
 {
 	std::string  id, name, password, email, phoneNumber;

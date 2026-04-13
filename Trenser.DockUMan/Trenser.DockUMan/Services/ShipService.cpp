@@ -3,7 +3,7 @@
 Enums::ProcessStatus ShipService::registerShip(std::vector<std::string>& shipInformation, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status, User* agent)
 {
 	Enums::ProcessStatus shipRegisterProcessStatus = registerShipObject(shipInformation, agent, isAvailable, status);
-	if ((m_dataStore.addUser(agent)) && (shipRegisterProcessStatus == Enums::ProcessStatus::SUCCESS))
+	if ((agent != nullptr) && (shipRegisterProcessStatus == Enums::ProcessStatus::SUCCESS))
 	{
 		return Enums::ProcessStatus::SUCCESS;
 	}

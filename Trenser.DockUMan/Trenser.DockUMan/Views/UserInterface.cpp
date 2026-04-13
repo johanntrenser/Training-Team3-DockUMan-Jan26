@@ -78,7 +78,7 @@ void UserInterface::authenticateUser()
 			{
 				std::cout << "User Login Success! Welcome user : " << username << std::endl;
 				isMenuActive = false;
-				handleMenus(getUserType(username));
+				handleMenus(getUserType(email));
 			}
 			else
 			{
@@ -198,15 +198,19 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 
 /*
  * Function: getUserType
- * Description: Retrieves user type based on username
+ * Description: Retrieves user type based on email
  * Parameters:
- *    username - user identifier
+ *    email - user identifier
  * Returns:
  *    User type
  */
-Enums::UserTypes UserInterface::getUserType(std::string& username)
+Enums::UserTypes UserInterface::getUserType(std::string& email)
 {
-	return m_dockUManController->getUserType(username);
+	return m_dockUManController->getUserType(email);
+}
+
+void UserInterface::showUserMenu(Enums::UserTypes)
+{
 }
 
 /*
@@ -364,7 +368,7 @@ void UserInterface::handleAdminMenu()
 				addUserUI();
 				break;
 			case 2:
-				std::cout << "View User List selected\n";
+				getUserList();
 				break;
 			case 3:
 				updateUserDetailsUI();
@@ -759,7 +763,7 @@ void UserInterface::handleRegisterShipManager(std::vector<std::string>&userInfor
 	std::cout << "Enter id : "; 
 	util::read(id);
 	userInformation.push_back(id);
-	handlCommonUserInput(userInformation, name, password, email, phoneNumber);
+	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
 
 bool UserInterface::getShipList()

@@ -12,7 +12,7 @@
   * Returns:
   *    Reference to vector of users
   */
-const std::vector<User*>& DataStore::getUsers() const 
+const std::vector<User*>& DataStore::getUsers() const
 {
     return m_users;
 }
@@ -148,9 +148,21 @@ const std::vector<Log*>& DataStore::getLogs() const
  */
 User* DataStore::getUserByEmail(const std::string& email)
 {
-    for (std::vector<User*>::iterator iterator = m_users.begin();iterator != m_users.end(); ++iterator)
+    for (std::vector<User*>::iterator iterator = m_users.begin(); iterator != m_users.end(); ++iterator)
     {
         if ((*iterator)->getEmail() == email)
+        {
+            return (*iterator);
+        }
+    }
+    return nullptr;
+}
+
+Ship* DataStore::getShipById(std::string& shipId)
+{
+    for (std::vector<Ship*>::iterator iterator = m_ships.begin(); iterator != m_ships.end(); iterator++)
+    {
+        if ((*iterator)->getShipId() == shipId)
         {
             return (*iterator);
         }
@@ -189,6 +201,12 @@ User* DataStore::getUserById(const std::string& userId)
 bool DataStore::addUser(User* agent)
 {
     m_users.push_back(agent);
+    return true;
+}
+
+bool DataStore::addShip(Ship* ship)
+{
+    m_ships.push_back(ship);
     return true;
 }
 

@@ -26,9 +26,8 @@
 
 class DataStore
 {
-
 private:
-    DataStore() = default;
+    DataStore() : m_currentUser(nullptr) {}
     std::vector<User*> m_users;
     std::vector<Dock*> m_docks;
     std::vector<Yard*> m_yard;
@@ -57,7 +56,9 @@ public:
     const std::vector<Log*>& getLogs() const;
     User* getUserById(const std::string&);
     User* getUserByEmail(const std::string&);
+    Ship* getShipById(std::string&);
     bool addUser(User* agent);
+    bool addShip(Ship* ship);
     void setDocks(const std::vector<Dock*>& docks);
     void setYard(const std::vector<Yard*>& yard);
     void setContainers(const std::vector<Container*>& containers);

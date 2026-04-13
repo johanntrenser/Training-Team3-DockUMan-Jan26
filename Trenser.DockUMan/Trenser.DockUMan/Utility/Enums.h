@@ -5,6 +5,7 @@
  * Created: 02-Apr-2026
  */
 #pragma once
+#include<iostream>
 
 namespace Enums {
 
@@ -80,7 +81,10 @@ namespace Enums {
 	enum class AvailabilityStatus
 	{
 		OCCUPIED,
-		AVAILABLE
+		AVAILABLE,
+		DOCKED,
+		ARRIVED,
+		DEPARTED
 	};
 	enum class DockStatus
 	{
@@ -115,5 +119,23 @@ namespace Enums {
 		ACTIVE,
 		INACTIVE
 	};
+	inline std::string trackShipStatus(Enums::AvailabilityStatus status)
+	{
+		switch (status)
+		{
+		case Enums::AvailabilityStatus::AVAILABLE:
+			return "Available";
+		case Enums::AvailabilityStatus::DOCKED:
+			return "Docked";
+		case Enums::AvailabilityStatus::OCCUPIED:
+			return "Occupied";
+		case Enums::AvailabilityStatus::ARRIVED:
+			return "Arrived";
+		case Enums::AvailabilityStatus::DEPARTED:
+			return "Departed";
+		default:
+			return "Not Available";
+		}
+	}
 }
 

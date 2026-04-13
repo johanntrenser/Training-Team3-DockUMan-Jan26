@@ -49,6 +49,13 @@ public:
 	Enums::ProcessStatus changeCurrentUserPassword();
 	Enums::ProcessStatus deactivateUser(std::string&);
 	Enums::ProcessStatus approveUser(std::string&);
+	void registerShipUI();
+	void handleRegisterShipInput(std::vector<std::string>&);
+	void handleRegisterShipManager(std::vector<std::string>&);
+	bool getShipList();
+	void trackShipStatus();
+	void recordShipArrival();
+	void recordShipDeparture();
 	~UserInterface()
 	{
 		delete m_menu;

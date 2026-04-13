@@ -6,7 +6,7 @@
  */
 #include "DockUManController.h"
 
- /*
+/*
   * Function: registerShippingAgent
   * Description: Registers a new shipping agent
   * Parameters:
@@ -18,7 +18,7 @@
   */
 Enums::ProcessStatus DockUManController::registerShippingAgent(std::vector<std::string>& userInformation, Enums::UserTypes type, Enums::UserStatus status)
 {
-	Enums::ProcessStatus processStatus = m_userService->registerUser(userInformation, type, status); 
+	Enums::ProcessStatus processStatus = m_userService->registerUser(userInformation, type, status);
 	return processStatus;
 }
 
@@ -40,15 +40,15 @@ Enums::ProcessStatus DockUManController::handleAuthentication(std::string& email
 
 /*
  * Function: getUserType
- * Description: Retrieves user type based on username
+ * Description: Retrieves user type based on email
  * Parameters:
- *    username - user identifier
+ *    email - user identifier
  * Returns:
  *    User type
  */
-Enums::UserTypes DockUManController::getUserType(std::string& username)
+Enums::UserTypes DockUManController::getUserType(std::string& email)
 {
-	return m_userService->getUserType(username);
+	return m_userService->getUserType(email);
 }
 
 /*
@@ -85,6 +85,13 @@ std::vector<std::string> DockUManController::getUserList()
 	std::vector<std::string> userList;
 	userList = m_userService->getUserList();
 	return userList;
+}
+
+std::vector<std::string> DockUManController::getShipList()
+{
+	std::vector<std::string> shipList;
+	shipList=m_shipService->getShipList();
+	return shipList;
 }
 
 /*
@@ -163,6 +170,26 @@ Enums::ProcessStatus DockUManController::IsLicenseNumberUnique(std::string& lice
 }
 
 /*
+ * Function: IsBadgeNumberUnique
+ * Description: Checks if badge number is unique
+ * Parameters:
+ *    badgeNumber - badge number to validate
+ * Returns:
+ *    Process status
+ */
+Enums::ProcessStatus DockUManController::IsBadgeNumberUnique(std::string& badgeNumber)
+{
+	if (m_userService->IsBadgeNumberUnique(badgeNumber))
+	{
+		return Enums::ProcessStatus::SUCCESS;
+	}
+	else
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+}
+
+/*
  * Function: getUserListByRole
  * Description: Retrieves users filtered by role
  * Parameters:
@@ -211,9 +238,9 @@ Enums::ProcessStatus DockUManController::updatedUserEmailId(std::string& userId,
  * Returns:
  *    Process status
  */
-Enums::ProcessStatus DockUManController::deactivateUser(std::string& userId)
+Enums::ProcessStatus DockUManController::deactivateUser(std::string& userID)
 {
-	return m_userService->changeUserStatus(userId, Enums::UserStatus::INACTIVE);
+	return m_userService->deactivateUser(userID);
 }
 
 /*
@@ -242,22 +269,27 @@ Enums::ProcessStatus DockUManController::approveUser(std::string& userId)
 	return m_userService->changeUserStatus(userId, Enums::UserStatus::ACTIVE);
 }
 
-/*
- * Function: IsBadgeNumberUnique
- * Description: Checks if badge number is unique
- * Parameters:
- *    badgeNumber - badge number to validate
- * Returns:
- *    Process status
- */
-Enums::ProcessStatus DockUManController::IsBadgeNumberUnique(std::string& badgeNumber)
+
+Enums::ProcessStatus DockUManController::registerShip(std::vector<std::string>& userInformation, std::vector<std::string>& shipInformation, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status)
 {
-	if (m_userService->IsBadgeNumberUnique(badgeNumber))
-	{
-		return Enums::ProcessStatus::SUCCESS;
-	}
-	else
-	{
-		return Enums::ProcessStatus::FAILED;
-	}
+	Enums::ProcessStatus processStatus = m_shipService->registerShip(shipInformation, isAvailable, status, m_userService->registerShipManager(userInformation));
+	return processStatus;
+}
+
+Enums::ProcessStatus DockUManController::trackShipStatus(std::string& shipId,std::string& shipStatus)
+{
+	Enums::ProcessStatus status = m_shipService->trackShipStatus(shipId, shipStatus);
+	return status;
+}
+
+Enums::ProcessStatus DockUManController::recordShipArrival(std::string& shipId)
+{
+	Enums::ProcessStatus status = m_shipService->recordShipArrival(shipId);
+	return status;
+}
+
+Enums::ProcessStatus DockUManController::recordShipDeparture(std::string& shipId)
+{
+	Enums::ProcessStatus status = m_shipService->recordShipDeparture(shipId);
+	return status;
 }

@@ -1,6 +1,6 @@
 /*
  * File: UserService.cpp
- * Description: Handles user-related business logic including registration, 
+ * Description: Handles user-related business logic including registration,
 				authentication, validation, and user management operations
  * Author: Entire Team
  * Created: 02-Apr-2026
@@ -29,7 +29,7 @@ Enums::ProcessStatus UserService::registerUser(std::vector<std::string>& userInf
 		email = *iterator++;
 		phoneNumber = *iterator++;
 		licenseNumber = *iterator;
-		User* agent = Factory::getObject<ShippingAgent>(licenseNumber, id, name, password, email, phoneNumber,type,status);
+		User* agent = Factory::getObject<ShippingAgent>(licenseNumber, id, name, password, email, phoneNumber, type, status);
 		if ((m_dataStore.addUser(agent)))
 		{
 			return Enums::ProcessStatus::SUCCESS;
@@ -406,7 +406,7 @@ Enums::ProcessStatus UserService::updatedUserEmailId(std::string& userId, std::s
  */
 Enums::ProcessStatus UserService::changeUserStatus(std::string& userId, Enums::UserStatus userStatus)
 {
-	User* user = m_dataStore.getUserById(userId);
+	User* user = m_dataStore.getUserById(userId); // could be a problem later because of function renaming. check function calls
 	if (user != nullptr)
 	{
 		user->setStatus(userStatus);
@@ -417,3 +417,41 @@ Enums::ProcessStatus UserService::changeUserStatus(std::string& userId, Enums::U
 		return Enums::ProcessStatus::FAILED;
 	}
 }
+
+Enums::ProcessStatus UserService::deactivateUser(std::string& userId)
+{
+	User* user = m_dataStore.getUserById(userId); // could be a problem later because of function renaming. check function calls
+	if (user != nullptr)
+	{
+		user->setStatus(Enums::UserStatus::INACTIVE);
+		return Enums::ProcessStatus::SUCCESS;
+	}
+	else
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+}
+
+User* UserService::registerShipManager(std::vector<std::string>& userInformation)
+{
+	std::string  id, name, password, email, phoneNumber;
+	Enums::UserTypes type = Enums::UserTypes::SHIP_MANAGER;
+	Enums::UserStatus userStatus = Enums::UserStatus::ACTIVE;
+	std::vector<std::string>::iterator iterator = userInformation.begin();
+	id = *iterator++;
+	name = *iterator++;
+	password = *iterator++;
+	email = *iterator++;
+	phoneNumber = *iterator;
+	User* agent = Factory::getObject<ShipManager>(id, name, password, email, phoneNumber, type, userStatus);
+	if (m_dataStore.addUser(agent))
+	{
+		return agent;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+

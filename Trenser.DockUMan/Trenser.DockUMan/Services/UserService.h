@@ -11,6 +11,7 @@
 #include "Enums.h"
 #include "Factory.h"
 #include "ShippingAgent.h"
+#include "ShipManager.h"
 #include "CustomsOfficer.h"
 //#include "FinanceManager.h"
 #include "TerminalOperator.h"
@@ -41,6 +42,8 @@ public:
 	Enums::ProcessStatus updatedUserEmailId(std::string&, std::string&);
 	Enums::ProcessStatus changeCurrentUserPassword(std::string& password);
 	Enums::ProcessStatus changeUserStatus(std::string&, Enums::UserStatus);
+	Enums::ProcessStatus deactivateUser(std::string&);
+	User* registerShipManager(std::vector<std::string>&);
 };
 
 

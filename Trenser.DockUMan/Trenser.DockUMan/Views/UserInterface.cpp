@@ -69,7 +69,7 @@ void UserInterface::authenticateUser()
 	{
 		try
 		{
-			std::string username,password,email;
+			std::string username, password, email;
 			std::cout << "\nEnter User Email Id : ";
 			util::read<std::string>(email);
 			std::cout << "\nEnter Password : ";
@@ -78,7 +78,7 @@ void UserInterface::authenticateUser()
 			{
 				std::cout << "User Login Success! Welcome user : " << username << std::endl;
 				isMenuActive = false;
-				handleMenus(getUserType(username));
+				handleMenus(getUserType(email));
 			}
 			else
 			{
@@ -198,15 +198,19 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 
 /*
  * Function: getUserType
- * Description: Retrieves user type based on username
+ * Description: Retrieves user type based on email
  * Parameters:
- *    username - user identifier
+ *    email - user identifier
  * Returns:
  *    User type
  */
-Enums::UserTypes UserInterface::getUserType(std::string& username)
+Enums::UserTypes UserInterface::getUserType(std::string& email)
 {
-	return m_dockUManController->getUserType(username);
+	return m_dockUManController->getUserType(email);
+}
+
+void UserInterface::showUserMenu(Enums::UserTypes)
+{
 }
 
 /*
@@ -364,21 +368,32 @@ void UserInterface::handleAdminMenu()
 				addUserUI();
 				break;
 			case 2:
-				std::cout << "View User List selected\n";
+				getUserList();
 				break;
 			case 3:
 				updateUserDetailsUI();
 				break;
 			case 4:
-				std::cout << "Approve User selected\n";
+				std::cout << "Record Ship Arrival\n";
+				recordShipArrival();
 				break;
 			case 5:
-				std::cout << "Deactivate User selected\n";
+				std::cout << "Track Ship Status\n";
+				trackShipStatus();
 				break;
 			case 6:
-				std::cout << "Change Password selected\n";
+				std::cout << "Ship List\n";
+				getShipList();
 				break;
 			case 7:
+				std::cout << "Ship register\n";
+				registerShipUI();
+				break;
+			case 8:
+				std::cout << "Record Ship Departure\n";
+				recordShipDeparture();
+				break;
+			case 9:
 				logoutUser();
 				isMenuActive = false;
 				std::cout << "Logging out ..." << std::endl;
@@ -699,6 +714,132 @@ void UserInterface::updateUserAttributeUI(std::string& userId)
 Enums::ProcessStatus UserInterface::deactivateUser(std::string& userId)
 {
 	return m_dockUManController->deactivateUser(userId);
+}
+
+void UserInterface::registerShipUI()
+{
+	bool isMenuActive = true;
+	//while (isMenuActive)
+	//{
+	try
+	{
+		std::vector<std::string>shipInformation;
+		std::vector<std::string>userInformation;
+		Enums::ShipStatus status =Enums::ShipStatus::ACTIVE;
+		Enums::AvailabilityStatus isAvailable = Enums::AvailabilityStatus::AVAILABLE;
+		handleRegisterShipInput(shipInformation);
+		handleRegisterShipManager(userInformation);
+		Enums::ProcessStatus processStatus = m_dockUManController->registerShip(userInformation, shipInformation,isAvailable,status);
+		if (processStatus == Enums::ProcessStatus::SUCCESS)
+		{
+			std::cout << "Ship and ShipManager Created Succesfull!" << std::endl;
+		}
+		else
+		{
+			std::cout << "User Creation Failed !" << std::endl;
+		}
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "Exception : " << e.what() << std::endl;
+	}
+}
+
+void UserInterface::handleRegisterShipInput(std::vector<std::string>& shipInformation)
+{
+	std::string id, name;
+	std::cout << "Enter ShipID :";
+	util::read(id);
+	shipInformation.push_back(id);
+	std::cout << "Enter Shipname : ";
+	util::read(name);
+	shipInformation.push_back(name);
+}
+
+void UserInterface::handleRegisterShipManager(std::vector<std::string>&userInformation)
+{
+	std::string id, name, password, email, phoneNumber;
+	std::cout << "enter ship manager details" << std::endl;
+	std::cout << "Enter id : "; 
+	util::read(id);
+	userInformation.push_back(id);
+	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
+}
+
+bool UserInterface::getShipList()
+{
+	std::vector<std::string> shipList;
+	shipList = m_dockUManController->getShipList();
+	if (shipList.empty())
+	{
+		std::cout << "No Ships Found !" << std::endl;
+		return false;
+	}
+	else
+	{
+		displayList(shipList);
+		return true;
+	}
+}
+
+void UserInterface::trackShipStatus()
+{
+	std::string shipId,shipStatus;
+	Enums::ProcessStatus status;
+	if ((getShipList()))
+	{
+		std::cout << "Enter ship ID : " << std::endl;
+		util::read(shipId);
+		status = m_dockUManController->trackShipStatus(shipId, shipStatus);
+		if (status == Enums::ProcessStatus::SUCCESS)
+		{
+			std::cout << "Ship " << shipId << " : " << shipStatus << std::endl;
+		}
+		else
+		{
+			std::cout << "Ship with ship ID not found !" << std::endl;
+		}
+	}
+}
+
+void UserInterface::recordShipArrival()
+{
+	std::string shipId, shipStatus;
+	Enums::ProcessStatus status;
+	if ((getShipList()))
+	{
+		std::cout << "Enter ship ID : " << std::endl;
+		util::read(shipId);
+		status = m_dockUManController->recordShipArrival(shipId);
+		if (status == Enums::ProcessStatus::SUCCESS)
+		{
+			std::cout << "Arrival time recorded ! " << std::endl;
+		}
+		else
+		{
+			std::cout << "Could not record time !" << std::endl;
+		}
+	}
+}
+
+void UserInterface::recordShipDeparture()
+{
+	std::string shipId, shipStatus;
+	Enums::ProcessStatus status;
+	if ((getShipList()))
+	{
+		std::cout << "Enter ship ID : " << std::endl;
+		util::read(shipId);
+		status = m_dockUManController->recordShipDeparture(shipId);
+		if (status == Enums::ProcessStatus::SUCCESS)
+		{
+			std::cout << "Departure time recorded ! " << std::endl;
+		}
+		else
+		{
+			std::cout << "Could not record time !" << std::endl;
+		}
+	}
 }
 
 /*

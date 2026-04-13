@@ -11,10 +11,9 @@
 class Factory
 {
 public:
-	template<typename T,typename...Args>
+	template<typename T, typename...Args>
 	static T* getObject(Args&&... args)
 	{
 		return new T(std::forward<Args>(args)...);
 	}
 };
-

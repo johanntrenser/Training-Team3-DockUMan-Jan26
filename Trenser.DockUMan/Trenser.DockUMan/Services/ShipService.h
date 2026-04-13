@@ -1,5 +1,24 @@
 #pragma once
+#include<iostream>
+#include<vector>
+#include "Timestamp.h"
+#include "Enums.h"
+#include "Factory.h"
+#include "ShippingAgent.h"
+#include "ShipManager.h"
+#include "CustomsOfficer.h"
+#include "DataStore.h"
 class ShipService
 {
+private:
+	DataStore& m_dataStore;
+public:
+	ShipService() :m_dataStore(DataStore::getInstance()) {}
+	Enums::ProcessStatus registerShip(std::vector<std::string>&, Enums::AvailabilityStatus, Enums::ShipStatus, User*);
+	Enums::ProcessStatus registerShipObject(std::vector<std::string>& shipInformation, User*, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status);
+	std::vector<std::string> getShipList();
+	Enums::ProcessStatus trackShipStatus(std::string&,std::string&);
+	Enums::ProcessStatus recordShipArrival(std::string& shipId);
+	Enums::ProcessStatus recordShipDeparture(std::string& shipId);
 };
 

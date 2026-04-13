@@ -1,3 +1,9 @@
+/*
+ * File: YardBlock.h
+ * Description: Defines the YardBlock class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include <iostream>
 #include <string>

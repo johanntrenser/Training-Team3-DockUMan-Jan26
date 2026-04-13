@@ -1,5 +1,15 @@
+/*
+ * File: Menu.cpp
+ * Description: Handles display of various menus such as authentication, admin, and operational menus in DockUMan system
+ * Author: Entire Team
+ * Created: 02-Apr-2026
+ */
 #include "Menu.h"
 
+ /*
+  * Function: getAuthenticationMenu
+  * Description: Displays authentication menu options
+  */
 void Menu::getAuthenticationMenu()
 {
 	std::cout << "-------------------Authentication Menu-------------------" << std::endl;
@@ -8,6 +18,10 @@ void Menu::getAuthenticationMenu()
 	std::cout << "3.Exit" << std::endl;
 }
 
+/*
+ * Function: getAdminMenu
+ * Description: Displays admin menu options
+ */
 void Menu::getAdminMenu()
 {
 	std::cout << "-------------------Admin Menu-------------------" << std::endl;
@@ -22,6 +36,10 @@ void Menu::getAdminMenu()
 	std::cout << "Logout" << std::endl;
 }
 
+/*
+ * Function: getTerminalOperatorMenu
+ * Description: Displays terminal operator menu options
+ */
 void Menu::getTerminalOperatorMenu()
 {
     std::cout << "-------------------Terminal Operator Menu-------------------" << std::endl;
@@ -30,6 +48,10 @@ void Menu::getTerminalOperatorMenu()
     std::cout << "3. Logout" << std::endl;
 }
 
+/*
+ * Function: getTruckOperationsMenu
+ * Description: Displays truck operations menu options
+ */
 void Menu::getTruckOperationsMenu()
 {
     std::cout << "-------------------Truck Operations Menu-------------------" << std::endl;
@@ -43,6 +65,10 @@ void Menu::getTruckOperationsMenu()
     std::cout << "8. Back to Terminal Operator Menu" << std::endl;
 }
 
+/*
+ * Function: getCraneOperationsMenu
+ * Description: Displays crane operations menu options
+ */
 void Menu::getCraneOperationsMenu()
 {
     std::cout << "-------------------Crane Operations Menu-------------------" << std::endl;
@@ -55,4 +81,48 @@ void Menu::getCraneOperationsMenu()
     std::cout << "7. List Available Cranes" << std::endl;
     std::cout << "8. List All Cranes" << std::endl;
     std::cout << "9. Back to Terminal Operator Menu" << std::endl;
+}
+
+/*
+ * Function: getUserRolesMenu
+ * Description: Displays available user roles for selection
+ */
+void Menu::getUserRolesMenu()
+{
+    std::cout << "-------------------User Roles Menu------------------" << std::endl;
+    std::cout << "1. Finance Manager\n";
+    std::cout << "2. Port Authority Administrator\n";
+    std::cout << "3. Customs Officer\n";
+    std::cout << "4. Terminal Operator\n";
+    std::cout << "5. Ship Manager\n";
+    std::cout << "Select User Role: " << std::endl;
+}
+
+/*
+ * Function: getUpdateDetailsMenu
+ * Description: Displays options for updating user details
+ */
+void Menu::getUpdateDetailsMenu()
+{
+    std::cout << "-------------------Update Details Menu------------------" << std::endl;
+    std::cout << "1. Email Address\n";
+    std::cout << "2. Phone Number\n";
+    std::cout << "Select Detail to Update: " << std::endl;
+}
+
+/*
+ * Function: getAddUserMenu
+ * Description: Displays menu for selecting user type to add
+ */
+void Menu::getAddUserMenu()
+{
+    std::cout << "-------------------User Types Menu------------------" << std::endl;
+    std::cout << "1. Pickup Agent\n";
+    std::cout << "2. Port Authority Admin\n";
+    std::cout << "3. Shipping Agent\n";
+    std::cout << "4. Ship Manager\n";
+    std::cout << "5. Terminal Operator\n";
+    std::cout << "6. Finance Manager\n";
+    std::cout << "7. Customs Officer\n";
+    std::cout << "Select User Type: ";
 }

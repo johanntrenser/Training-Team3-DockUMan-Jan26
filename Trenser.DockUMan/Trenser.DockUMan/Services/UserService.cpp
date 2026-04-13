@@ -100,6 +100,30 @@ Enums::UserTypes UserService::getUserType(std::string& email)
 }
 
 /*
+ * Function: getUserDetailByIdAndType
+ * Description: Retrieves user details by user ID and role
+ * Parameters:
+ *    userId - ID of the user
+ *    role - user role
+ * Returns:
+ *    Vector containing user details
+ */
+std::vector<std::string> UserService::getUserDetailByIdAndType(std::string& userId, Enums::UserTypes role)
+{
+	std::vector<std::string> userDetails;
+	User* user = m_dataStore.getUserById(userId);
+	if (user != nullptr && user->getRole() == role)
+	{
+		userDetails.push_back("Name: " + user->getName());
+		userDetails.push_back("Email: " + user->getEmail());
+		userDetails.push_back("Phone: " + user->getPhoneNumber());
+		return userDetails;
+	}
+	userDetails.clear();
+	return userDetails;
+}
+
+/*
  * Function: IsPhoneNumberUnique
  * Description: Checks if the given phone number is unique
  * Parameters:
@@ -223,12 +247,169 @@ std::vector<std::string> UserService::getUserList()
 	return userList;
 }
 
-Enums::ProcessStatus UserService::deactivateUser(std::string& userId)
+/*
+ * Function: addUser
+ * Description: Adds a new user of specified type
+ * Parameters:
+ *    userInformation - vector containing user details
+ *    type - user type
+ *    status - user status
+ * Returns:
+ *    Process status
+ */
+Enums::ProcessStatus UserService::addUser(std::vector<std::string>& userInformation, Enums::UserTypes type, Enums::UserStatus status)
+{
+	std::string id, name, password, email, phoneNumber;
+	std::vector<std::string>::iterator iterator = userInformation.begin();
+	id = *iterator++;
+	name = *iterator++;
+	password = *iterator++;
+	email = *iterator++;
+	phoneNumber = *iterator++;
+	User* user;
+	switch (type)
+	{
+	case Enums::UserTypes::PICKUP_AGENT:
+		user = Factory::getObject<PickupAgent>(id, name, password, email, phoneNumber, type, status);
+		break;
+	case Enums::UserTypes::PORT_AUTHORITY_ADMINISTRATOR:
+		user = Factory::getObject<PortAuthorityAdmin>(id, name, password, email, phoneNumber, type, status);
+		break;
+	case Enums::UserTypes::SHIP_MANAGER:
+		user = Factory::getObject<ShipManager>(id, name, password, email, phoneNumber, type, status);
+		break;
+	case Enums::UserTypes::TERMINAL_OPERATOR:
+		user = Factory::getObject<TerminalOperator>(id, name, password, email, phoneNumber, type, status);
+		break;
+	/*case Enums::UserTypes::FINANCE_MANAGER:
+		user = Factory::getObject<FinanceManager>(id, name, password, email, phoneNumber, type, status);
+		break;*/
+	case Enums::UserTypes::CUSTOMS_OFFICER:
+	{
+		std::string badgeNumber = *iterator;
+		user = Factory::getObject<CustomsOfficer>(badgeNumber, id, name, password, email, phoneNumber, type, status);
+		break;
+	}
+	default:
+		return Enums::ProcessStatus::FAILED;
+	}
+	if (m_dataStore.addUser(user))
+	{
+		return Enums::ProcessStatus::SUCCESS;
+	}
+	else
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+}
+
+/*
+ * Function: changeCurrentUserPassword
+ * Description: Changes password of the currently logged-in user
+ * Parameters:
+ *    password - new password
+ * Returns:
+ *    Process status
+ */
+Enums::ProcessStatus UserService::changeCurrentUserPassword(std::string& password)
+{
+	User* currentUser = m_dataStore.getCurrentUser();
+	if (currentUser == nullptr)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	else
+	{
+		currentUser->setPassword(password);
+		return Enums::ProcessStatus::SUCCESS;
+	}
+}
+
+/*
+ * Function: getUserListByRole
+ * Description: Retrieves list of users filtered by role
+ * Parameters:
+ *    role - user role
+ * Returns:
+ *    Vector containing filtered user list
+ */
+std::vector<std::string> UserService::getUserListByRole(Enums::UserTypes role)
+{
+	std::vector<std::string> userList;
+	const std::vector<User*>& users = m_dataStore.getUsers();
+	for (std::vector<User*>::const_iterator iterator = users.begin(); iterator != users.end(); ++iterator)
+	{
+		if ((*iterator)->getRole() == role)
+		{
+			userList.push_back((*iterator)->toString());
+		}
+	}
+	return userList;
+}
+
+/*
+ * Function: updatedUserPhoneNumber
+ * Description: Updates phone number of a user
+ * Parameters:
+ *    userId - ID of the user
+ *    updatedPhoneNumber - new phone number
+ * Returns:
+ *    Process status
+ */
+Enums::ProcessStatus UserService::updatedUserPhoneNumber(std::string& userId, std::string& updatedPhoneNumber)
+{
+	User* user = m_dataStore.getUserById(userId);
+	if (user == nullptr)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	user->setPhoneNumber(updatedPhoneNumber);
+	if (user->getPhoneNumber() == updatedPhoneNumber)
+	{
+		return Enums::ProcessStatus::SUCCESS;
+	}
+	return Enums::ProcessStatus::FAILED;
+}
+
+/*
+ * Function: updatedUserEmailId
+ * Description: Updates email ID of a user
+ * Parameters:
+ *    userId - ID of the user
+ *    updatedEmailId - new email ID
+ * Returns:
+ *    Process status
+ */
+Enums::ProcessStatus UserService::updatedUserEmailId(std::string& userId, std::string& updatedEmailId)
+{
+	User* user = m_dataStore.getUserById(userId);
+	if (user == nullptr)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	user->setEmail(updatedEmailId);
+	if (user->getEmail() == updatedEmailId)
+	{
+		return Enums::ProcessStatus::SUCCESS;
+	}
+	return Enums::ProcessStatus::FAILED;
+}
+
+/*
+ * Function: changeUserStatus
+ * Description: Changes the status of a user
+ * Parameters:
+ *    userId - ID of the user
+ *    userStatus - new status to be assigned
+ * Returns:
+ *    Process status
+ */
+Enums::ProcessStatus UserService::changeUserStatus(std::string& userId, Enums::UserStatus userStatus)
 {
 	User* user = m_dataStore.getUserById(userId); // could be a problem later because of function renaming. check function calls
 	if (user != nullptr)
 	{
-		user->setStatus(Enums::UserStatus::INACTIVE);
+		user->setStatus(userStatus);
 		return Enums::ProcessStatus::SUCCESS;
 	}
 	else

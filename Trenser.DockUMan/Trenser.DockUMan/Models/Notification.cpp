@@ -1,3 +1,9 @@
+/*
+ * File: Notification.cpp
+ * Description: Implements getter and setter functions for the Notification model class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #include "Notification.h"
 
 std::string Notification::getNotificationId() const

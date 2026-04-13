@@ -1,5 +1,9 @@
-// Trenser.DockUMan.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/*
+ * File: Trenser.DockUMan.cpp
+ * Description: Implements the main function
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 
 #include <iostream>
 #include "UserInterface.h"

@@ -1,3 +1,9 @@
+/*
+ * File: Log.h
+ * Description: Defines the Log class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include<iostream>
 class Log

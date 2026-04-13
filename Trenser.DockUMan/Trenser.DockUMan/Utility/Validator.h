@@ -1,3 +1,9 @@
+/*
+ * File: Validator.h
+ * Description: Provides input validation functions for password, email, phone number, and license number
+ * Author: Akish Babu
+ * Created: 02-Apr-2026
+ */
 #pragma once
 #include<iostream>
 #include<string>
@@ -77,16 +83,16 @@ namespace validator
             }
         }
     }
-    inline void validateLiscenseNumber(std::string& value)
+    inline void validateLicenseNumber(std::string& value)
     {
-        bool isValidLiscenseNumber = false;
-        std::regex LiscenseNumberPattern(R"(^(?=.*[0-9])(?=.*[A-Za-z])(?=.*@).{10}$)");
-        while (!isValidLiscenseNumber)
+        bool isValidLicenseNumber = false;
+        std::regex LicenseNumberPattern(R"(^(?=.*[0-9])(?=.*[A-Za-z])(?=.*@).{10}$)");
+        while (!isValidLicenseNumber)
         {
             util::read(value);
-            if (std::regex_match(value, LiscenseNumberPattern)) {
+            if (std::regex_match(value, LicenseNumberPattern)) {
                 std::cout << "Liscense Number accepted.\n";
-                isValidLiscenseNumber = true;
+                isValidLicenseNumber = true;
             }
             else {
                 std::cout << "Invalid Liscense Number. "

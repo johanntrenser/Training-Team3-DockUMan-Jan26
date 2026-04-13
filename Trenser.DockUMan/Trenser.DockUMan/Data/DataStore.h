@@ -77,3 +77,4 @@ public:
     static DataStore& getInstance();
     ~DataStore();
 };
+

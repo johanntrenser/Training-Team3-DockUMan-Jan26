@@ -1,3 +1,9 @@
+/*
+ * File: CustomsPenalty.cpp
+ * Description: Contains getters and setters for CustomsPenalty model class representing penalty-related data for containers
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #include "CustomsPenalty.h"
 using namespace std;
 

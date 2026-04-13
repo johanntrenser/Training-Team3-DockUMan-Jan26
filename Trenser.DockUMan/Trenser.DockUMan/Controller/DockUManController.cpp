@@ -75,6 +75,12 @@ Enums::ProcessStatus DockUManController::deactivateUser(std::string& userID)
 	return m_userService->deactivateUser(userID);
 }
 
+Enums::ProcessStatus DockUManController::changeCurrentUserPassword(std::string& password)
+{
+	return m_userService->changeCurrentUserPassword(password);
+}
+
+
 Enums::ProcessStatus DockUManController::registerShip(std::vector<std::string>& userInformation, std::vector<std::string>& shipInformation, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status)
 {
 	Enums::ProcessStatus processStatus = m_shipService->registerShip(shipInformation, isAvailable, status, m_userService->registerShipManger(userInformation));

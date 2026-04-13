@@ -1,3 +1,9 @@
+/*
+ * File: Container.h
+ * Description: Defines the Container class
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #pragma once
 #include<iostream>
 #include "User.h"

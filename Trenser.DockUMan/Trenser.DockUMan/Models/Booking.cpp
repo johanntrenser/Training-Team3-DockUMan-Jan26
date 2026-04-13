@@ -1,3 +1,9 @@
+/*
+ * File: Booking.cpp
+ * Description: Contains getters and setters for Booking model class representing booking-related data
+ * Author: Akish Babu
+ * Created: 30-Mar-2026
+ */
 #include "Booking.h"
 using namespace std;
 

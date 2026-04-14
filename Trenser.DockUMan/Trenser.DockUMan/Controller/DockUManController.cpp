@@ -269,6 +269,10 @@ Enums::ProcessStatus DockUManController::approveUser(std::string& userId)
 	return m_userService->changeUserStatus(userId, Enums::UserStatus::ACTIVE);
 }
 
+Enums::ProcessStatus DockUManController::updateShipAvailabilityStatus(std::string& shipId, Enums::AvailabilityStatus newStatus)
+{
+	return m_shipService->updateShipAvailabilityStatus(shipId, newStatus); 
+}
 
 Enums::ProcessStatus DockUManController::registerShip(std::vector<std::string>& userInformation, std::vector<std::string>& shipInformation, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status)
 {

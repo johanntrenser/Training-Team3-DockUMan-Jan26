@@ -466,19 +466,19 @@ void UserInterface::handleTruckOperations()
 			util::read<int>(choice);
 			switch (choice)
 			{
-			case 1: std::cout << "Add Truck selected\n";
+			case 1: std::cout << "1. Add Truck selected\n";
 				break;
-			case 2: std::cout << "View Truck Details selected\n";
+			case 2: std::cout << "2. View Truck Details selected\n";
 				break;
-			case 3: std::cout << "Assign Container to Truck selected\n"; 
+			case 3: std::cout << "3. Assign Container to Truck selected\n"; 
 				break;
-			case 4: std::cout << "Move Container to Yard selected\n";
+			case 4: std::cout << "4. Move Container to Yard selected\n";
 				break;
-			case 5: std::cout << "Update Truck Status selected\n";
+			case 5: std::cout << "5. Update Truck Status selected\n";
 				break;
-			case 6: std::cout << "List Available Trucks selected\n"; 
+			case 6: std::cout << "6. List Available Trucks selected\n"; 
 				break;
-			case 7: std::cout << "List All Trucks selected\n"; 
+			case 7: std::cout << "7. List All Trucks selected\n"; 
 				break;
 			case 8: isMenuActive = false;
 				break; 
@@ -511,21 +511,21 @@ void UserInterface::handleCraneOperations()
 
 			switch (choice)
 			{
-			case 1: std::cout << "Add Crane selected\n"; 
+			case 1: std::cout << "1. Add Crane selected\n"; 
 				break;
-			case 2: std::cout << "View Crane Details selected\n"; 
+			case 2: std::cout << "2. View Crane Details selected\n"; 
 				break;
-			case 3: std::cout << "Assign Container to Crane selected\n";
+			case 3: std::cout << "3. Assign Container to Crane selected\n";
 				break;
-			case 4: std::cout << "Load Container to Ship selected\n";
+			case 4: std::cout << "4. Load Container to Ship selected\n";
 				break;
-			case 5: std::cout << "Unload Container from Ship selected\n"; 
+			case 5: std::cout << "5. Unload Container from Ship selected\n"; 
 				break;
-			case 6: std::cout << "Update Crane Status selected\n"; 
+			case 6: std::cout << "6. Update Crane Status selected\n"; 
 				break;
-			case 7: std::cout << "List Available Cranes selected\n"; 
+			case 7: std::cout << "7. List Available Cranes selected\n"; 
 				break;
-			case 8: std::cout << "List All Cranes selected\n";
+			case 8: std::cout << "8. List All Cranes selected\n";
 				break;
 			case 9: isMenuActive = false;
 				break; 

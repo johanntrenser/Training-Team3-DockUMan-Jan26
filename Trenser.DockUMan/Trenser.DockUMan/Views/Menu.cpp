@@ -25,15 +25,15 @@ void Menu::getAuthenticationMenu()
 void Menu::getAdminMenu()
 {
 	std::cout << "-------------------Admin Menu-------------------" << std::endl;
-	std::cout << "Add Users" << std::endl;
-	std::cout << "View User List" << std::endl;
-	std::cout << "Update User Profile" << std::endl;
-	std::cout << "Record Ship Arrival" << std::endl;
-	std::cout << "TrackShip" << std::endl;
-	std::cout << "ShipList" << std::endl;
-    std::cout << "Add Ship" << std::endl;
-    std::cout << "Record Ship Departure" << std::endl;
-	std::cout << "Logout" << std::endl;
+	std::cout << "1. Add Users" << std::endl;
+	std::cout << "2. View User List" << std::endl;
+	std::cout << "3. Update User Profile" << std::endl;
+	std::cout << "4. Record Ship Arrival" << std::endl;
+	std::cout << "5. TrackShip" << std::endl;
+	std::cout << "6. ShipList" << std::endl;
+    std::cout << "7. Add Ship" << std::endl;
+    std::cout << "8. Record Ship Departure" << std::endl;
+	std::cout << "9. Logout" << std::endl;
 }
 
 /*

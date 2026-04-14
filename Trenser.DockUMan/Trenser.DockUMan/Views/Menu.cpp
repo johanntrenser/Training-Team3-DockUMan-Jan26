@@ -33,7 +33,8 @@ void Menu::getAdminMenu()
 	std::cout << "6. ShipList" << std::endl;
     std::cout << "7. Add Ship" << std::endl;
     std::cout << "8. Record Ship Departure" << std::endl;
-	std::cout << "9. Logout" << std::endl;
+    std::cout << "9. Update Ship Status" << std::endl;
+	std::cout << "10. Logout" << std::endl;
 }
 
 /*

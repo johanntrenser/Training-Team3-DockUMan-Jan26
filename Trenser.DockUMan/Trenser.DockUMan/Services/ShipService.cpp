@@ -93,3 +93,14 @@ Enums::ProcessStatus ShipService::recordShipDeparture(std::string& shipId)
 	ship->setAvailabilityStatus(Enums::AvailabilityStatus::DEPARTED);
 	return Enums::ProcessStatus::SUCCESS;
 }
+
+Enums::ProcessStatus ShipService::updateShipAvailabilityStatus(std::string& shipId, Enums::AvailabilityStatus newStatus)
+{
+	Ship* ship = m_dataStore.getShipById(shipId);
+	if (ship == nullptr)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	ship->setAvailabilityStatus(newStatus);
+	return Enums::ProcessStatus::SUCCESS;
+}

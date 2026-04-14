@@ -56,6 +56,7 @@ public:
 	void trackShipStatus();
 	void recordShipArrival();
 	void recordShipDeparture();
+	void updateShipAvaillabilityUI();
 	~UserInterface()
 	{
 		delete m_menu;

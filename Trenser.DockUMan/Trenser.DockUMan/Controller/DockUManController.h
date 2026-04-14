@@ -40,6 +40,7 @@ public:
 	Enums::ProcessStatus recordShipArrival(std::string&);
 	Enums::ProcessStatus recordShipDeparture(std::string&);
 	Enums::ProcessStatus approveUser(std::string&);
+	Enums::ProcessStatus updateShipAvailabilityStatus(std::string&, Enums::AvailabilityStatus);
 	~DockUManController()
 	{
 		delete m_userService;

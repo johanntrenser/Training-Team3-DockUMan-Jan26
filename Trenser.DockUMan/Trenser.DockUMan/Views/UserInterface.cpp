@@ -364,7 +364,6 @@ void UserInterface::handleAdminMenu()
 			switch (choice)
 			{
 			case 1:
-				std::cout << "Add Users selected\n";
 				addUserUI();
 				break;
 			case 2:
@@ -374,26 +373,24 @@ void UserInterface::handleAdminMenu()
 				updateUserDetailsUI();
 				break;
 			case 4:
-				std::cout << "Record Ship Arrival\n";
 				recordShipArrival();
 				break;
 			case 5:
-				std::cout << "Track Ship Status\n";
 				trackShipStatus();
 				break;
 			case 6:
-				std::cout << "Ship List\n";
 				getShipList();
 				break;
 			case 7:
-				std::cout << "Ship register\n";
 				registerShipUI();
 				break;
 			case 8:
-				std::cout << "Record Ship Departure\n";
 				recordShipDeparture();
 				break;
 			case 9:
+				updateShipAvaillabilityUI();
+				break;
+			case 10:
 				logoutUser();
 				isMenuActive = false;
 				std::cout << "Logging out ..." << std::endl;
@@ -839,6 +836,55 @@ void UserInterface::recordShipDeparture()
 		{
 			std::cout << "Could not record time !" << std::endl;
 		}
+	}
+}
+
+void UserInterface::updateShipAvaillabilityUI()
+{
+	std::string shipId;
+	int choice;
+	Enums::AvailabilityStatus newStatus;
+	try
+	{
+		std::cout << "------------------------------\n";
+		if (!getShipList())
+		{
+			std::cout << "No ships available to update!" << std::endl;
+			return;
+		}
+		std::cout << "------------------------------\n";
+		std::cout << "Enter the Shid ID to update : ";
+		util::read(shipId);
+		std::cout << "Select new Availability Status:\n1. OCCUPIED\n2. AVAILABLE\n3. DOCKED\n4. ARRIVED\n5. DEPARTED\n";
+		std::cout << "Enter Your Choice: ";
+		util::read(choice);
+		switch (choice)
+		{
+		case 1: newStatus = Enums::AvailabilityStatus::OCCUPIED;
+			break;
+		case 2: newStatus = Enums::AvailabilityStatus::AVAILABLE;
+			break;
+		case 3: newStatus = Enums::AvailabilityStatus::DOCKED;
+			break;
+		case 4: newStatus = Enums::AvailabilityStatus::ARRIVED;
+			break;
+		case 5: newStatus = Enums::AvailabilityStatus::DEPARTED;
+			break;
+		default: std::cout << "Invalid Status. Try Again." << std::endl;
+			return;
+		}
+		if (m_dockUManController->updateShipAvailabilityStatus(shipId, newStatus) == Enums::ProcessStatus::SUCCESS)
+		{
+			std::cout << "Ship availability status Updated Successfully\n";
+		}
+		else
+		{
+			std::cout << "Failed to update ship Availability!\n";
+		}
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << "Exception Occured. Try Again." << std::endl;
 	}
 }
 

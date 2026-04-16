@@ -12,6 +12,7 @@ class ShipService
 {
 private:
 	DataStore& m_dataStore;
+	Ship* getShipID();
 public:
 	ShipService() :m_dataStore(DataStore::getInstance()) {}
 	Enums::ProcessStatus registerShip(std::vector<std::string>&, Enums::AvailabilityStatus, Enums::ShipStatus, User*);
@@ -20,6 +21,7 @@ public:
 	Enums::ProcessStatus trackShipStatus(std::string&,std::string&);
 	Enums::ProcessStatus recordShipArrival(std::string& shipId);
 	Enums::ProcessStatus recordShipDeparture(std::string& shipId);
+	Enums::ProcessStatus sendShipArrivalRequest();
 	Enums::ProcessStatus updateShipAvailabilityStatus(std::string&, Enums::AvailabilityStatus);
 };
 

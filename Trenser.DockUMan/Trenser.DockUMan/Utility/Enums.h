@@ -95,7 +95,7 @@ namespace Enums
 		OCCUPIED,
 		AVAILABLE,
 		DOCKED,
-		ARRIVED,
+		WAITING,
 		DEPARTED
 	};
 	//Indicates Docks operational status
@@ -148,7 +148,7 @@ namespace Enums
 			return "Docked";
 		case Enums::AvailabilityStatus::OCCUPIED:
 			return "Occupied";
-		case Enums::AvailabilityStatus::ARRIVED:
+		case Enums::AvailabilityStatus::WAITING:
 			return "Arrived";
 		case Enums::AvailabilityStatus::DEPARTED:
 			return "Departed";

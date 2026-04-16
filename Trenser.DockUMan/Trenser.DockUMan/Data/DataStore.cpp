@@ -169,6 +169,25 @@ Ship* DataStore::getShipById(std::string& shipId)
     }
     return nullptr;
 }
+/*
+ * Function: getshipByShipManager
+ * Description: Retrieves the ship based on current user logged in
+ * Parameters:
+ * 
+ * Returns:
+ *    Pointer to ship if found, otherwise nullptr
+ */
+Ship* DataStore::getshipByShipManager()
+{
+    for (std::vector<Ship*>::iterator iterator = m_ships.begin(); iterator != m_ships.end(); iterator++)
+    {
+        if ((*iterator)->getShipManager() == m_currentUser)
+        {
+            return (*iterator);
+        }
+    }
+    return nullptr;
+}
 
 /*
  * Function: getUserById
@@ -340,6 +359,16 @@ void DataStore::setLogs(const std::vector<Log*>& logs)
 void DataStore::setCurrentUser(User* user)
 {
     m_currentUser = user;
+}
+
+void DataStore::addShipToWaitingQueue(Ship* ship)
+{
+    m_waitingQueue.push(ship);
+}
+
+void DataStore::removeShipFromWaitingQueue()
+{
+    m_waitingQueue.pop();
 }
 
 /*

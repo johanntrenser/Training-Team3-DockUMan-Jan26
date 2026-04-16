@@ -855,7 +855,7 @@ void UserInterface::updateShipAvaillabilityUI()
 		std::cout << "------------------------------\n";
 		std::cout << "Enter the Shid ID to update : ";
 		util::read(shipId);
-		std::cout << "Select new Availability Status:\n1. OCCUPIED\n2. AVAILABLE\n3. DOCKED\n4. ARRIVED\n5. DEPARTED\n";
+		std::cout << "Select new Availability Status:\n1. OCCUPIED\n2. AVAILABLE\n3. DOCKED\n4. WAITING\n5. DEPARTED\n";
 		std::cout << "Enter Your Choice: ";
 		util::read(choice);
 		switch (choice)
@@ -866,7 +866,7 @@ void UserInterface::updateShipAvaillabilityUI()
 			break;
 		case 3: newStatus = Enums::AvailabilityStatus::DOCKED;
 			break;
-		case 4: newStatus = Enums::AvailabilityStatus::ARRIVED;
+		case 4: newStatus = Enums::AvailabilityStatus::WAITING;
 			break;
 		case 5: newStatus = Enums::AvailabilityStatus::DEPARTED;
 			break;
@@ -885,6 +885,22 @@ void UserInterface::updateShipAvaillabilityUI()
 	catch (const std::exception& e)
 	{
 		std::cout << e.what() << "Exception Occured. Try Again." << std::endl;
+	}
+}
+
+/*
+ * Function: sendShipArrivalRequest
+ * Description: Sends a ship Arrival request
+ * Parameters:
+ *    userId - ID of the user
+ * Returns:
+ *    Process status
+ */
+void UserInterface::sendShipArrivalRequest()
+{
+	if (m_dockUManController->sendShipArrivalRequest() == Enums::ProcessStatus::SUCCESS)
+	{
+		std::cout << "Arrival Request send and Added to Waiting Queue" << std::endl;
 	}
 }
 

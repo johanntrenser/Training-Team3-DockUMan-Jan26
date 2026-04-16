@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <queue>
 #include<utility>
 #include <map>
 #include "User.h"
@@ -41,6 +42,7 @@ private:
     std::vector<Notification*> m_notifications;
     std::vector<Log*> m_logs;
     User* m_currentUser;
+    std::queue<Ship*> m_waitingQueue;
 public:
     const std::vector<User*>& getUsers() const;
     const std::vector<Dock*>& getDocks() const;
@@ -57,6 +59,7 @@ public:
     User* getUserById(const std::string&);
     User* getUserByEmail(const std::string&);
     Ship* getShipById(std::string&);
+    Ship* getshipByShipManager();
     bool addUser(User* agent);
     bool addShip(Ship* ship);
     void setDocks(const std::vector<Dock*>& docks);
@@ -71,6 +74,8 @@ public:
     void setNotifications(const std::vector<Notification*>& notifications);
     void setLogs(const std::vector<Log*>& logs);
     void setCurrentUser(User* user);
+    void addShipToWaitingQueue(Ship* ship);
+    void removeShipFromWaitingQueue();
     User* getCurrentUser();
     DataStore(const DataStore&) = delete;
     DataStore& operator=(const DataStore&) = delete;

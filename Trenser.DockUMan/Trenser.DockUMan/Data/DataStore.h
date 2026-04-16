@@ -60,6 +60,7 @@ public:
     User* getUserByEmail(const std::string&);
     Ship* getShipById(std::string&);
     Ship* getshipByShipManager();
+    Dock* getDockById(const std::string&);
     bool addUser(User* agent);
     bool addShip(Ship* ship);
     void setDocks(const std::vector<Dock*>& docks);

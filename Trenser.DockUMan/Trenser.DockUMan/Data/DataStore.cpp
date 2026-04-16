@@ -189,6 +189,18 @@ Ship* DataStore::getshipByShipManager()
     return nullptr;
 }
 
+Dock* DataStore::getDockById(const std::string& dockId)
+{
+    for (std::vector<Dock*>::iterator iterator = m_docks.begin(); iterator != m_docks.end(); iterator++)
+    {
+        if ((*iterator)->getId() == dockId)
+        {
+            return (*iterator);
+        }
+    }
+    return nullptr;
+}
+
 /*
  * Function: getUserById
  * Description: Retrieves a user based on user ID

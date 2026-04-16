@@ -58,6 +58,8 @@ public:
 	void recordShipDeparture();
 	void updateShipAvaillabilityUI();
 	void sendShipArrivalRequest();
+	void updateShipDetailsUI();
+	void handleUpdateShipDetailsInput(std::string&, int);
 	~UserInterface()
 	{
 		delete m_menu;

@@ -132,13 +132,13 @@ void UserInterface::registerShippingAgentUI()
  */
 void UserInterface::handleCommonUserInput(std::vector<std::string>& userInformation,std::string& name, std::string& password, std::string& email, std::string& phoneNumber)
 {
-	std::cout << "Enter Name :";
+	std::cout << "Enter the Name : ";
 	util::read(name);
 	userInformation.push_back(name);
-	std::cout << "Enter pasword : ";
+	std::cout << "Enter the pasword : ";
 	validator::validatePassword(password);
 	userInformation.push_back(password);
-	std::cout << "Enter email : ";
+	std::cout << "Enter the Email : ";
 	validator::validateEmail(email);
 	while (m_dockUManController->IsEmailIdUnique(email) != Enums::ProcessStatus::SUCCESS)
 	{
@@ -391,6 +391,9 @@ void UserInterface::handleAdminMenu()
 				updateShipAvaillabilityUI();
 				break;
 			case 10:
+				updateShipDetailsUI();
+				break;
+			case 11:
 				logoutUser();
 				isMenuActive = false;
 				std::cout << "Logging out ..." << std::endl;
@@ -745,10 +748,10 @@ void UserInterface::registerShipUI()
 void UserInterface::handleRegisterShipInput(std::vector<std::string>& shipInformation)
 {
 	std::string id, name;
-	std::cout << "Enter ShipID :";
+	std::cout << "Enter Ship ID :";
 	util::read(id);
 	shipInformation.push_back(id);
-	std::cout << "Enter Shipname : ";
+	std::cout << "Enter Ship Name : ";
 	util::read(name);
 	shipInformation.push_back(name);
 }
@@ -756,8 +759,9 @@ void UserInterface::handleRegisterShipInput(std::vector<std::string>& shipInform
 void UserInterface::handleRegisterShipManager(std::vector<std::string>&userInformation)
 {
 	std::string id, name, password, email, phoneNumber;
-	std::cout << "enter ship manager details" << std::endl;
-	std::cout << "Enter id : "; 
+	std::cout << "---------------------------" << std::endl;
+	std::cout << "Enter Ship Manager details" << std::endl;
+	std::cout << "Enter Id : "; 
 	util::read(id);
 	userInformation.push_back(id);
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
@@ -774,7 +778,9 @@ bool UserInterface::getShipList()
 	}
 	else
 	{
+		std::cout << "----------------" << std::endl;
 		displayList(shipList);
+		std::cout << "----------------" << std::endl;
 		return true;
 	}
 }
@@ -846,13 +852,11 @@ void UserInterface::updateShipAvaillabilityUI()
 	Enums::AvailabilityStatus newStatus;
 	try
 	{
-		std::cout << "------------------------------\n";
 		if (!getShipList())
 		{
 			std::cout << "No ships available to update!" << std::endl;
 			return;
 		}
-		std::cout << "------------------------------\n";
 		std::cout << "Enter the Shid ID to update : ";
 		util::read(shipId);
 		std::cout << "Select new Availability Status:\n1. OCCUPIED\n2. AVAILABLE\n3. DOCKED\n4. WAITING\n5. DEPARTED\n";
@@ -885,6 +889,81 @@ void UserInterface::updateShipAvaillabilityUI()
 	catch (const std::exception& e)
 	{
 		std::cout << e.what() << "Exception Occured. Try Again." << std::endl;
+	}
+}
+
+void UserInterface::updateShipDetailsUI()
+{
+	std::string shipId;
+	int choice;
+	try 
+	{
+		if (!getShipList())
+		{
+			std::cout << "No Ship Available to Update." << std::endl;
+			return;
+		}
+		std::cout << "Enter the Ship ID : " ;
+		util::read(shipId);
+		std::cout << "Select detail to update:\n";
+		std::cout << "1. Ship Name\n";
+		std::cout << "2. ETA\n";
+		std::cout << "3. ETD\n";
+		std::cout << "4. Dock Assignment\n";
+		std::cout << "Enter your choice : ";
+		util::read<int>(choice);
+		handleUpdateShipDetailsInput(shipId, choice);
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << "Exception Occured. Try Again." << std::endl;
+	}
+}
+
+void UserInterface::handleUpdateShipDetailsInput(std::string& shipId, int choice)
+{
+	std::string updatedValue;
+	Enums::ProcessStatus status = Enums::ProcessStatus::FAILED;
+	try
+	{
+		switch (choice)
+		{
+		case 1:
+			std::cout << "Enter New Ship Name : ";
+			util::read(updatedValue);
+			status = m_dockUManController->updateShipName(shipId, updatedValue);
+			break;
+		case 2:
+			std::cout << "Enter the New ETA";
+			util::read(updatedValue);
+			status = m_dockUManController->updateShipETA(shipId, updatedValue);
+			break;
+		case 3:
+			std::cout << "Enter the New ETD";
+			util::read(updatedValue);
+			status = m_dockUManController->updateShipETD(shipId, updatedValue);
+			break;
+		case 4:
+			std::cout << "Enter the New ETA";
+			util::read(updatedValue);
+			status = m_dockUManController->updateShipDock(shipId, updatedValue);
+			break;
+		default:
+			std::cout << "Invalid Input." << std::endl;
+			return;
+		}
+		if (status == Enums::ProcessStatus::SUCCESS)
+		{
+			std::cout << "Ship Details Updated Successfully." << std::endl;
+		}
+		else
+		{
+			std::cout << "Failed to Update Ship Details." << std::endl;
+		}
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << e.what() << "Exception Occured. Try again." << std::endl;
 	}
 }
 

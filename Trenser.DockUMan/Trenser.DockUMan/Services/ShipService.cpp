@@ -119,3 +119,52 @@ Enums::ProcessStatus ShipService::updateShipAvailabilityStatus(std::string& ship
 	ship->setAvailabilityStatus(newStatus);
 	return Enums::ProcessStatus::SUCCESS;
 }
+
+Enums::ProcessStatus ShipService::updateShipName(std::string& shipId, const std::string& newShipName)
+{
+	Ship* ship = m_dataStore.getShipById(shipId);
+	if (!ship)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	ship->setShipName(newShipName);
+	return Enums::ProcessStatus::SUCCESS;
+}
+
+Enums::ProcessStatus ShipService::updateShipETA(std::string& shipId, const std::string& newShipETA)
+{
+	Ship* ship = m_dataStore.getShipById(shipId);
+	if (!ship)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	ship->setETA(newShipETA);
+	return Enums::ProcessStatus::SUCCESS;
+}
+
+Enums::ProcessStatus ShipService::updateShipETD(std::string& shipId, const std::string& newShipETD)
+{
+	Ship* ship = m_dataStore.getShipById(shipId);
+	if (!ship)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	ship->setETD(newShipETD);
+	return Enums::ProcessStatus::SUCCESS;
+}
+
+Enums::ProcessStatus ShipService::updateShipDock(std::string& shipId, const std::string& newDock)
+{
+	Ship* ship = m_dataStore.getShipById(shipId);
+	Dock* dock = m_dataStore.getDockById(newDock);
+	if (!ship)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	if (!dock)
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
+	ship->setAssignedDock(dock);
+	return Enums::ProcessStatus::SUCCESS;
+}

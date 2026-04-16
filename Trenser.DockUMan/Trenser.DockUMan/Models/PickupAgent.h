@@ -5,16 +5,14 @@
  * Created: 30-Mar-2026
  */
 #pragma once
-#include "User.h"
 #include<vector>
-
+#include "User.h"
 class Container;
 
-class PickupAgent :
-    public User
+class PickupAgent : public User
 {
 private:
-    std::vector<std::shared_ptr<Container>>m_containers;
+    std::vector<std::shared_ptr<Container>> m_containers;
 public:
     PickupAgent() :User() {};
     PickupAgent(std::string id, std::string name, std::string password, std::string email, std::string phoneNumber, Enums::UserTypes type, Enums::UserStatus status) :
@@ -22,4 +20,3 @@ public:
     std::vector<std::shared_ptr<Container>>getContainers() const;
     void setContainers(const std::vector<std::shared_ptr<Container>>&);
 };
-

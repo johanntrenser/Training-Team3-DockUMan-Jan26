@@ -171,6 +171,9 @@
     <ClCompile Include="Trenser.DockUMan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Services\ApplicationConfig.cpp">
+      <Filter>Services</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Models\BillAndPayment.h">
@@ -307,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="Data\DataStore.h">
       <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Services\ApplicationConfig.h">
+      <Filter>Services</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

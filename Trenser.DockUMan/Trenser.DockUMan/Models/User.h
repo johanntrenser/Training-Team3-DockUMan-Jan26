@@ -6,7 +6,18 @@
  */
 #pragma once
 #include <iostream>
+#include <string>
+#include <sstream>
 #include "Enums.h"
+#include "Factory.h"
+class ShippingAgent;
+class PickupAgent;
+class PortAuthorityAdmin;
+class CustomsOfficer;
+class TerminalOperator;
+class ShipManager;
+//class FinanaceManager;
+
 class User
 {
 private:
@@ -36,6 +47,9 @@ public:
 	void setRole(const Enums::UserTypes&);
 	void setStatus(const Enums::UserStatus&);
 	std::string toString();
+	virtual std::string seralize() const;
+	static User* deserialize(const std::string& record);
+	static std::string getHeaders();
 	virtual ~User() = default;
 };
 

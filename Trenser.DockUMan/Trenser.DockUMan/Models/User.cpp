@@ -5,6 +5,12 @@
  * Created: 30-Mar-2026
  */
 #include "User.h"
+#include "PickupAgent.h"
+#include "PortAuthorityAdmin.h"
+#include "CustomsOfficer.h"
+#include "TerminalOperator.h"
+#include "ShipManager.h"
+ //#include "FinanaceManager.h"
 
 std::string User::getId() const
 {
@@ -77,4 +83,61 @@ void User::setStatus(const Enums::UserStatus& status)
 std::string User::toString()
 {
 	return m_id + " : " + m_name;
+}
+
+std::string User::seralize() const
+{
+	std::ostringstream serializedUser;
+	serializedUser << m_id << ","
+		<< m_name << ","
+		<< m_password << ","
+		<< m_email << ","
+		<< m_phoneNumber << ","
+		<< Enums::getUserTypeInString(m_type) << ","
+		<< Enums::getUserStatusInString(m_status);
+	return serializedUser.str();
+}
+
+User* User::deserialize(const std::string& record)
+{
+	std::string id, name, password, email, phoneNumber;
+	std::string userType, userStatus;
+	std::istringstream serializedUser(record);
+	getline(serializedUser, id, ',');
+	getline(serializedUser, name, ',');
+	getline(serializedUser, password, ',');
+	getline(serializedUser, email, ',');
+	getline(serializedUser, phoneNumber, ',');
+	getline(serializedUser, userType, ',');
+	getline(serializedUser, userStatus, ',');
+	Enums::UserTypes type = Enums::getUserType(userType);
+	Enums::UserStatus status = Enums::getUserStatus(userStatus);
+	switch (type)
+	{
+	case Enums::UserTypes::NOT_ASSIGNED:
+		return Factory::getObject<User>(
+			id, name, password, email, phoneNumber, type, status);
+	case Enums::UserTypes::PICKUP_AGENT:
+		return Factory::getObject<PickupAgent>(
+			id, name, password, email, phoneNumber, type, status);
+	case Enums::UserTypes::PORT_AUTHORITY_ADMINISTRATOR:
+		return Factory::getObject<PortAuthorityAdmin>(
+			id, name, password, email, phoneNumber, type, status);
+	/*case Enums::UserTypes::FINANCE_MANAGER:
+		return Factory::getObject<FinanceManager>(
+			id, name, password, email, phoneNumber);*/
+	case Enums::UserTypes::TERMINAL_OPERATOR:
+		return Factory::getObject<TerminalOperator>(
+			id, name, password, email, phoneNumber, type, status);
+	case Enums::UserTypes::SHIP_MANAGER:
+		return Factory::getObject<ShipManager>(
+			id, name, password, email, phoneNumber, type, status);
+	default:
+		return nullptr;
+	}
+}
+
+std::string User::getHeaders()
+{
+	return "Id,Name,Password,Email,PhoneNumber,Type,Status";
 }

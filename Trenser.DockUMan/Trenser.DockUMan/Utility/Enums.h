@@ -156,5 +156,78 @@ namespace Enums
 			return "Not Available";
 		}
 	}
+	//Converts User Type into human readable string
+	inline std::string getUserTypeInString(Enums::UserTypes userType)
+	{
+		switch (userType)
+		{
+		case Enums::UserTypes::NOT_ASSIGNED:
+			return "Not Assigned";
+		case Enums::UserTypes::PICKUP_AGENT:
+			return "Pickup Agent";
+		case Enums::UserTypes::PORT_AUTHORITY_ADMINISTRATOR:
+			return "Port Authority Administrator";
+		case Enums::UserTypes::FINANCE_MANAGER:
+			return "Finance Manager";
+		case Enums::UserTypes::SHIPPING_AGENT:
+			return "Shipping Agent";
+		case Enums::UserTypes::CUSTOMS_OFFICER:
+			return "Customs Officer";
+		case Enums::UserTypes::TERMINAL_OPERATOR:
+			return "Terminal Operator";
+		case Enums::UserTypes::SHIP_MANAGER:
+			return "Ship Manager";
+		default:
+			return "Unknown User Type";
+		}
+	}
+	//Converts User Status into human readable string
+	inline std::string getUserStatusInString(Enums::UserStatus status)
+	{
+		switch (status)
+		{
+		case Enums::UserStatus::ACTIVE:
+			return "Active";
+		case Enums::UserStatus::INACTIVE:
+			return "Inactive";
+		case Enums::UserStatus::PENDING:
+			return "Pending";
+		default:
+			return "Unknown Status";
+		}
+	}
+	//Converts User Type string into UserType Enum
+	inline Enums::UserTypes getUserType(const std::string& userTypeString)
+	{
+		if (userTypeString == "Not Assigned")
+			return Enums::UserTypes::NOT_ASSIGNED;
+		else if (userTypeString == "Pickup Agent")
+			return Enums::UserTypes::PICKUP_AGENT;
+		else if (userTypeString == "Port Authority Administrator")
+			return Enums::UserTypes::PORT_AUTHORITY_ADMINISTRATOR;
+		else if (userTypeString == "Finance Manager")
+			return Enums::UserTypes::FINANCE_MANAGER;
+		else if (userTypeString == "Shipping Agent")
+			return Enums::UserTypes::SHIPPING_AGENT;
+		else if (userTypeString == "Customs Officer")
+			return Enums::UserTypes::CUSTOMS_OFFICER;
+		else if (userTypeString == "Terminal Operator")
+			return Enums::UserTypes::TERMINAL_OPERATOR;
+		else if (userTypeString == "Ship Manager")
+			return Enums::UserTypes::SHIP_MANAGER;
+		else
+			return Enums::UserTypes::NOT_ASSIGNED;
+	}
+	//Converts User Status string into UserStatus Enum
+	inline Enums::UserStatus getUserStatus(const std::string& statusStr)
+	{
+		if (statusStr == "Active")
+			return Enums::UserStatus::ACTIVE;
+		else if (statusStr == "Inactive")
+			return Enums::UserStatus::INACTIVE;
+		else if (statusStr == "Pending")
+			return Enums::UserStatus::PENDING;
+		else
+			return Enums::UserStatus::INACTIVE;
+	}
 }
-

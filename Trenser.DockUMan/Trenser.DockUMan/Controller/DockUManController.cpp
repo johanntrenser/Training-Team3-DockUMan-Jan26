@@ -64,7 +64,14 @@ std::vector<std::string> DockUManController::getUserDetailByIdAndType(std::strin
 {
 	return m_userService->getUserDetailByIdAndType(userId, role);
 }
-
+/*
+ * Function: sendShipArrivalRequest 
+ * Description: sends Ship Arrival Request 
+ */
+Enums::ProcessStatus DockUManController::sendShipArrivalRequest()
+{
+	return m_shipService->sendShipArrivalRequest();
+}
 /*
  * Function: logoutUser
  * Description: Logs out the current user

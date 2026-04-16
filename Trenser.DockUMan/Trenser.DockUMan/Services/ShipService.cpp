@@ -1,5 +1,11 @@
 #include "ShipService.h"
 
+Ship* ShipService::getShipID()
+{
+	Ship* currentShip = m_dataStore.getshipByShipManager();
+	return currentShip;
+}
+
 Enums::ProcessStatus ShipService::registerShip(std::vector<std::string>& shipInformation, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status, User* agent)
 {
 	Enums::ProcessStatus shipRegisterProcessStatus = registerShipObject(shipInformation, agent, isAvailable, status);
@@ -64,6 +70,15 @@ Enums::ProcessStatus ShipService::trackShipStatus(std::string& shipId,std::strin
 	}
 }
 
+Enums::ProcessStatus ShipService::sendShipArrivalRequest()
+{
+	Ship* currentShip=getShipID();
+	//if(!checkDockAvailability)
+	currentShip->setAvailabilityStatus(Enums::AvailabilityStatus::WAITING);
+	m_dataStore.addShipToWaitingQueue(currentShip);
+	return Enums::ProcessStatus::SUCCESS;
+}
+
 Enums::ProcessStatus ShipService::recordShipArrival(std::string& shipId)
 {
 	std::string timestampString;
@@ -75,7 +90,7 @@ Enums::ProcessStatus ShipService::recordShipArrival(std::string& shipId)
 	util::Timestamp timestamp;
 	timestampString = timestamp.toString();
 	ship->setETA(timestampString);
-	ship->setAvailabilityStatus(Enums::AvailabilityStatus::ARRIVED);
+	ship->setAvailabilityStatus(Enums::AvailabilityStatus::WAITING);
 	return Enums::ProcessStatus::SUCCESS;
 }
 

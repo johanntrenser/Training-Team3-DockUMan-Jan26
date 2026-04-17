@@ -158,6 +158,7 @@
     <ClCompile Include="Models\User.cpp" />
     <ClCompile Include="Models\Yard.cpp" />
     <ClCompile Include="Models\YardBlock.cpp" />
+    <ClCompile Include="Services\ApplicationConfig.cpp" />
     <ClCompile Include="Services\BillAndPaymentService.cpp" />
     <ClCompile Include="Services\BookingService.cpp" />
     <ClCompile Include="Services\ContainerService.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="Models\User.h" />
     <ClInclude Include="Models\Yard.h" />
     <ClInclude Include="Models\YardBlock.h" />
+    <ClInclude Include="Services\ApplicationConfig.h" />
     <ClInclude Include="Services\BillAndPaymentService.h" />
     <ClInclude Include="Services\BookingService.h" />
     <ClInclude Include="Services\ContainerService.h" />

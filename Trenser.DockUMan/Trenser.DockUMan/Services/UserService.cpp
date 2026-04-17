@@ -454,4 +454,66 @@ User* UserService::registerShipManager(std::vector<std::string>& userInformation
 	}
 }
 
+void UserService::loadEmployees()
+{
+	FileManager<User> userFileManager(Config::File::USER_FILE);
+	FileManager<CustomsOfficer> customsOfficerFileManager(Config::File::CUSTOMS_OFFICER_FILE);
+	FileManager<ShippingAgent> shippingAgentFileManager(Config::File::SHIPPING_AGENT_FILE);
+	bool isAdminFound = false;
+	auto& users = m_dataStore.getUsers();
+	auto usersVector = userFileManager.load();
+	auto customsOfficerVector = customsOfficerFileManager.load();
+	auto shippingAgentVector = shippingAgentFileManager.load();
+	for (auto customsOfficer : customsOfficerVector) 
+	{
+		usersVector.push_back(customsOfficer);
+	}
+	for (auto shippingAgent : shippingAgentVector) 
+	{
+		usersVector.push_back(shippingAgent);
+	}
+	users.insert(users.end(), usersVector.begin(), usersVector.end());
+	for (auto& user : users)
+	{
+		if (user->getRole() == Enums::UserTypes::PORT_AUTHORITY_ADMINISTRATOR)
+		{
+			isAdminFound = true;
+			break;
+		}
+	}
+	if (!isAdminFound)
+	{
+		User* admin = Factory::getObject<PortAuthorityAdmin>
+			("100","Admin","Admin@123","Admin@gmail.com","1234576890",Enums::UserTypes::PORT_AUTHORITY_ADMINISTRATOR,Enums::UserStatus::ACTIVE);
+		users.push_back(admin);
+	}
+}
 
+void UserService::saveEmployees()
+{
+	FileManager<User> userFileManager(Config::File::USER_FILE);
+	FileManager<CustomsOfficer> customsOfficerFileManager(Config::File::CUSTOMS_OFFICER_FILE);
+	FileManager<ShippingAgent> shippingAgentFileManager(Config::File::SHIPPING_AGENT_FILE);
+	const auto& allUsers = m_dataStore.getUsers();
+	std::vector<User*> users;
+	std::vector<CustomsOfficer*> customsOfficers;
+	std::vector<ShippingAgent*> shippingAgents;
+	for (auto& user : allUsers)
+	{
+		if (user->getRole() == Enums::UserTypes::CUSTOMS_OFFICER)
+		{
+			customsOfficers.push_back(dynamic_cast<CustomsOfficer*>(user));
+		}
+		else if (user->getRole() == Enums::UserTypes::SHIPPING_AGENT)
+		{
+			shippingAgents.push_back(dynamic_cast<ShippingAgent*>(user));
+		}
+		else
+		{
+			users.push_back(user);
+		}
+	}
+	userFileManager.save(users);
+	customsOfficerFileManager.save(customsOfficers);
+	shippingAgentFileManager.save(shippingAgents);
+}

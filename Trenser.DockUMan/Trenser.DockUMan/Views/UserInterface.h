@@ -60,6 +60,8 @@ public:
 	void sendShipArrivalRequest();
 	void updateShipDetailsUI();
 	void handleUpdateShipDetailsInput(std::string&, int);
+	void loadFiles();
+	void saveFiles();
 	~UserInterface()
 	{
 		delete m_menu;

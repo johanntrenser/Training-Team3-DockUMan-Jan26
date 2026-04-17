@@ -12,7 +12,7 @@
   * Returns:
   *    Reference to vector of users
   */
-const std::vector<User*>& DataStore::getUsers() const
+std::vector<User*>& DataStore::getUsers() 
 {
     return m_users;
 }
@@ -23,7 +23,7 @@ const std::vector<User*>& DataStore::getUsers() const
  * Returns:
  *    Reference to vector of docks
  */
-const std::vector<Dock*>& DataStore::getDocks() const
+std::vector<Dock*>& DataStore::getDocks()
 {
     return m_docks;
 }
@@ -34,7 +34,7 @@ const std::vector<Dock*>& DataStore::getDocks() const
  * Returns:
  *    Reference to vector of yard objects
  */
-const std::vector<Yard*>& DataStore::getYard() const
+std::vector<Yard*>& DataStore::getYard()
 {
     return m_yard;
 }
@@ -45,7 +45,7 @@ const std::vector<Yard*>& DataStore::getYard() const
  * Returns:
  *    Reference to vector of containers
  */
-const std::vector<Container*>& DataStore::getContainers() const
+std::vector<Container*>& DataStore::getContainers()
 {
     return m_containers;
 }
@@ -56,7 +56,7 @@ const std::vector<Container*>& DataStore::getContainers() const
  * Returns:
  *    Reference to vector of cranes
  */
-const std::vector<Crane*>& DataStore::getCranes() const
+std::vector<Crane*>& DataStore::getCranes()
 {
     return m_cranes;
 }
@@ -67,7 +67,7 @@ const std::vector<Crane*>& DataStore::getCranes() const
  * Returns:
  *    Reference to vector of trucks
  */
-const std::vector<Truck*>& DataStore::getTrucks() const
+std::vector<Truck*>& DataStore::getTrucks()
 {
     return m_trucks;
 }
@@ -78,7 +78,7 @@ const std::vector<Truck*>& DataStore::getTrucks() const
  * Returns:
  *    Reference to vector of ships
  */
-const std::vector<Ship*>& DataStore::getShips() const
+std::vector<Ship*>& DataStore::getShips()
 {
     return m_ships;
 }
@@ -89,7 +89,7 @@ const std::vector<Ship*>& DataStore::getShips() const
  * Returns:
  *    Reference to vector of bookings
  */
-const std::vector<Booking*>& DataStore::getBookings() const
+std::vector<Booking*>& DataStore::getBookings()
 {
     return m_bookings;
 }
@@ -100,7 +100,7 @@ const std::vector<Booking*>& DataStore::getBookings() const
  * Returns:
  *    Reference to vector of bill and payment objects
  */
-const std::vector<BillAndPayment*>& DataStore::getBillAndPayments() const
+std::vector<BillAndPayment*>& DataStore::getBillAndPayments()
 {
     return m_billAndPayments;
 }
@@ -111,7 +111,7 @@ const std::vector<BillAndPayment*>& DataStore::getBillAndPayments() const
  * Returns:
  *    Map of container types to threshold objects
  */
-const std::map<Enums::ContainerType, Threshold*>& DataStore::getThresholds() const
+std::map<Enums::ContainerType, Threshold*>& DataStore::getThresholds()
 {
     return m_thresholds;
 }
@@ -122,7 +122,7 @@ const std::map<Enums::ContainerType, Threshold*>& DataStore::getThresholds() con
  * Returns:
  *    Reference to vector of notifications
  */
-const std::vector<Notification*>& DataStore::getNotifications() const
+std::vector<Notification*>& DataStore::getNotifications()
 {
     return m_notifications;
 }
@@ -133,7 +133,7 @@ const std::vector<Notification*>& DataStore::getNotifications() const
  * Returns:
  *    Reference to vector of logs
  */
-const std::vector<Log*>& DataStore::getLogs() const
+std::vector<Log*>& DataStore::getLogs()
 {
     return m_logs;
 }

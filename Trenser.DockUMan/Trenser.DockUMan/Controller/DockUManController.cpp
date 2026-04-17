@@ -281,6 +281,16 @@ Enums::ProcessStatus DockUManController::updateShipAvailabilityStatus(std::strin
 	return m_shipService->updateShipAvailabilityStatus(shipId, newStatus); 
 }
 
+void DockUManController::loadFiles()
+{
+	m_userService->loadEmployees();
+}
+
+void DockUManController::saveFiles()
+{
+	m_userService->saveEmployees();
+}
+
 Enums::ProcessStatus DockUManController::registerShip(std::vector<std::string>& userInformation, std::vector<std::string>& shipInformation, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status)
 {
 	Enums::ProcessStatus processStatus = m_shipService->registerShip(shipInformation, isAvailable, status, m_userService->registerShipManager(userInformation));

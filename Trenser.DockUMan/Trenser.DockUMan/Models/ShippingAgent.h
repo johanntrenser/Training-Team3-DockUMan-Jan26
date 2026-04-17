@@ -6,6 +6,7 @@
  */
 #pragma once
 #include "User.h"
+
 class ShippingAgent :
     public User
 {
@@ -17,5 +18,7 @@ public:
         User(id, name, password, email, phoneNumber,type,status){  };
     std::string getLicenseNumber() const;
     void setLicenseNumber(const std::string&);
+    std::string serialize() const override;
+    static ShippingAgent* deserialize(const std::string& record);
+    static std::string getHeaders();
 };
-

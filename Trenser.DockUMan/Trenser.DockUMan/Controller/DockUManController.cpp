@@ -72,6 +72,11 @@ Enums::ProcessStatus DockUManController::sendShipArrivalRequest()
 {
 	return m_shipService->sendShipArrivalRequest();
 }
+
+Enums::ProcessStatus DockUManController::sendShipDepartureRequest()
+{
+	return m_shipService->sendShipDepartureRequest();
+}
 /*
  * Function: logoutUser
  * Description: Logs out the current user

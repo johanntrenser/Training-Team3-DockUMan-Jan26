@@ -58,6 +58,7 @@ public:
 	void recordShipDeparture();
 	void updateShipAvaillabilityUI();
 	void sendShipArrivalRequest();
+	void sendShipDepartureRequest();
 	void updateShipDetailsUI();
 	void handleUpdateShipDetailsInput(std::string&, int);
 	~UserInterface()

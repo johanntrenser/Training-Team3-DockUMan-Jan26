@@ -971,7 +971,7 @@ void UserInterface::handleUpdateShipDetailsInput(std::string& shipId, int choice
  * Function: sendShipArrivalRequest
  * Description: Sends a ship Arrival request
  * Parameters:
- *    userId - ID of the user
+ *    
  * Returns:
  *    Process status
  */
@@ -980,6 +980,29 @@ void UserInterface::sendShipArrivalRequest()
 	if (m_dockUManController->sendShipArrivalRequest() == Enums::ProcessStatus::SUCCESS)
 	{
 		std::cout << "Arrival Request send and Added to Waiting Queue" << std::endl;
+	}
+	else
+	{
+		std::cout << "Arrival request could not be processed at the moment. Please try again later !" << std::endl;
+	}
+}
+/*
+ * Function: sendShipDepartureRequest
+ * Description: Sends a ship Departure request
+ * Parameters:
+ *    
+ * Returns:
+ *    Process status
+ */
+void UserInterface::sendShipDepartureRequest()
+{
+	if (m_dockUManController->sendShipDepartureRequest() == Enums::ProcessStatus::SUCCESS)
+	{
+		std::cout << "Departure Request approved !" << std::endl;
+	}
+	else
+	{
+		std::cout << "Departure request could not be processed at the moment. Please try again later !" << std::endl;
 	}
 }
 

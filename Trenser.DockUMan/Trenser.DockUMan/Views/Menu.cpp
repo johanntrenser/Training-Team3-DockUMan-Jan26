@@ -17,7 +17,6 @@ void Menu::getAuthenticationMenu()
 	std::cout << "2.Login" << std::endl;
 	std::cout << "3.Exit" << std::endl;
 }
-
 /*
  * Function: getAdminMenu
  * Description: Displays admin menu options
@@ -37,7 +36,6 @@ void Menu::getAdminMenu()
     std::cout << "10. Update Ship Details" << std::endl;
 	std::cout << "11. Logout" << std::endl;
 }
-
 /*
  * Function: getTerminalOperatorMenu
  * Description: Displays terminal operator menu options
@@ -49,7 +47,6 @@ void Menu::getTerminalOperatorMenu()
     std::cout << "2. Crane Operations" << std::endl;
     std::cout << "3. Logout" << std::endl;
 }
-
 /*
  * Function: getTruckOperationsMenu
  * Description: Displays truck operations menu options
@@ -66,7 +63,6 @@ void Menu::getTruckOperationsMenu()
     std::cout << "7. List All Trucks" << std::endl;
     std::cout << "8. Back to Terminal Operator Menu" << std::endl;
 }
-
 /*
  * Function: getCraneOperationsMenu
  * Description: Displays crane operations menu options
@@ -84,7 +80,6 @@ void Menu::getCraneOperationsMenu()
     std::cout << "8. List All Cranes" << std::endl;
     std::cout << "9. Back to Terminal Operator Menu" << std::endl;
 }
-
 /*
  * Function: getUserRolesMenu
  * Description: Displays available user roles for selection
@@ -99,7 +94,6 @@ void Menu::getUserRolesMenu()
     std::cout << "5. Ship Manager\n";
     std::cout << "Select User Role: " << std::endl;
 }
-
 /*
  * Function: getUpdateDetailsMenu
  * Description: Displays options for updating user details
@@ -111,7 +105,6 @@ void Menu::getUpdateDetailsMenu()
     std::cout << "2. Phone Number\n";
     std::cout << "Select Detail to Update: " << std::endl;
 }
-
 /*
  * Function: getAddUserMenu
  * Description: Displays menu for selecting user type to add
@@ -127,4 +120,15 @@ void Menu::getAddUserMenu()
     std::cout << "6. Finance Manager\n";
     std::cout << "7. Customs Officer\n";
     std::cout << "Select User Type: ";
+}
+
+void Menu::getShipManagerMenu()
+{
+    std::cout << "----------------Ship Manager Menu-----------------" << std::endl;
+    std::cout << "1. Send Ship Arrival Request" << std::endl;
+    std::cout << "2. Send Ship Departure Request" << std::endl;
+    std::cout << "3. Update Ship Status" << std::endl;
+    std::cout << "4. Update Ship Details" << std::endl;
+    std::cout << "5. Current Ship Status" << std::endl;
+    std::cout << "6. Logout" << std::endl;
 }

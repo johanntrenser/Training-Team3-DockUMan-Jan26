@@ -6,7 +6,6 @@
  * Created: 02-Apr-2026
  */
 #include "UserService.h"
-
  /*
   * Function: registerUser
   * Description: Registers a new user based on user type and provided information
@@ -45,7 +44,6 @@ Enums::ProcessStatus UserService::registerUser(std::vector<std::string>& userInf
 	}
 	//can add further users if needed in the future
 }
-
 /*
  * Function: authenticateUser
  * Description: Authenticates user based on email and password
@@ -79,7 +77,6 @@ Enums::ProcessStatus UserService::authenticateUser(std::string& email, std::stri
 		return Enums::ProcessStatus::FAILED;
 	}
 }
-
 /*
  * Function: getUserType
  * Description: Retrieves user type based on email
@@ -98,7 +95,6 @@ Enums::UserTypes UserService::getUserType(std::string& email)
 	}
 	return Enums::UserTypes::NOT_ASSIGNED;    //check later if other error to be replaced with
 }
-
 /*
  * Function: getUserDetailByIdAndType
  * Description: Retrieves user details by user ID and role
@@ -122,7 +118,6 @@ std::vector<std::string> UserService::getUserDetailByIdAndType(std::string& user
 	userDetails.clear();
 	return userDetails;
 }
-
 /*
  * Function: IsPhoneNumberUnique
  * Description: Checks if the given phone number is unique
@@ -143,7 +138,6 @@ bool UserService::IsPhoneNumberUnique(const std::string& phoneNumber)
 	}
 	return true;
 }
-
 /*
  * Function: IsEmailIdUnique
  * Description: Checks if the given email ID is unique
@@ -164,7 +158,6 @@ bool UserService::IsEmailIdUnique(const std::string& email)
 	}
 	return true;
 }
-
 /*
  * Function: IsLicenseNumberUnique
  * Description: Checks if the given license number is unique among shipping agents
@@ -192,7 +185,6 @@ bool UserService::IsLicenseNumberUnique(const std::string& licenseNumber)
 	}
 	return true;
 }
-
 /*
  * Function: IsBadgeNumberUnique
  * Description: Checks if the given badge number is unique among customs officers
@@ -220,7 +212,6 @@ bool UserService::IsBadgeNumberUnique(const std::string& badgeNumber)
 	}
 	return true;
 }
-
 /*
  * Function: logoutUser
  * Description: Logs out the currently active user
@@ -229,7 +220,6 @@ void UserService::logoutUser()
 {
 	m_dataStore.setCurrentUser(nullptr);
 }
-
 /*
  * Function: getUserList
  * Description: Retrieves list of all users
@@ -246,7 +236,6 @@ std::vector<std::string> UserService::getUserList()
 	}
 	return userList;
 }
-
 /*
  * Function: addUser
  * Description: Adds a new user of specified type
@@ -302,7 +291,6 @@ Enums::ProcessStatus UserService::addUser(std::vector<std::string>& userInformat
 		return Enums::ProcessStatus::FAILED;
 	}
 }
-
 /*
  * Function: changeCurrentUserPassword
  * Description: Changes password of the currently logged-in user
@@ -324,7 +312,6 @@ Enums::ProcessStatus UserService::changeCurrentUserPassword(std::string& passwor
 		return Enums::ProcessStatus::SUCCESS;
 	}
 }
-
 /*
  * Function: getUserListByRole
  * Description: Retrieves list of users filtered by role
@@ -346,7 +333,6 @@ std::vector<std::string> UserService::getUserListByRole(Enums::UserTypes role)
 	}
 	return userList;
 }
-
 /*
  * Function: updatedUserPhoneNumber
  * Description: Updates phone number of a user
@@ -370,7 +356,6 @@ Enums::ProcessStatus UserService::updatedUserPhoneNumber(std::string& userId, st
 	}
 	return Enums::ProcessStatus::FAILED;
 }
-
 /*
  * Function: updatedUserEmailId
  * Description: Updates email ID of a user
@@ -394,7 +379,6 @@ Enums::ProcessStatus UserService::updatedUserEmailId(std::string& userId, std::s
 	}
 	return Enums::ProcessStatus::FAILED;
 }
-
 /*
  * Function: changeUserStatus
  * Description: Changes the status of a user
@@ -417,7 +401,14 @@ Enums::ProcessStatus UserService::changeUserStatus(std::string& userId, Enums::U
 		return Enums::ProcessStatus::FAILED;
 	}
 }
-
+/*
+ * Function: deactivateUser
+ * Description: Deactivates a user by setting their status to INACTIVE.
+ * Parameters:
+ *    userId - ID of the user to deactivate
+ * Returns:
+ *    Process status (SUCCESS or FAILED)
+ */
 Enums::ProcessStatus UserService::deactivateUser(std::string& userId)
 {
 	User* user = m_dataStore.getUserById(userId); // could be a problem later because of function renaming. check function calls
@@ -431,7 +422,14 @@ Enums::ProcessStatus UserService::deactivateUser(std::string& userId)
 		return Enums::ProcessStatus::FAILED;
 	}
 }
-
+/*
+  * Function: registerShipManager
+  * Description: Registers a new Ship Manager user with the provided details.
+  * Parameters:
+  *    userInformation - vector containing user details (ID, name, password, email, phone number)
+  * Returns:
+  *    Pointer to the created ShipManager object if successful, nullptr otherwise
+  */
 User* UserService::registerShipManager(std::vector<std::string>& userInformation)
 {
 	std::string  id, name, password, email, phoneNumber;
@@ -453,7 +451,15 @@ User* UserService::registerShipManager(std::vector<std::string>& userInformation
 		return nullptr;
 	}
 }
-
+/*
+ * Function: loadEmployees
+ * Description: Loads users, customs officers, and shipping agents from files into the datastore.
+ *              Ensures that a Port Authority Administrator exists; creates one if not found.
+ * Parameters:
+ *    None
+ * Returns:
+ *    None
+ */
 void UserService::loadEmployees()
 {
 	FileManager<User> userFileManager(Config::File::USER_FILE);
@@ -488,7 +494,14 @@ void UserService::loadEmployees()
 		users.push_back(admin);
 	}
 }
-
+/*
+ * Function: saveEmployees
+ * Description: Saves all users, customs officers, and shipping agents from the datastore into their respective files.
+ * Parameters:
+ *    None
+ * Returns:
+ *    None
+ */
 void UserService::saveEmployees()
 {
 	FileManager<User> userFileManager(Config::File::USER_FILE);

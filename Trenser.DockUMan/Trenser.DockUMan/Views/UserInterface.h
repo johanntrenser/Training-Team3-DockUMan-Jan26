@@ -32,6 +32,7 @@ public:
 	void handleShippingAgentUserInput(std::vector<std::string>&);
 	void logoutUser();
 	void handleAdminMenu();
+	void handleShipManagerMenu();
 	void handleTerminalOperatorMenu();
 	void handleTruckOperations();
 	void handleCraneOperations();
@@ -54,9 +55,7 @@ public:
 	void handleRegisterShipManager(std::vector<std::string>&);
 	bool getShipList();
 	void trackShipStatus();
-	void recordShipArrival();
-	void recordShipDeparture();
-	void updateShipAvaillabilityUI();
+	void updateShipAvailabilityUI();
 	void sendShipArrivalRequest();
 	void sendShipDepartureRequest();
 	void updateShipDetailsUI();

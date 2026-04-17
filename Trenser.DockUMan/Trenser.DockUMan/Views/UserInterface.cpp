@@ -6,7 +6,6 @@
  * Created: 02-Apr-2026
  */
 #include "UserInterface.h"
-
  /*
   * Function: start
   * Description: Initializes and manages the authentication menu loop
@@ -32,7 +31,6 @@ void UserInterface::start()
 	}
 	saveFiles();
 }
-
 /*
  * Function: handleAuthenticationOperation
  * Description: Processes user choice from authentication menu
@@ -59,7 +57,6 @@ void UserInterface::handleAuthenticationOperation(const int& choice,bool& isMenu
 		break;
 	}
 }
-
 /*
  * Function: authenticateUser
  * Description: Handles user login and redirects to respective menus upon success
@@ -93,7 +90,6 @@ void UserInterface::authenticateUser()
 		}
 	}
 }
-
 /*
  * Function: registerShippingAgentUI
  * Description: Handles UI flow for registering a shipping agent
@@ -121,7 +117,6 @@ void UserInterface::registerShippingAgentUI()
 		std::cout << "Exception : " << e.what() << std::endl;
 	}
 }
-
 /*
  * Function: handleCommonUserInput
  * Description: Collects and validates common user details
@@ -159,7 +154,6 @@ void UserInterface::handleCommonUserInput(std::vector<std::string>& userInformat
 	}
 	userInformation.push_back(phoneNumber);
 }
-
 /*
  * Function: handleMenus
  * Description: Routes user to appropriate menu based on user type
@@ -182,7 +176,7 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 	}
 	else if (userType == Enums::UserTypes::SHIP_MANAGER)
 	{
-		//call ship manager menu
+		handleShipManagerMenu();
 	}
 	else if (userType == Enums::UserTypes::TERMINAL_OPERATOR)
 	{
@@ -197,7 +191,6 @@ void UserInterface::handleMenus(Enums::UserTypes userType)
 		//call custom officer menu
 	}
 }
-
 /*
  * Function: getUserType
  * Description: Retrieves user type based on email
@@ -214,7 +207,6 @@ Enums::UserTypes UserInterface::getUserType(std::string& email)
 void UserInterface::showUserMenu(Enums::UserTypes)
 {
 }
-
 /*
  * Function: handleShippingAgentUserInput
  * Description: Collects input specific to shipping agent registration
@@ -238,7 +230,6 @@ void UserInterface::handleShippingAgentUserInput(std::vector<std::string>& userI
 	}
 	userInformation.push_back(licenseNumber);
 }
-
 /*
  * Function: handleCustomsOfficerUserInput
  * Description: Collects input specific to customs officer registration
@@ -263,7 +254,6 @@ void UserInterface::handleCustomsOfficerUserInput(std::vector<std::string>& user
 	}
 	userInformation.push_back(badgeNumber);
 }
-
 /*
  * Function: handleShipManagerUserInput
  * Description: Collects input for ship manager registration
@@ -278,7 +268,6 @@ void UserInterface::handleShipManagerUserInput(std::vector<std::string>& userInf
 	userInformation.push_back(id);
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
-
 /*
  * Function: handlePickupAgentUserInput
  * Description: Collects input for pickup agent registration
@@ -293,7 +282,6 @@ void UserInterface::handlePickupAgentUserInput(std::vector<std::string>& userInf
 	userInformation.push_back(id);
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
-
 /*
  * Function: handlePortAuthorityAdminUserInput
  * Description: Collects input for port authority administrator registration
@@ -308,7 +296,6 @@ void UserInterface::handlePortAuthorityAdminUserInput(std::vector<std::string>& 
 	userInformation.push_back(id);
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
-
 /*
  * Function: handleFinanceManagerUserInput
  * Description: Collects input for finance manager registration
@@ -323,7 +310,6 @@ void UserInterface::handleFinanceManagerUserInput(std::vector<std::string>& user
 	userInformation.push_back(id);
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
-
 /*
  * Function: handleTerminalOperatorUserInput
  * Description: Collects input for terminal operator registration
@@ -338,7 +324,6 @@ void UserInterface::handleTerminalOperatorUserInput(std::vector<std::string>& us
 	userInformation.push_back(id);
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
-
 /*
  * Function: logoutUser
  * Description: Logs out the currently authenticated user
@@ -347,7 +332,6 @@ void UserInterface::logoutUser()
 {
 	m_dockUManController->logoutUser();
 }
-
 /*
  * Function: handleAdminMenu
  * Description: Displays and processes admin menu operations
@@ -375,7 +359,7 @@ void UserInterface::handleAdminMenu()
 				updateUserDetailsUI();
 				break;
 			case 4:
-				recordShipArrival();
+				sendShipArrivalRequest();
 				break;
 			case 5:
 				trackShipStatus();
@@ -387,10 +371,10 @@ void UserInterface::handleAdminMenu()
 				registerShipUI();
 				break;
 			case 8:
-				recordShipDeparture();
+				sendShipDepartureRequest();
 				break;
 			case 9:
-				updateShipAvaillabilityUI();
+				updateShipAvailabilityUI();
 				break;
 			case 10:
 				updateShipDetailsUI();
@@ -411,7 +395,50 @@ void UserInterface::handleAdminMenu()
 		}
 	}
 }
-
+void UserInterface::handleShipManagerMenu()
+{
+	bool isMenuActive = true;
+	while (isMenuActive)
+	{
+		try
+		{
+			m_menu->getShipManagerMenu();
+			int choice;
+			std::cout << "\nEnter Choice : ";
+			util::read<int>(choice);
+			switch (choice)
+			{
+			case 1:
+				sendShipArrivalRequest();
+				break;
+			case 2:
+				sendShipDepartureRequest();
+				break;
+			case 3:
+				updateShipAvailabilityUI();
+				break;
+			case 4:
+				updateShipDetailsUI();
+				break;
+			case 5:
+				trackShipStatus();
+				break;
+			case 6:
+				logoutUser();
+				isMenuActive = false;
+				std::cout << "Logging out ..." << std::endl;
+				break;
+			default:
+				std::cout << "Invalid Input!" << std::endl;
+				break;
+			}
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << "Exception Occurred : " << e.what() << std::endl;
+		}
+	}
+}
 /*
  * Function: handleTerminalOperatorMenu
  * Description: Displays and processes terminal operator menu operations
@@ -450,7 +477,6 @@ void UserInterface::handleTerminalOperatorMenu()
 		}
 	}
 }
-
 /*
  * Function: handleTruckOperations
  * Description: Handles truck-related operations menu
@@ -494,7 +520,6 @@ void UserInterface::handleTruckOperations()
 		}
 	}
 }
-
 /*
  * Function: handleCraneOperations
  * Description: Handles crane-related operations menu
@@ -541,7 +566,6 @@ void UserInterface::handleCraneOperations()
 		}
 	}
 }
-
 /*
  * Function: handleUserUpdate
  * Description: Handles updating user details based on role
@@ -564,7 +588,6 @@ void UserInterface::handleUserUpdate(Enums::UserTypes role)
 	displayList(userDetails);
 	updateUserAttributeUI(userId);
 }
-
 /*
  * Function: getUserList
  * Description: Retrieves and displays all users
@@ -575,7 +598,6 @@ void UserInterface::getUserList()
 	userList = m_dockUManController->getUserList();
 	displayList(userList);
 }
-
 /*
  * Function: displayList
  * Description: Displays a list of strings
@@ -589,7 +611,6 @@ void UserInterface::displayList(std::vector<std::string>& list)
 		std::cout << *iterator << std::endl;
 	}
 }
-
 /*
  * Function: updateUserDetailsUI
  * Description: Handles UI for updating user details
@@ -629,7 +650,6 @@ void UserInterface::updateUserDetailsUI()
 		std::cout << "Exception : " << e.what() << std::endl;
 	}
 }
-
 /*
  * Function: changeCurrentUserPassword
  * Description: Changes password of the current user
@@ -644,7 +664,6 @@ Enums::ProcessStatus UserInterface::changeCurrentUserPassword()
 	validator::validatePassword(newPassword);
 	return m_dockUManController->changeCurrentUserPassword(newPassword);
 }
-
 /*
  * Function: updateUserAttributeUI
  * Description: Updates specific user attributes like email or phone number
@@ -704,7 +723,6 @@ void UserInterface::updateUserAttributeUI(std::string& userId)
 		std::cout << "Exception : " << e.what() << std::endl;
 	}
 }
-
 /*
  * Function: deactivateUser
  * Description: Deactivates a user account
@@ -717,7 +735,15 @@ Enums::ProcessStatus UserInterface::deactivateUser(std::string& userId)
 {
 	return m_dockUManController->deactivateUser(userId);
 }
-
+/*
+ * Function: registerShipUI
+ * Description: Handles user input for registering a new ship and its manager,
+ *              then delegates registration to the controller.
+ * Parameters:
+ *    None
+ * Returns:
+ *    None
+ */
 void UserInterface::registerShipUI()
 {
 	bool isMenuActive = true;
@@ -746,7 +772,14 @@ void UserInterface::registerShipUI()
 		std::cout << "Exception : " << e.what() << std::endl;
 	}
 }
-
+/*
+ * Function: handleRegisterShipInput
+ * Description: Collects ship details (ID and Name) from user input.
+ * Parameters:
+ *    shipInformation - vector to store ship details
+ * Returns:
+ *    None
+ */
 void UserInterface::handleRegisterShipInput(std::vector<std::string>& shipInformation)
 {
 	std::string id, name;
@@ -757,7 +790,15 @@ void UserInterface::handleRegisterShipInput(std::vector<std::string>& shipInform
 	util::read(name);
 	shipInformation.push_back(name);
 }
-
+/*
+ * Function: handleRegisterShipManager
+ * Description: Collects ship manager details (ID, name, password, email, phone)
+ *              and stores them in the provided vector.
+ * Parameters:
+ *    userInformation - vector to store manager details
+ * Returns:
+ *    None
+ */
 void UserInterface::handleRegisterShipManager(std::vector<std::string>&userInformation)
 {
 	std::string id, name, password, email, phoneNumber;
@@ -768,7 +809,14 @@ void UserInterface::handleRegisterShipManager(std::vector<std::string>&userInfor
 	userInformation.push_back(id);
 	handleCommonUserInput(userInformation, name, password, email, phoneNumber);
 }
-
+/*
+ * Function: getShipList
+ * Description: Retrieves and displays the list of ships from the controller.
+ * Parameters:
+ *    None
+ * Returns:
+ *    true if ships are found, false otherwise
+ */
 bool UserInterface::getShipList()
 {
 	std::vector<std::string> shipList;
@@ -786,7 +834,14 @@ bool UserInterface::getShipList()
 		return true;
 	}
 }
-
+/*
+ * Function: trackShipStatus
+ * Description: Allows user to input a ship ID and retrieves its current status.
+ * Parameters:
+ *    None
+ * Returns:
+ *    None
+ */
 void UserInterface::trackShipStatus()
 {
 	std::string shipId,shipStatus;
@@ -806,48 +861,15 @@ void UserInterface::trackShipStatus()
 		}
 	}
 }
-
-void UserInterface::recordShipArrival()
-{
-	std::string shipId, shipStatus;
-	Enums::ProcessStatus status;
-	if ((getShipList()))
-	{
-		std::cout << "Enter ship ID : " << std::endl;
-		util::read(shipId);
-		status = m_dockUManController->recordShipArrival(shipId);
-		if (status == Enums::ProcessStatus::SUCCESS)
-		{
-			std::cout << "Arrival time recorded ! " << std::endl;
-		}
-		else
-		{
-			std::cout << "Could not record time !" << std::endl;
-		}
-	}
-}
-
-void UserInterface::recordShipDeparture()
-{
-	std::string shipId, shipStatus;
-	Enums::ProcessStatus status;
-	if ((getShipList()))
-	{
-		std::cout << "Enter ship ID : " << std::endl;
-		util::read(shipId);
-		status = m_dockUManController->recordShipDeparture(shipId);
-		if (status == Enums::ProcessStatus::SUCCESS)
-		{
-			std::cout << "Departure time recorded ! " << std::endl;
-		}
-		else
-		{
-			std::cout << "Could not record time !" << std::endl;
-		}
-	}
-}
-
-void UserInterface::updateShipAvaillabilityUI()
+/*
+ * Function: updateShipAvaillabilityUI
+ * Description: Updates the availability status of a ship based on user input.
+ * Parameters:
+ *    None
+ * Returns:
+ *    None
+ */
+void UserInterface::updateShipAvailabilityUI()
 {
 	std::string shipId;
 	int choice;
@@ -893,7 +915,14 @@ void UserInterface::updateShipAvaillabilityUI()
 		std::cout << e.what() << "Exception Occured. Try Again." << std::endl;
 	}
 }
-
+/*
+ * Function: updateShipDetailsUI
+ * Description: Provides options to update ship details such as name, ETA, ETD, or dock assignment.
+ * Parameters:
+ *    None
+ * Returns:
+ *    None
+ */
 void UserInterface::updateShipDetailsUI()
 {
 	std::string shipId;
@@ -921,7 +950,15 @@ void UserInterface::updateShipDetailsUI()
 		std::cout << e.what() << "Exception Occured. Try Again." << std::endl;
 	}
 }
-
+/*
+ * Function: handleUpdateShipDetailsInput
+ * Description: Handles updating specific ship details based on user choice.
+ * Parameters:
+ *    shipId - ID of the ship to update
+ *    choice - detail option selected by the user
+ * Returns:
+ *    None
+ */
 void UserInterface::handleUpdateShipDetailsInput(std::string& shipId, int choice)
 {
 	std::string updatedValue;
@@ -968,7 +1005,6 @@ void UserInterface::handleUpdateShipDetailsInput(std::string& shipId, int choice
 		std::cout << e.what() << "Exception Occured. Try again." << std::endl;
 	}
 }
-
 /*
  * Function: sendShipArrivalRequest
  * Description: Sends a ship Arrival request
@@ -1007,7 +1043,6 @@ void UserInterface::sendShipDepartureRequest()
 		std::cout << "Departure request could not be processed at the moment. Please try again later !" << std::endl;
 	}
 }
-
 /*
  * Function: approveUser
  * Description: Approves a user account
@@ -1020,7 +1055,6 @@ Enums::ProcessStatus UserInterface::approveUser(std::string& userId)
 {
 	return m_dockUManController->approveUser(userId);
 }
-
 /*
  * Function: addUserUI
  * Description: Handles UI flow for adding new users of different roles

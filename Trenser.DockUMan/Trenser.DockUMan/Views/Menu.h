@@ -18,4 +18,5 @@ public:
 	void getUserRolesMenu();
 	void getUpdateDetailsMenu();
 	void getAddUserMenu();
+	void getShipManagerMenu();
 };

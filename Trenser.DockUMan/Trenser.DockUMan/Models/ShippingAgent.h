@@ -18,7 +18,7 @@ public:
         User(id, name, password, email, phoneNumber,type,status){  };
     std::string getLicenseNumber() const;
     void setLicenseNumber(const std::string&);
-    std::string seralize() const override;
-    static User* deserialize(const std::string& record);
+    std::string serialize() const override;
+    static ShippingAgent* deserialize(const std::string& record);
     static std::string getHeaders();
 };

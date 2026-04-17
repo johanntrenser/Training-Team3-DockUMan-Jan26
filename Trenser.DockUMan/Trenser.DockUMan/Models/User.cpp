@@ -85,7 +85,7 @@ std::string User::toString()
 	return m_id + " : " + m_name;
 }
 
-std::string User::seralize() const
+std::string User::serialize() const
 {
 	std::ostringstream serializedUser;
 	serializedUser << m_id << ","

@@ -16,7 +16,7 @@ void ShippingAgent::setLicenseNumber(const std::string& licenseNumber)
 	m_licenseNumber = licenseNumber;
 }
 
-std::string ShippingAgent::seralize() const
+std::string ShippingAgent::serialize() const
 {
 	std::ostringstream serializedUser;
 	serializedUser << User::getId() << ","
@@ -30,7 +30,7 @@ std::string ShippingAgent::seralize() const
 	return serializedUser.str();
 }
 
-User* ShippingAgent::deserialize(const std::string& record)
+ShippingAgent* ShippingAgent::deserialize(const std::string& record)
 {
 	std::string id, name, password, email, phoneNumber;
 	std::string userType, userStatus, licenseNumber;

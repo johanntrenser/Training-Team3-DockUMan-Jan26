@@ -46,6 +46,8 @@ public:
 	Enums::ProcessStatus updateShipETA(std::string&, const std::string&);
 	Enums::ProcessStatus updateShipETD(std::string&, const std::string&);
 	Enums::ProcessStatus updateShipDock(std::string&, const std::string&);
+	void loadFiles();
+	void saveFiles();
 	~DockUManController()
 	{
 		delete m_userService;

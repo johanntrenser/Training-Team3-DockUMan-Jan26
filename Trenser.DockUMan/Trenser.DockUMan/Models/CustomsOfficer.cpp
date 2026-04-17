@@ -14,7 +14,7 @@ void CustomsOfficer::setBadgeNumber(const std::string& badgeNumber)
 	m_badgeNumber = badgeNumber;
 }
 
-std::string CustomsOfficer::seralize() const
+std::string CustomsOfficer::serialize() const
 {
 	std::ostringstream serializedUser;
 	serializedUser << User::getId() << ","
@@ -28,7 +28,7 @@ std::string CustomsOfficer::seralize() const
 	return serializedUser.str();
 }
 
-User* CustomsOfficer::deserialize(const std::string& record)
+CustomsOfficer* CustomsOfficer::deserialize(const std::string& record)
 {
 	std::string id, name, password, email, phoneNumber;
 	std::string userType, userStatus, badgeNumber;

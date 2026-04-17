@@ -1,9 +1,9 @@
 #pragma once
 #include <stdexcept>
-#include<map>
+#include<vector>
 #include "FileIO.h"
 
-template <typename T> using objects = std::map<std::string, T*>;
+template <typename T> using objects = std::vector<T*>;
 
 template <typename T>
 class FileManager
@@ -35,7 +35,7 @@ objects<T> FileManager<T>::load()
         {
             throw std::runtime_error("Failed to deserialize record");
         }
-        records[object->getId()] = object;
+        records.push_back(object);
     }
     return records;
 }
@@ -45,9 +45,9 @@ void FileManager<T>::save(const objects<T>& records)
 {
     std::vector<std::string> lines;
     lines.push_back(T::getHeaders());
-    for (const auto& recordPair : records)
+    for (const auto& record : records)
     {
-        lines.push_back(recordPair.second->serialize());
+        lines.push_back(record->serialize());
     }
     FileIO::writeAllLines(m_filePath, lines);
 }

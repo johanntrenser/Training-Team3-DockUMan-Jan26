@@ -13,6 +13,7 @@
   */
 void UserInterface::start()
 {
+	loadFiles();
 	bool isMenuActive = true;
 	while (isMenuActive)
 	{
@@ -29,6 +30,7 @@ void UserInterface::start()
 			std::cout << "Exception : " << e.what() << std::endl << std::endl;
 		}
 	}
+	saveFiles();
 }
 
 /*
@@ -1058,4 +1060,14 @@ void UserInterface::addUserUI()
 	{
 		std::cout << "Exception : " << e.what() << std::endl;
 	}
+}
+
+void UserInterface::loadFiles()
+{
+	m_dockUManController->loadFiles();
+}
+
+void UserInterface::saveFiles()
+{
+	m_dockUManController->saveFiles();
 }

@@ -47,7 +47,7 @@ public:
 	void setRole(const Enums::UserTypes&);
 	void setStatus(const Enums::UserStatus&);
 	std::string toString();
-	virtual std::string seralize() const;
+	virtual std::string serialize() const;
 	static User* deserialize(const std::string& record);
 	static std::string getHeaders();
 	virtual ~User() = default;

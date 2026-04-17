@@ -73,10 +73,27 @@ Enums::ProcessStatus ShipService::trackShipStatus(std::string& shipId,std::strin
 Enums::ProcessStatus ShipService::sendShipArrivalRequest()
 {
 	Ship* currentShip=getShipID();
-	//if(!checkDockAvailability)
+	//if(!checkDockAvailability) dock next ship in waiting queue
 	currentShip->setAvailabilityStatus(Enums::AvailabilityStatus::WAITING);
 	m_dataStore.addShipToWaitingQueue(currentShip);
 	return Enums::ProcessStatus::SUCCESS;
+}
+
+Enums::ProcessStatus ShipService::sendShipDepartureRequest()
+{
+	Ship* currentShip = getShipID();
+	if (currentShip->getAvailabilityStatus() == Enums::AvailabilityStatus::DOCKED)
+	{
+		currentShip->setAvailabilityStatus(Enums::AvailabilityStatus::DEPARTED);
+		m_dataStore.removeShipFromWaitingQueue();
+		currentShip->setAssignedDock(nullptr);
+		//dock next ship in waiting queue
+		return Enums::ProcessStatus::SUCCESS;
+	}
+	else
+	{
+		return Enums::ProcessStatus::FAILED;
+	}
 }
 
 Enums::ProcessStatus ShipService::recordShipArrival(std::string& shipId)

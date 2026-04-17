@@ -27,6 +27,7 @@ public:
 	std::vector<std::string> getUserList();
 	std::vector<std::string> getUserListByRole(Enums::UserTypes);
 	Enums::ProcessStatus sendShipArrivalRequest();
+	Enums::ProcessStatus sendShipDepartureRequest();
 	Enums::ProcessStatus updatedUserPhoneNumber(std::string&, std::string&);
 	Enums::ProcessStatus updatedUserEmailId(std::string&, std::string&);
 	Enums::ProcessStatus IsEmailIdUnique(std::string& email);

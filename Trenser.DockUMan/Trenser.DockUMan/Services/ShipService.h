@@ -22,6 +22,7 @@ public:
 	Enums::ProcessStatus recordShipArrival(std::string& shipId);
 	Enums::ProcessStatus recordShipDeparture(std::string& shipId);
 	Enums::ProcessStatus sendShipArrivalRequest();
+	Enums::ProcessStatus sendShipDepartureRequest();
 	Enums::ProcessStatus updateShipAvailabilityStatus(std::string&, Enums::AvailabilityStatus);
 	Enums::ProcessStatus updateShipName(std::string&, const std::string&);
 	Enums::ProcessStatus updateShipETA(std::string&, const std::string&);

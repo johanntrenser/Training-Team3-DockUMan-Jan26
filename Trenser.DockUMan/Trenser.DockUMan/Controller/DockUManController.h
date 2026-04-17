@@ -42,8 +42,6 @@ public:
 	Enums::ProcessStatus approveUser(std::string&);
 	Enums::ProcessStatus updateShipAvailabilityStatus(std::string&, Enums::AvailabilityStatus);
 	Enums::ProcessStatus updateShipName(std::string&, const std::string&);
-	Enums::ProcessStatus updateShipETA(std::string&, const std::string&);
-	Enums::ProcessStatus updateShipETD(std::string&, const std::string&);
 	Enums::ProcessStatus updateShipDock(std::string&, const std::string&);
 	void loadFiles();
 	void saveFiles();

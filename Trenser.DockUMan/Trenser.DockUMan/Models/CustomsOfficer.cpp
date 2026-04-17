@@ -13,3 +13,40 @@ void CustomsOfficer::setBadgeNumber(const std::string& badgeNumber)
 {
 	m_badgeNumber = badgeNumber;
 }
+
+std::string CustomsOfficer::serialize() const
+{
+	std::ostringstream serializedUser;
+	serializedUser << User::getId() << ","
+		<< User::getName() << ","
+		<< User::getPassword() << ","
+		<< User::getEmail() << ","
+		<< User::getPhoneNumber() << ","
+		<< Enums::getUserTypeInString(User::getRole()) << ","
+		<< Enums::getUserStatusInString(User::getStatus()) << ","
+		<< m_badgeNumber;
+	return serializedUser.str();
+}
+
+CustomsOfficer* CustomsOfficer::deserialize(const std::string& record)
+{
+	std::string id, name, password, email, phoneNumber;
+	std::string userType, userStatus, badgeNumber;
+	std::istringstream serializedUser(record);
+	getline(serializedUser, id, ',');
+	getline(serializedUser, name, ',');
+	getline(serializedUser, password, ',');
+	getline(serializedUser, email, ',');
+	getline(serializedUser, phoneNumber, ',');
+	getline(serializedUser, userType, ',');
+	getline(serializedUser, userStatus, ',');
+	getline(serializedUser, badgeNumber, ',');
+	Enums::UserTypes type = Enums::getUserType(userType);
+	Enums::UserStatus status = Enums::getUserStatus(userStatus);
+	return Factory::getObject<CustomsOfficer>(badgeNumber, id, name, password, email, phoneNumber, type, status);
+}
+
+std::string CustomsOfficer::getHeaders()
+{
+	return "Id,Name,Password,Email,PhoneNumber,Type,Status,Badge Number";
+}

@@ -6,6 +6,7 @@
  */
 #pragma once
 #include "User.h"
+
 class CustomsOfficer :
     public User
 {
@@ -17,5 +18,7 @@ public:
         User(id, name, password, email, phoneNumber,type,status) {};
     std::string getBadgeNumber() const;
     void setBadgeNumber(const std::string&);
+    std::string serialize() const override;
+    static CustomsOfficer* deserialize(const std::string& record);
+    static std::string getHeaders();
 };
-

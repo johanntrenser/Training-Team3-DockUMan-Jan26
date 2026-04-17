@@ -17,8 +17,9 @@
 #include "TerminalOperator.h"
 #include "PickupAgent.h"
 #include "PortAuthorityAdmin.h"
-#include "ShipManager.h"
 #include "DataStore.h"
+#include "FileManager.h"
+#include "ApplicationConfig.h"
 
 class UserService
 {
@@ -44,6 +45,8 @@ public:
 	Enums::ProcessStatus changeUserStatus(std::string&, Enums::UserStatus);
 	Enums::ProcessStatus deactivateUser(std::string&);
 	User* registerShipManager(std::vector<std::string>&);
+	void loadEmployees();
+	void saveEmployees();
 };
 
 

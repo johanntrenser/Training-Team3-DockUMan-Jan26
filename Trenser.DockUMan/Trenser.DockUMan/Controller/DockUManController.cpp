@@ -64,7 +64,19 @@ std::vector<std::string> DockUManController::getUserDetailByIdAndType(std::strin
 {
 	return m_userService->getUserDetailByIdAndType(userId, role);
 }
+/*
+ * Function: sendShipArrivalRequest 
+ * Description: sends Ship Arrival Request 
+ */
+Enums::ProcessStatus DockUManController::sendShipArrivalRequest()
+{
+	return m_shipService->sendShipArrivalRequest();
+}
 
+Enums::ProcessStatus DockUManController::sendShipDepartureRequest()
+{
+	return m_shipService->sendShipDepartureRequest();
+}
 /*
  * Function: logoutUser
  * Description: Logs out the current user
@@ -269,6 +281,20 @@ Enums::ProcessStatus DockUManController::approveUser(std::string& userId)
 	return m_userService->changeUserStatus(userId, Enums::UserStatus::ACTIVE);
 }
 
+Enums::ProcessStatus DockUManController::updateShipAvailabilityStatus(std::string& shipId, Enums::AvailabilityStatus newStatus)
+{
+	return m_shipService->updateShipAvailabilityStatus(shipId, newStatus); 
+}
+
+void DockUManController::loadFiles()
+{
+	m_userService->loadEmployees();
+}
+
+void DockUManController::saveFiles()
+{
+	m_userService->saveEmployees();
+}
 
 Enums::ProcessStatus DockUManController::registerShip(std::vector<std::string>& userInformation, std::vector<std::string>& shipInformation, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status)
 {
@@ -282,14 +308,14 @@ Enums::ProcessStatus DockUManController::trackShipStatus(std::string& shipId,std
 	return status;
 }
 
-Enums::ProcessStatus DockUManController::recordShipArrival(std::string& shipId)
+Enums::ProcessStatus DockUManController::updateShipName(std::string& shipId, const std::string& newShipName)
 {
-	Enums::ProcessStatus status = m_shipService->recordShipArrival(shipId);
+	Enums::ProcessStatus status = m_shipService->updateShipName(shipId, newShipName);
 	return status;
 }
 
-Enums::ProcessStatus DockUManController::recordShipDeparture(std::string& shipId)
+Enums::ProcessStatus DockUManController::updateShipDock(std::string& shipId, const std::string& newDock)
 {
-	Enums::ProcessStatus status = m_shipService->recordShipDeparture(shipId);
+	Enums::ProcessStatus status = m_shipService->updateShipDock(shipId, newDock);
 	return status;
 }

@@ -8,6 +8,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <queue>
 #include<utility>
 #include <map>
 #include "User.h"
@@ -41,22 +42,25 @@ private:
     std::vector<Notification*> m_notifications;
     std::vector<Log*> m_logs;
     User* m_currentUser;
+    std::queue<Ship*> m_waitingQueue;
 public:
-    const std::vector<User*>& getUsers() const;
-    const std::vector<Dock*>& getDocks() const;
-    const std::vector<Yard*>& getYard() const;
-    const std::vector<Container*>& getContainers() const;
-    const std::vector<Crane*>& getCranes() const;
-    const std::vector<Truck*>& getTrucks() const;
-    const std::vector<Ship*>& getShips() const;
-    const std::vector<Booking*>& getBookings() const;
-    const std::vector<BillAndPayment*>& getBillAndPayments() const;
-    const std::map<Enums::ContainerType, Threshold*>& getThresholds() const;
-    const std::vector<Notification*>& getNotifications() const;
-    const std::vector<Log*>& getLogs() const;
+    std::vector<User*>& getUsers();
+    std::vector<Dock*>& getDocks();
+    std::vector<Yard*>& getYard();
+    std::vector<Container*>& getContainers();
+    std::vector<Crane*>& getCranes();
+    std::vector<Truck*>& getTrucks();
+    std::vector<Ship*>& getShips();
+    std::vector<Booking*>& getBookings();
+    std::vector<BillAndPayment*>& getBillAndPayments();
+    std::map<Enums::ContainerType, Threshold*>& getThresholds();
+    std::vector<Notification*>& getNotifications();
+    std::vector<Log*>& getLogs();
     User* getUserById(const std::string&);
     User* getUserByEmail(const std::string&);
     Ship* getShipById(std::string&);
+    Ship* getshipByShipManager();
+    Dock* getDockById(const std::string&);
     bool addUser(User* agent);
     bool addShip(Ship* ship);
     void setDocks(const std::vector<Dock*>& docks);
@@ -71,6 +75,8 @@ public:
     void setNotifications(const std::vector<Notification*>& notifications);
     void setLogs(const std::vector<Log*>& logs);
     void setCurrentUser(User* user);
+    void addShipToWaitingQueue(Ship* ship);
+    void removeShipFromWaitingQueue();
     User* getCurrentUser();
     DataStore(const DataStore&) = delete;
     DataStore& operator=(const DataStore&) = delete;

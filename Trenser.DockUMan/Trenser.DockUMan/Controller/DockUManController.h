@@ -26,6 +26,8 @@ public:
 	void logoutUser();
 	std::vector<std::string> getUserList();
 	std::vector<std::string> getUserListByRole(Enums::UserTypes);
+	Enums::ProcessStatus sendShipArrivalRequest();
+	Enums::ProcessStatus sendShipDepartureRequest();
 	Enums::ProcessStatus updatedUserPhoneNumber(std::string&, std::string&);
 	Enums::ProcessStatus updatedUserEmailId(std::string&, std::string&);
 	Enums::ProcessStatus IsEmailIdUnique(std::string& email);
@@ -37,9 +39,12 @@ public:
 	Enums::ProcessStatus registerShip(std::vector<std::string>& userInformation, std::vector<std::string>& shipInformation, Enums::AvailabilityStatus isAvailable, Enums::ShipStatus status);
 	std::vector<std::string> getShipList();
 	Enums::ProcessStatus trackShipStatus(std::string&,std::string&);
-	Enums::ProcessStatus recordShipArrival(std::string&);
-	Enums::ProcessStatus recordShipDeparture(std::string&);
 	Enums::ProcessStatus approveUser(std::string&);
+	Enums::ProcessStatus updateShipAvailabilityStatus(std::string&, Enums::AvailabilityStatus);
+	Enums::ProcessStatus updateShipName(std::string&, const std::string&);
+	Enums::ProcessStatus updateShipDock(std::string&, const std::string&);
+	void loadFiles();
+	void saveFiles();
 	~DockUManController()
 	{
 		delete m_userService;

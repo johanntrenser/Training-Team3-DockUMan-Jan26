@@ -28,10 +28,10 @@ public:
 	void handleCustomsOfficerUserInput(std::vector<std::string>& );
 	void handleMenus(Enums::UserTypes);
 	Enums::UserTypes getUserType(std::string&);
-	void showUserMenu(Enums::UserTypes);
 	void handleShippingAgentUserInput(std::vector<std::string>&);
 	void logoutUser();
 	void handleAdminMenu();
+	void handleShipManagerMenu();
 	void handleTerminalOperatorMenu();
 	void handleTruckOperations();
 	void handleCraneOperations();
@@ -54,8 +54,13 @@ public:
 	void handleRegisterShipManager(std::vector<std::string>&);
 	bool getShipList();
 	void trackShipStatus();
-	void recordShipArrival();
-	void recordShipDeparture();
+	void updateShipAvailabilityUI();
+	void sendShipArrivalRequest();
+	void sendShipDepartureRequest();
+	void updateShipDetailsUI();
+	void handleUpdateShipDetailsInput(std::string&, int);
+	void loadFiles();
+	void saveFiles();
 	~UserInterface()
 	{
 		delete m_menu;

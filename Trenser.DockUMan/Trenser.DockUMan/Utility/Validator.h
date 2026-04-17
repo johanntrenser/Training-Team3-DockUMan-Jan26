@@ -14,37 +14,48 @@ namespace validator
 {
     inline void validatePassword(std::string& value)
     {
-        bool isPassword = false;
-        while (!isPassword)
+        bool isPasswordValid = false;
+        bool hasUpper = false, hasLower = false, hasDigit = false, hasSpecial = false;
+        for (char ch : value) {
+            if (std::isupper(static_cast<unsigned char>(ch))) {
+                hasUpper = true;
+            }
+            else if (std::islower(static_cast<unsigned char>(ch))) {
+                hasLower = true;
+            }
+            else if (std::isdigit(static_cast<unsigned char>(ch))) {
+                hasDigit = true;
+            }
+            else {
+                hasSpecial = true;
+            }
+        }
+        if (value.size() >= 8 && hasUpper && hasLower && hasDigit && hasSpecial) {
+            std::cout << "Password set!\n";
+            return;
+        }
+        while (!isPasswordValid)
         {
-            bool hasUpper = false, hasLower = false, hasDigit = false, hasSpecial = false;
+            std::cout << "Invalid password: must be at least 8 characters, contain upper, lower, digit, and special character.\n";
             util::read(value);
+            hasUpper = hasLower = hasDigit = hasSpecial = false;
             for (char ch : value) {
-                if (std::isupper(static_cast<unsigned char>(ch)))
-                {
+                if (std::isupper(static_cast<unsigned char>(ch))) {
                     hasUpper = true;
                 }
-                else if (std::islower(static_cast<unsigned char>(ch)))
-                {
+                else if (std::islower(static_cast<unsigned char>(ch))) {
                     hasLower = true;
                 }
-                else if (std::isdigit(static_cast<unsigned char>(ch)))
-                {
+                else if (std::isdigit(static_cast<unsigned char>(ch))) {
                     hasDigit = true;
                 }
-                else
-                {
+                else {
                     hasSpecial = true;
                 }
             }
-
-            if (value.size() < 8 || !hasUpper || !hasLower || !hasDigit || !hasSpecial) {
-                std::cout << "Invalid password: must be at least 8 characters, "
-                    "contain upper, lower, digit, and special character.\n";
-            }
-            else {
-                std::cout << "Password set !\n";
-                isPassword = true;
+            if (value.size() >= 8 && hasUpper && hasLower && hasDigit && hasSpecial) {
+                std::cout << "Password set!\n";
+                isPasswordValid = true;
             }
         }
     }
@@ -53,50 +64,56 @@ namespace validator
     {
         bool isValidEmail = false;
         std::regex emailPattern(R"(^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
-        while (!isValidEmail)
-        {
+        if (std::regex_match(value, emailPattern)) {
+            std::cout << "Email address accepted.\n";
+            return;
+        }
+        while (!isValidEmail) {
+            std::cout << "Invalid email address. Please enter a valid format such as example@domain.com.\n";
             util::read(value);
             if (std::regex_match(value, emailPattern)) {
                 std::cout << "Email address accepted.\n";
                 isValidEmail = true;
             }
-            else {
-                std::cout << "Invalid email address. "
-                    "Please enter a valid format such as example@domain.com.\n";
-            }
         }
     }
+
     inline void validatePhoneNumber(std::string& value)
     {
         bool isValidPhoneNumber = false;
-        std::regex PhoneNumberPattern(R"(^[0-9]{10}$)");
+        std::regex phoneNumberPattern(R"(^[0-9]{10}$)");
+        if (std::regex_match(value, phoneNumberPattern)) {
+            std::cout << "Phone Number accepted.\n";
+            return;
+        }
         while (!isValidPhoneNumber)
         {
+            std::cout << "Invalid phone number. Phone number should be of 10 digits.\n";
             util::read(value);
-            if (std::regex_match(value, PhoneNumberPattern)) {
+            if (std::regex_match(value, phoneNumberPattern)) {
                 std::cout << "Phone Number accepted.\n";
                 isValidPhoneNumber = true;
             }
-            else {
-                std::cout << "Invalid phone number. "
-                    "Phone number should be of 10 digits.\n";
-            }
         }
     }
+
     inline void validateLicenseNumber(std::string& value)
     {
         bool isValidLicenseNumber = false;
-        std::regex LicenseNumberPattern(R"(^(?=.*[0-9])(?=.*[A-Za-z])(?=.*@).{10}$)");
+        std::regex licenseNumberPattern(R"(^(?=.*[0-9])(?=.*[A-Za-z])(?=.*@).{10}$)");
+        if (std::regex_match(value, licenseNumberPattern)) {
+            std::cout << "License Number accepted.\n";
+            return;
+        }
         while (!isValidLicenseNumber)
         {
+            std::cout << "Invalid License Number. "
+                "License Number should be 10 characters long, "
+                "contain at least one alphabet, one number, and '@'.\n";
             util::read(value);
-            if (std::regex_match(value, LicenseNumberPattern)) {
-                std::cout << "Liscense Number accepted.\n";
+            if (std::regex_match(value, licenseNumberPattern)) {
+                std::cout << "License Number accepted.\n";
                 isValidLicenseNumber = true;
-            }
-            else {
-                std::cout << "Invalid Liscense Number. "
-                    "Liscense Number should be of 10 digits contains at least one Alphabet,one Number and @ ,Total length of 10 digits.\n";
             }
         }
     }

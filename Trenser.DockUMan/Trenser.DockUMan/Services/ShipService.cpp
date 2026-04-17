@@ -148,28 +148,6 @@ Enums::ProcessStatus ShipService::updateShipName(std::string& shipId, const std:
 	return Enums::ProcessStatus::SUCCESS;
 }
 
-Enums::ProcessStatus ShipService::updateShipETA(std::string& shipId, const std::string& newShipETA)
-{
-	Ship* ship = m_dataStore.getShipById(shipId);
-	if (!ship)
-	{
-		return Enums::ProcessStatus::FAILED;
-	}
-	ship->setETA(newShipETA);
-	return Enums::ProcessStatus::SUCCESS;
-}
-
-Enums::ProcessStatus ShipService::updateShipETD(std::string& shipId, const std::string& newShipETD)
-{
-	Ship* ship = m_dataStore.getShipById(shipId);
-	if (!ship)
-	{
-		return Enums::ProcessStatus::FAILED;
-	}
-	ship->setETD(newShipETD);
-	return Enums::ProcessStatus::SUCCESS;
-}
-
 Enums::ProcessStatus ShipService::updateShipDock(std::string& shipId, const std::string& newDock)
 {
 	Ship* ship = m_dataStore.getShipById(shipId);

@@ -326,18 +326,6 @@ Enums::ProcessStatus DockUManController::updateShipName(std::string& shipId, con
 	return status;
 }
 
-Enums::ProcessStatus DockUManController::updateShipETA(std::string& shipId, const std::string& newShipETA)
-{
-	Enums::ProcessStatus status = m_shipService->updateShipETA(shipId, newShipETA);
-	return status;
-}
-
-Enums::ProcessStatus DockUManController::updateShipETD(std::string& shipId, const std::string& newShipETD)
-{
-	Enums::ProcessStatus status = m_shipService->updateShipETD(shipId, newShipETD);
-	return status;
-}
-
 Enums::ProcessStatus DockUManController::updateShipDock(std::string& shipId, const std::string& newDock)
 {
 	Enums::ProcessStatus status = m_shipService->updateShipDock(shipId, newDock);

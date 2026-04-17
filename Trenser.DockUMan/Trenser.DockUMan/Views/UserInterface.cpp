@@ -211,10 +211,6 @@ Enums::UserTypes UserInterface::getUserType(std::string& email)
 	return m_dockUManController->getUserType(email);
 }
 
-void UserInterface::showUserMenu(Enums::UserTypes)
-{
-}
-
 /*
  * Function: handleShippingAgentUserInput
  * Description: Collects input specific to shipping agent registration
@@ -909,9 +905,7 @@ void UserInterface::updateShipDetailsUI()
 		util::read(shipId);
 		std::cout << "Select detail to update:\n";
 		std::cout << "1. Ship Name\n";
-		std::cout << "2. ETA\n";
-		std::cout << "3. ETD\n";
-		std::cout << "4. Dock Assignment\n";
+		std::cout << "2. Dock Assignment\n";
 		std::cout << "Enter your choice : ";
 		util::read<int>(choice);
 		handleUpdateShipDetailsInput(shipId, choice);
@@ -936,16 +930,6 @@ void UserInterface::handleUpdateShipDetailsInput(std::string& shipId, int choice
 			status = m_dockUManController->updateShipName(shipId, updatedValue);
 			break;
 		case 2:
-			std::cout << "Enter the New ETA";
-			util::read(updatedValue);
-			status = m_dockUManController->updateShipETA(shipId, updatedValue);
-			break;
-		case 3:
-			std::cout << "Enter the New ETD";
-			util::read(updatedValue);
-			status = m_dockUManController->updateShipETD(shipId, updatedValue);
-			break;
-		case 4:
 			std::cout << "Enter the New ETA";
 			util::read(updatedValue);
 			status = m_dockUManController->updateShipDock(shipId, updatedValue);

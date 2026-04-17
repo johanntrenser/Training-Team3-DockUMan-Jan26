@@ -254,8 +254,6 @@ Enums::ProcessStatus ShipService::updateShipName(std::string& shipId, const std:
 	ship->setShipName(newShipName);
 	return Enums::ProcessStatus::SUCCESS;
 }
-
-<<<<<<< HEAD
 /*
  * Function: updateShipDock
  * Description: Updates the dock assignment of a ship.
@@ -265,8 +263,6 @@ Enums::ProcessStatus ShipService::updateShipName(std::string& shipId, const std:
  * Returns:
  *    Process status (SUCCESS or FAILED)
  */
-=======
->>>>>>> 938ec602b4610bd3cf0e3c07be5a4021d9d4444d
 Enums::ProcessStatus ShipService::updateShipDock(std::string& shipId, const std::string& newDock)
 {
 	Ship* ship = m_dataStore.getShipById(shipId);
